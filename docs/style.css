@@ -1,0 +1,20 @@
+p{
+  color: #838383;
+}
+h1{
+  color: #FFFFFF;
+}
+.button{
+  display: inline-block;
+  background-color: #d9d9d9;
+  padding: 10px;
+  width: 180px;
+  color: #222222;
+  text-align: center;
+  border-radius: 40px;
+  font-size: 28px;
+  text-decoration:none;           <!-- Removes underline from the link -->
+}
+.button:hover {
+  background-color: #ABABAB;
+}
