@@ -27,7 +27,7 @@
 			if (currentDate > 185) { daysWorked--; } // july 4th
 			if (currentDate > 186) { daysWorked--; } // july 5th
 			if (currentDate > 187) { daysWorked--; } // july 6th
-			var daysPay = daysWorked * 8 * 18; // 8hrs/day * $18/hr
+			
 
 
 			function refresh() {
@@ -37,6 +37,7 @@
 				const formattedString = dateString.replace(", ", " - ");
 				timeDisplay.textContent = formattedString;
 				*/
+				var daysPay = daysWorked * 8 * 18; // 8hrs/day * $18/hr
 				const allDate = new Date().toLocaleString('en-GB');
 				const payDisplay = document.getElementById("pay");
 				const year = new Date().getFullYear();
