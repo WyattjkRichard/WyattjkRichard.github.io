@@ -64,7 +64,7 @@ h1 {
 }
 
 #rightHalf {
-    background: url(images/dock.jpg);
+    background: url(./images/dock.jpg);
     width: 50%;
     position: absolute;
     right: 0px;
