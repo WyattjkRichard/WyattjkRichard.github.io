@@ -13,7 +13,7 @@
 </head>
 <body bgcolor=353535>
 	<h1>Cat!</h1>
-	<img id="cat" src="images/tile021.png">
+	<img id="cat" src="assets/images/tile021.png">
 	<script>
 		var currentFrame = 21;
 		var dir = 0;
@@ -21,9 +21,9 @@
 		function animation() {
 			var img = document.getElementById("cat");
 			if (currentFrame < 10) {
-				img.src = "./images/tile00" + currentFrame + ".png";
+				img.src = "assets/images/tile00" + currentFrame + ".png";
 			} else {
-				img.src = "./images/tile0" + currentFrame + ".png";
+				img.src = "assets/images/tile0" + currentFrame + ".png";
 			}
 			if (currentFrame != 21) { currentFrame += 4; }
 			if (currentFrame == 48) { currentFrame = 0; }
