@@ -1,93 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Home</title>
-	<link href='style.css' rel='stylesheet'>
-	<style>
-		#cat {
-			position: relative;
-			transform: scaleX(-1);
-			width:initial;
-		}
-	</style>
-</head>
-<body bgcolor=353535>
-	<h1>Cat!</h1>
-	<img id="cat" src="assets/images/tile021.png">
-	<script>
-		var currentFrame = 21;
-		var dir = 0;
-		let pos = 0;
-		function animation() {
-			var img = document.getElementById("cat");
-			if (currentFrame < 10) {
-				img.src = "assets/images/tile00" + currentFrame + ".png";
-			} else {
-				img.src = "assets/images/tile0" + currentFrame + ".png";
+	<head>
+		<title>Home</title>
+		<link href='style.css' rel='stylesheet'>
+		<meta name="robots" content="noindex">
+		<style>
+			#cat {
+				position: relative;
+				transform: scaleX(-1);
+				width:initial;
 			}
-			if (currentFrame != 21) { currentFrame += 4; }
-			if (currentFrame == 48) { currentFrame = 0; }
-		}
-			setInterval(animation, 100);
-			document.addEventListener('keydown', function (event) {
-				if (event.keyCode == 37) {
-					//console.log("left")
-					document.getElementById("cat").style.transform = "scaleX(1)";
-					dir = 1;
-					currentFrame = 0;
-					myMove();
+		</style>
+	</head>
+	<body bgcolor=353535>
+		<h1>Cat!</h1>
+		<img id="cat" src="assets/images/tile021.png">
+		<script>
+			var currentFrame = 21;
+			var dir = 0;
+			let pos = 0;
+			function animation() {
+				var img = document.getElementById("cat");
+				if (currentFrame < 10) {
+					img.src = "assets/images/tile00" + currentFrame + ".png";
+				} else {
+					img.src = "assets/images/tile0" + currentFrame + ".png";
 				}
-				else if (event.keyCode == 39) {
-					//console.log("right")
-					document.getElementById("cat").style.transform = "scaleX(-1)";
-					dir = 2;
-					currentFrame = 0;
-					myMove();
-				}/*
-				else if (event.keyCode == 38) {
-					console.log("up")
-				}
-				else if (event.keyCode == 40) {
-					console.log("down")
-				}
-				else if (event.keyCode == 65) {
-					console.log("a")
-				}
-				else if (event.keyCode == 66) {
-					console.log("b")
-				}
-				else if (event.keyCode == 68) {
-					console.log("d")
-				}
-				else if (event.keyCode == 83) {
-					console.log("s")
-				}
-				else if (event.keyCode == 87) {
-					console.log("w")
-				}*/
-			}, true);
+				if (currentFrame != 21) { currentFrame += 4; }
+				if (currentFrame == 48) { currentFrame = 0; }
+			}
+				setInterval(animation, 100);
+				document.addEventListener('keydown', function (event) {
+					if (event.keyCode == 37) {
+						//console.log("left")
+						document.getElementById("cat").style.transform = "scaleX(1)";
+						dir = 1;
+						currentFrame = 0;
+						myMove();
+					}
+					else if (event.keyCode == 39) {
+						//console.log("right")
+						document.getElementById("cat").style.transform = "scaleX(-1)";
+						dir = 2;
+						currentFrame = 0;
+						myMove();
+					}/*
+					else if (event.keyCode == 38) {
+						console.log("up")
+					}
+					else if (event.keyCode == 40) {
+						console.log("down")
+					}
+					else if (event.keyCode == 65) {
+						console.log("a")
+					}
+					else if (event.keyCode == 66) {
+						console.log("b")
+					}
+					else if (event.keyCode == 68) {
+						console.log("d")
+					}
+					else if (event.keyCode == 83) {
+						console.log("s")
+					}
+					else if (event.keyCode == 87) {
+						console.log("w")
+					}*/
+				}, true);
 
-			function myMove() {
-				let id = null;
-				const elem = document.getElementById("cat");
-				console.log("window width: " + window.innerWidth)
-				console.log("cat width: " + elem.width)
-				clearInterval(id);
-				id = setInterval(frame, 5);
-				function frame() {
-					if ((pos >= window.innerWidth - elem.width && dir == 2) || (pos <= 0 && dir == 1)) {
-						clearInterval(id);
-						dir = 0;
-						currentFrame = 1;
-					} else if(dir ==1){
-						pos--;
-						elem.style.left = pos + "px";
-					} else if (dir == 2) {
-						pos++;
-						elem.style.left = pos + "px";
+				function myMove() {
+					let id = null;
+					const elem = document.getElementById("cat");
+					console.log("window width: " + window.innerWidth)
+					console.log("cat width: " + elem.width)
+					clearInterval(id);
+					id = setInterval(frame, 5);
+					function frame() {
+						if ((pos >= window.innerWidth - elem.width && dir == 2) || (pos <= 0 && dir == 1)) {
+							clearInterval(id);
+							dir = 0;
+							currentFrame = 1;
+						} else if(dir ==1){
+							pos--;
+							elem.style.left = pos + "px";
+						} else if (dir == 2) {
+							pos++;
+							elem.style.left = pos + "px";
+						}
 					}
 				}
-			}
-	</script>
-</body>
+		</script>
+	</body>
 </html>

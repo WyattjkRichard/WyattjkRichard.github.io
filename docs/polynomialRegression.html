@@ -1,75 +1,136 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Test</title>
-</head>
-<body bgcolor=353535>
-	<script>
-	
-		// [ n  x	x2	] [ y	]
-		// [ x	x2	x3	] [ yx	]
-		// [ x2	x3	x4	] [ yx2	]
+	<head>
+		<title>Polynomial Regression</title>
+		<meta name="robots" content="noindex">
+		<style>
+		.textbox{
+			width: 300px;
+			height: 150px;
+			text-align: left;
+			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+		}
+		</style>
+	</head>
+	<body>
+		<label for="degree">Degree:</label>
+		<input type="number" id="degree" name="fname" value = "2"><br><br>
 		
-		degree = 2;
-		numOfPoints = 4; //numOfPoints must be greater then degree by at least 1
-		numOfRows = degree*2; // the number of diagonal rows in the matrix
-		x = [10, 15, 20, 25];
-		y = [766.8675709, 1207.104397, 1712.243097, 2375.200536];
-
-		var Xs = [];
-		Xs[0] = numOfPoints;
-		var m = [];
+		<label for="xvalues">X - Values:</label>	
+		<textarea type="text" id="xvalues" name="fname" placeholder = "separate data with commas or newline" class="textbox"></textarea><br><br>
 		
-		for(i = 0; i<numOfPoints; i++){
-			for(j = 0; j < numOfRows;j++){
-				if (i == 0){
-					Xs[j+1] = x[i]**(j+1);
+		<label for="yvalues">Y - Values:</label>
+		<textarea type="text" id="yvalues" name="fname" placeholder = "separate data with commas or newline" class="textbox"></textarea><br><br>
+		
+		<button onclick="getData()">Calculate</button>
+		
+		<p id="results"></p>
+		
+		<script>
+			function getData() {
+				var degree = document.getElementById("degree").value;
+				var Xs = document.getElementById("xvalues").value;
+				var Ys = document.getElementById("yvalues").value;
+				Xs = Xs.replaceAll(/[^0-9,.\n]/g, '');
+				Xs = Xs.replaceAll(/\n+/g, ',');
+				Xs = Xs.replaceAll(/,+/g, ',');
+				Xs = Xs.replaceAll(/^[,]|[,]$/g, ''); //remove if there is no number before or after
+				
+				Ys = Ys.replaceAll(/[^0-9,.\n]/g, '');
+				Ys = Ys.replaceAll(/\n+/g, ',');
+				Ys = Ys.replaceAll(/,+/g, ',');
+				Ys = Ys.replaceAll(/^[,]|[,]$/g, ''); //remove if there is no number before or after
+				
+				Xs = Xs.split(/[,\n]/g);
+				Ys = Ys.split(/[,\n]/g);
+				
+				if(Xs.length != Ys.length){
+					window.alert("Please enter the same amount of X and Y values")
 				}
 				else{
-					Xs[j+1] += x[i]**(j+1);
-				}
-			}
-			for(j = 0; j <= degree;j++){
-				if (i == 0){
-					Xs[2*degree+1+j] = y[i]*(x[i]**j);
-				}
-				else{
-					Xs[2*degree+1+j] += y[i]*(x[i]**j);
-				}
-			}
-		}
-
-		for(i = 0; i<= degree;i++){
-			m[i] = [];
-			for(j = 0; j<= degree;j++){
-				m[i][j] = Xs[i+j];
-			}
-			m[i][degree+1] = Xs[2*degree+1+i];
-		}
-		
-		var temp = [];
-		for(i = 0;i<=degree;i++){
-			for(j=0;j<=degree;j++){
-				temp[j] = m[j][i];
-			}
-			for(j=0;j<(degree+2);j++){
-				m[i][j] /= temp[i];
-			}
-			for(j=0;j<=degree;j++){
-				for(k=0;k<(degree+2);k++){
-					if(j!=i){
-						m[j][k] -= m[i][k]*temp[j];
+					for(i=0; i<Xs.length;i++){
+						Xs[i] = Number(Xs[i]);
+						Ys[i] = Number(Ys[i]);
 					}
-					
+					degree = Number(degree);
+					document.getElementById("xvalues").value = Xs;
+					document.getElementById("yvalues").value = Ys;
+					regression(Xs, Ys, degree)
 				}
 			}
-		}
-		console.log("m");
-		console.log(m);
-		//WScript.echo(x[0]);
-		//WScript.echo("type something");
-		//x = WScript.StdIn.ReadLine();
-		//WScript.Echo ("You entered: " + x);
-	</script>
-</body>
+
+			// [ n  x	x2	] [ y	]
+			// [ x	x2	x3	] [ yx	]
+			// [ x2	x3	x4	] [ yx2	]
+			function regression(x, y, degree){
+				//degree = 2;
+				numOfPoints = x.length; //numOfPoints must be greater then degree by at least 1
+				numOfRows = degree*2; // the number of diagonal rows in the matrix
+				//x = [10, 15, 20, 25];
+				//y = [766.8675709, 1207.104397, 1712.243097, 2375.200536];
+
+				var Xs = [];
+				Xs[0] = numOfPoints;
+				var m = [];
+				
+				for(i = 0; i<numOfPoints; i++){ //Calculates Xs and Ys
+					for(j = 0; j < numOfRows;j++){
+						if (i == 0){
+							Xs[j+1] = x[i]**(j+1);
+						}
+						else{
+							Xs[j+1] += x[i]**(j+1);
+						}
+					}
+					for(j = 0; j <= degree;j++){
+						if (i == 0){
+							Xs[2*degree+1+j] = y[i]*(x[i]**j);
+						}
+						else{
+							Xs[2*degree+1+j] += y[i]*(x[i]**j);
+						}
+					}
+				}
+
+				for(i = 0; i<= degree;i++){ //creates initial matrix
+					m[i] = [];
+					for(j = 0; j<= degree;j++){
+						m[i][j] = Xs[i+j];
+					}
+					m[i][degree+1] = Xs[2*degree+1+i];
+				}
+				
+				var temp = [];
+				for(i = 0;i<=degree;i++){
+					for(j=0;j<=degree;j++){
+						temp[j] = m[j][i];
+					}
+					for(j=0;j<(degree+2);j++){
+						m[i][j] /= temp[i];
+					}
+					for(j=0;j<=degree;j++){
+						for(k=0;k<(degree+2);k++){
+							if(j!=i){
+								m[j][k] -= m[i][k]*temp[j];
+							}
+							
+						}
+					}
+				}
+				var result = "";
+				for(i = 0; i<=degree;i++){
+					result+=(Math.round(m[i][degree+1] * 100) / 100);
+					if(i>0)result+="x";
+					if(i>1)result+=(i+"").sup();
+					if(i<degree)result+="+";
+				}
+				document.getElementById("results").innerHTML  = result;
+				
+				console.log("m");
+				console.log(m);
+				console.log(result);
+			}
+
+		</script>
+	</body>
 </html>
