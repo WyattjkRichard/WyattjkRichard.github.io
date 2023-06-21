@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Home</title>
-		<link href='style.css' rel='stylesheet'>
+		<title>Le chat</title>
+		<link href='assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 		<style>
 			#cat {
@@ -13,12 +13,13 @@
 		</style>
 	</head>
 	<body bgcolor=353535>
-		<h1>Cat!</h1>
+		<h1>It's a cat!</h1>
 		<img id="cat" src="assets/images/tile021.png">
 		<script>
 			var currentFrame = 21;
 			var dir = 0;
 			let pos = 0;
+			let id = null;
 			function animation() {
 				var img = document.getElementById("cat");
 				if (currentFrame < 10) {
@@ -32,18 +33,20 @@
 				setInterval(animation, 100);
 				document.addEventListener('keydown', function (event) {
 					if (event.keyCode == 37) {
-						//console.log("left")
-						document.getElementById("cat").style.transform = "scaleX(1)";
-						dir = 1;
-						currentFrame = 0;
-						myMove();
+						if(dir!=1){
+							document.getElementById("cat").style.transform = "scaleX(1)";
+							dir = 1;
+							currentFrame = 0;
+							myMove();
+						}
 					}
 					else if (event.keyCode == 39) {
-						//console.log("right")
-						document.getElementById("cat").style.transform = "scaleX(-1)";
-						dir = 2;
-						currentFrame = 0;
-						myMove();
+						if(dir!=2){
+							document.getElementById("cat").style.transform = "scaleX(-1)";
+							dir = 2;
+							currentFrame = 0;
+							myMove();
+						}
 					}/*
 					else if (event.keyCode == 38) {
 						console.log("up")
@@ -69,12 +72,10 @@
 				}, true);
 
 				function myMove() {
-					let id = null;
+					
 					const elem = document.getElementById("cat");
-					console.log("window width: " + window.innerWidth)
-					console.log("cat width: " + elem.width)
 					clearInterval(id);
-					id = setInterval(frame, 5);
+					id = setInterval(frame, 3);
 					function frame() {
 						if ((pos >= window.innerWidth - elem.width && dir == 2) || (pos <= 0 && dir == 1)) {
 							clearInterval(id);

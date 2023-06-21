@@ -2,25 +2,26 @@
 <html>
 	<head>
 		<title>Polynomial Regression</title>
+		<link href='assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 		<style>
-		.textbox{
-			width: 300px;
+		textarea{
 			height: 150px;
-			text-align: left;
-			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+			width: 300px;
+			background-color: #ABABAB;
+			border: 1px solid black;
 		}
 		</style>
 	</head>
 	<body>
 		<label for="degree">Degree:</label>
-		<input type="number" id="degree" name="fname" value = "2"><br><br>
+		<input type="number" id="degree" name="degree" value = "2"><br><br>
 		
 		<label for="xvalues">X - Values:</label>	
-		<textarea type="text" id="xvalues" name="fname" placeholder = "separate data with commas or newline" class="textbox"></textarea><br><br>
+		<textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
 		
 		<label for="yvalues">Y - Values:</label>
-		<textarea type="text" id="yvalues" name="fname" placeholder = "separate data with commas or newline" class="textbox"></textarea><br><br>
+		<textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
 		
 		<button onclick="getData()">Calculate</button>
 		
@@ -46,6 +47,9 @@
 				
 				if(Xs.length != Ys.length){
 					window.alert("Please enter the same amount of X and Y values")
+				}
+				else if(degree>=Xs.length||degree<=0){
+					window.alert("Please enter a valid degree")
 				}
 				else{
 					for(i=0; i<Xs.length;i++){
