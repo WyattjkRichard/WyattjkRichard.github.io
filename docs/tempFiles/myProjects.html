@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Projects</title>
+		<link href='assets/css/style.css' rel='stylesheet'>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="robots" content="noindex">
+		<style>
+			body {
+				margin: 0;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.header {
+				padding: 26px 40px;
+				background: #191919;
+				color: #f1f1f1;
+				width: 100%;
+			}
+
+			.content {
+				padding: 16px;
+			}
+
+			.sticky {
+				position: fixed;
+				top: 0;
+				width: 100%;
+			}
+
+			.sticky + .content {
+				padding-top: 102px;
+			}
+			
+			.headerLink{
+				color: #a9a9a9;
+				font-size: 15px;
+				text-decoration:none;           <!-- Removes underline from the link -->				
+			}
+			.headerLink:hover {
+				color: #ffffff;
+			}
+		</style>
+</head>
+<body>
+<div class="header" id="myHeader">
+	<div style="float: left">
+		<a href="https://wyattjkrichard.github.io" class="headerLink"><strong>Home</strong></a>
+		<a href="https://wyattjkrichard.github.io" class="headerLink" style="color: #ffffff;"><strong>Projects</strong></a>
+	</div>
+	<div style="margin: 0 auto; width: 135px;">
+		<a href="https://wyattjkrichard.github.io" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+	</div>
+</div>
+
+<div class="content">
+	<div class="grid-container">
+		<div class="item1">Embedded Systems Robot</div>
+		<div class="item2">Coded Messaging System</div>
+		<div class="item3">Audio Amplifier</div>  
+		<div class="item4">LED Display</div>
+		<div class="item5">Multimeter</div>
+	</div>
+</div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
+
+</body>
+</html>
