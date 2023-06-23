@@ -3,6 +3,7 @@
 	<head>
 		<title>My Projects</title>
 		<link href='assets/css/style.css' rel='stylesheet'>
+		<link rel="icon" href="assets/images/icon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="noindex">
 		<style>
@@ -15,6 +16,7 @@
 				background: #191919;
 				color: #f1f1f1;
 				width: 100%;
+				z-index: 1;
 			}
 
 			.content {
@@ -58,7 +60,7 @@
 				
 			}
 
-			.grid-container > div {
+			.grid-container > a > div {
 				background-color: #000000;
 				color: #ffffff;
 			}
@@ -68,66 +70,84 @@
 				max-height: 100%;
 				display: block; /* remove extra space below image */
 			}
+			img:hover{
+				filter: brightness(50%);
+				z-index: 1;
+			}
 			
 			p{
 				text-align: center;
 				margin: 5px;
 			}
+			
+			a{
+				text-decoration: none; 
+			}
 		</style>
-</head>
-<body>
-<div class="header" id="myHeader">
-	<div style="float: left">
-		<a href="index.html" class="headerLink"><strong>Home</strong></a>
-		<a href="projects.html" class="headerLink" style="color: #ffffff;"><strong>Projects</strong></a>
-	</div>
-	<div style="margin: 0 auto; width: 135px;">
-		<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
-	</div>
-</div>
-
-<div class="grid-container">
-			<div class="item1">
-				<img src="assets/images/cms.png">
-				<p>Embedded Systems Robot</p>
-				<p>2023</p>
+	</head>
+	<body>
+		<div class="header" id="myHeader">
+			<div style="float: left">
+				<a href="index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="projects.html" class="headerLink" style="color: #ffffff;"><strong>Projects</strong></a>
 			</div>
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+			</div>
+		</div>
+
+		<div class="grid-container">
+			<a href="esr.html">
+				<div class="item1">
+					<img src="assets/images/cms.png">
+					<p>Embedded Systems Robot</p>
+					<p>2023</p>
+				</div>
+			</a>
+			<a href="cms.html">
 			<div class="item2">
 				<img src="assets/images/cms.png">
 				<p>Coded Messaging System</p>
 				<p>2022</p>
 			</div>
+			</a>
+			<a href="audioAmp.html">
 			<div class="item3">
 				<img src="assets/images/audioAmp.png">
 				<p>Audio Amplifier</p>
 				<p>2022</p>
-			</div>  
+			</div>
+			</a>
+			<a href="ledd.html">			
 			<div class="item4">
 				<img src="assets/images/ledDisplay.png">
 				<p>LED Display</p>
 				<p>2021</p>
 			</div>
+			</a>
+			<a href="multimeter.html">
 			<div class="item5">
 				<img src="assets/images/multimeter.png">
 				<p>Multimeter</p>
 				<p>2021</p>
 			</div>
+			</a>
 		</div>
+		
+		<script>
+		window.onscroll = function() {myFunction()};
 
-<script>
-window.onscroll = function() {myFunction()};
+		var header = document.getElementById("myHeader");
+		var sticky = header.offsetTop;
 
-var header = document.getElementById("myHeader");
-var sticky = header.offsetTop;
+		function myFunction() {
+		  if (window.pageYOffset > sticky) {
+			header.classList.add("sticky");
+		  } else {
+			header.classList.remove("sticky");
+		  }
+		}
+		</script>
 
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
-</script>
-
-</body>
+	</body>
 </html>
