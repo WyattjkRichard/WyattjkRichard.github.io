@@ -57,13 +57,19 @@
 				'time': ['seconds', 'minutes'],
 				'Option 3': ['Option 3 - Choice 1'],
 			};
+			var values = {
+				'meters': 1,
+				'milimeters': 0.001,
+				'kilometers': 1000,
+			};
+
 			
 			// When an option is changed, search the above for matching choices
 			document.getElementById("variable").onchange = function() {updateInput()};
 			function updateInput() {
 				// Set selected option as variable
 				var selectValue = document.getElementById("variable").value;
-				console.log(selectValue);
+				//console.log(selectValue);
 				
 				// Empty the target field
 				document.getElementById("input1").innerHTML = "";
@@ -77,6 +83,20 @@
 				document.getElementById("input2").innerHTML = document.getElementById("input1").innerHTML
 			}
 			
+			document.getElementById("input1").onchange = function() {updateValue2()};
+			document.getElementById("value1").onchange = function() {updateValue2()};
+			function updateValue2() {
+				if(document.getElementById("input1").value!=""&&document.getElementById("input2").value!=""){
+					document.getElementById("value2").value = document.getElementById("value1").value * values[document.getElementById("input1").value] / values[document.getElementById("input2").value]
+				}
+			}
+			document.getElementById("input2").onchange = function() {updateValue1()};
+			document.getElementById("value2").onchange = function() {updateValue1()};
+			function updateValue1() {
+				if(document.getElementById("input1").value!=""&&document.getElementById("input2").value!=""){
+					document.getElementById("value1").value = document.getElementById("value2").value * values[document.getElementById("input2").value] / values[document.getElementById("input1").value]
+				}
+			}
 			
 		</script>
 		
