@@ -42,6 +42,12 @@
 				right: 0px;
 				height: 100%;
 			}
+			.hidden {
+				display: none;
+			}
+			.show {
+				display: inline;
+			}
 		</style>
 	</head>
 	<body>
@@ -51,22 +57,96 @@
 				<h1>Wyatt Richard</h1>
 				<p>Bachelor of Electronic Systems Engineering student at Conestoga College</p>
 				<br>
-				<a href="https://wyattjkrichard.github.io/projects.html" class='button'> My Projects </a>
+				<a href="projects.html" class='button'> My Projects </a>
 				<br><br>
-				<a href="https://www.linkedin.com/in/wyatt-richard-a8080914a/" class='mediaButton' target='_blank'>
-					<img class="socialMedia" src="assets/images/linkedin.png">
-				</a>
-				<a href="https://www.instagram.com/_wyattrichard_/" class='mediaButton' target='_blank'>
-					<img class="socialMedia" src="assets/images/Instagram.png">
-				</a>
-				<a href="https://github.com/WyattjkRichard" class='mediaButton' target='_blank'>
-					<img class="socialMedia" src="assets/images/github.png">
-				</a>
-				<a href="mailto:wyatt@rhouse.me" class='mediaButton' target='_blank'>
-					<img class="socialMedia" src="assets/images/email.png">
-				</a>
+				<div>
+					<a href="https://www.linkedin.com/in/wyatt-richard-a8080914a/" class='mediaButton' target='_blank'>
+						<img class="socialMedia" src="assets/images/linkedin.png">
+					</a>
+					<a href="https://www.instagram.com/_wyattrichard_/" class='mediaButton' target='_blank'>
+						<img class="socialMedia" src="assets/images/Instagram.png">
+					</a>
+					<a href="https://github.com/WyattjkRichard" class='mediaButton' target='_blank'>
+						<img class="socialMedia" src="assets/images/github.png">
+					</a>
+					<a href="mailto:wyatt@rhouse.me" class='mediaButton' target='_blank'>
+						<img class="socialMedia" src="assets/images/email.png">
+					</a>
+				</div>
+				<br>
+				<a href="tempFiles/randIndex.html" class='button hidden' id="hideable-button"> Random Things </a>
 			</div>
 			<div id="rightHalf"></div>
 		</div>
+		<script>
+			var codeStatus = 0;
+			
+			function toggleButton() {
+				document.getElementById("hideable-button").className = 'button show'; 
+			}
+		
+			document.addEventListener('keydown', function (event) {
+				if (event.keyCode == 37) {
+					console.log("left")
+					if(codeStatus == 4 || codeStatus == 6){
+						codeStatus++;
+					}
+					else{
+						codeStatus=0;
+					}
+				}
+				else if (event.keyCode == 39) {
+					console.log("right")
+					if(codeStatus == 5 || codeStatus == 7){
+						codeStatus++;
+					}
+					else{
+						codeStatus=0;
+					}
+				}
+				else if (event.keyCode == 38) {
+					console.log("up")
+					if(codeStatus < 2){
+						codeStatus++;
+					}
+					else{
+						codeStatus=0;
+					}
+				}
+				else if (event.keyCode == 40) {
+					console.log("down")
+					if(codeStatus > 1 && codeStatus < 4){
+						codeStatus++;
+					}
+					else{
+						codeStatus=0;
+					}
+				}
+				else if (event.keyCode == 65) {
+					console.log("a")
+					if(codeStatus == 9){
+						console.log("konami")
+						toggleButton();
+					}
+					else{
+						codeStatus=0;
+					}
+				}
+				else if (event.keyCode == 66) {
+					console.log("b")
+					if(codeStatus == 8){
+						codeStatus++;
+					}
+					else{
+						codeStatus=0;
+					}
+				}
+				else{
+					codeStatus=0;
+					console.log("reset")
+					console.log(event.keyCode)
+				}
+			}, true);
+		</script>
 	</body>
 </html>

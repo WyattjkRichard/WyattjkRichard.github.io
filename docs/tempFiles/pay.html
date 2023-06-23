@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Pay</title>
-		<link href='assets/css/style.css' rel='stylesheet'>
+		<link href../assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 	</head>
 	<body bgcolor=353535>
@@ -25,10 +25,11 @@
 				var daysWorked = currentDate - 121 - (Math.floor((currentDate - 121) / 7)) * 2; // 121 - startDate: may 1st
 				if (currentDate > 158) { daysWorked--; } // june 9th
 				if (currentDate > 160) { daysWorked--; } // june 9th
+				if (currentDate > 177) { daysWorked--; } // june 26th
 				if (currentDate > 185) { daysWorked--; } // july 4th
 				if (currentDate > 186) { daysWorked--; } // july 5th
 				if (currentDate > 187) { daysWorked--; } // july 6th
-				
+				if (currentDate > 192) { daysWorked--; } // july 11th
 
 
 				function refresh() {
