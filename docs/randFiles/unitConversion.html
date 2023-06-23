@@ -23,8 +23,7 @@
 			
 		</style>
 	</head>
-	<body>
-				
+	<body>	
 		<div>
 			<select id="variable" name="variable">
 				<option value="" disabled selected>Select an option</option>
@@ -53,7 +52,7 @@
 		<script>
 			// Map your choices to your option value
 			var lookup = {
-				'length': ['kilometer', 'meter', 'centimeter', 'milimeter', 'micrometer', 'nanometer',  'mile',  'yard',  'foot',  'inch',  'nautical mile',  'banana'],
+				'length': ['kilometer', 'meter', 'centimeter', 'milimeter', 'micrometer', 'nanometer',  'mile',  'yard',  'foot',  'inch',  'nautical mile',  'banana', 'furlong', 'smoot', 'lightyear', 'sheppey', 'hammer unit','earth radius','astronomical unit', 'parsec'],
 				'time': ['second', 'minute'],
 				'Option 3': ['Option 3 - Choice 1'],
 			};
@@ -70,6 +69,14 @@
 				'inch':0.0254,
 				'nautical mile':1852,
 				'banana':0.15,
+				'furlong':201.168,
+				'smoot':1.7018,							// the height in 1958 of Oliver R. Smoot
+				'lightyear': 9460730472580800,
+				'sheppey': 1408.18,						// roughly 7/8 of a mile
+				'hammer unit': 0.01905,					// exact
+				'earth radius':6371000,					// exact
+				'astronomical unit':149597870700,		// exact
+				'parsec': (149597870700*648000)/Math.PI,// exact
 				'second':1/60,
 				'minute':1,
 				
@@ -92,7 +99,9 @@
 					// Output choice in the target field
 					document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
 				}
-				document.getElementById("input2").innerHTML = document.getElementById("input1").innerHTML
+				document.getElementById("input2").innerHTML = document.getElementById("input1").innerHTML;
+				document.getElementById("value1").value = 0;
+				document.getElementById("value2").value = 0;
 			}
 			
 			document.getElementById("input1").onchange = function() {updateValue2()};
