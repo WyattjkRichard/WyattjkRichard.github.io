@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Unit Conversion</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+		<style>
+			#variable{
+				width:350px;
+			}
+			.inline {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			input {
+				width:156px;
+				display: block;
+			}
+			select{
+				width:164px;
+				display: block;
+			}
+			
+		</style>
+	</head>
+	<body>
+				
+		<div>
+			<select id="variable" name="variable">
+				<option value="" disabled selected>Select an option</option>
+				<option value="length">Length</option>
+				<option value="time">Time</option>
+			</select>
+		</div>
+		<div>
+			<div class="inline">
+				<input type="number" id="value1" value = "0">
+				<select id="input1">
+					<option value="" disabled selected>Select an option</option>
+				</select>
+			</div>
+			<div class="inline">
+				<h2 style = "display: inline-block">=</h2>
+			</div>
+			<div class="inline">
+				<input type="number" id="value2" value = "0">
+				<select id="input2">
+					<option value="" disabled selected>Select an option</option>
+				</select>
+			</div>
+		</div>
+		
+		<script>
+			// Map your choices to your option value
+			var lookup = {
+				'length': ['meters', 'milimeters', 'kilometers'],
+				'time': ['seconds', 'minutes'],
+				'Option 3': ['Option 3 - Choice 1'],
+			};
+			
+			// When an option is changed, search the above for matching choices
+			document.getElementById("variable").onchange = function() {updateInput()};
+			function updateInput() {
+				// Set selected option as variable
+				var selectValue = document.getElementById("variable").value;
+				console.log(selectValue);
+				
+				// Empty the target field
+				document.getElementById("input1").innerHTML = "";
+				document.getElementById("input1").innerHTML += ("<option value='' disabled selected>Select an option</option>");
+				
+				// For each chocie in the selected option
+				for (i = 0; i < lookup[selectValue].length; i++) {
+					// Output choice in the target field
+					document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+				}
+				document.getElementById("input2").innerHTML = document.getElementById("input1").innerHTML
+			}
+			
+			
+		</script>
+		
+	</body>
+</html>

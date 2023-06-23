@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Multi Option</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<select id="options">
+			<option value="" disabled selected>Select an option</option>
+			<option value="Option 1">Option 1</option>
+			<option value="Option 2">Option 2</option>
+			<option value="Option 3">Option 3</option>
+		</select>
+
+		<select id="choices">
+			<option value="" disabled selected>Select an option</option>
+		</select>
+
+		<script>		
+			// Map your choices to your option value
+			var lookup = {
+				'Option 1': ['Option 1 - Choice 1', 'Option 1 - Choice 2', 'Option 1 - Choice 3'],
+				'Option 2': ['Option 2 - Choice 1', 'Option 2 - Choice 2'],
+				'Option 3': ['Option 3 - Choice 1'],
+			};
+			
+			// When an option is changed, search the above for matching choices
+			document.getElementById("options").onchange = function() {myFunction()};
+			function myFunction() {
+				// Set selected option as variable
+				var selectValue = document.getElementById("options").value;
+				console.log(selectValue);
+				
+				// Empty the target field
+				document.getElementById("choices").innerHTML = "";
+				document.getElementById("choices").innerHTML += ("<option value='' disabled selected>Select an option</option>");
+				
+				// For each chocie in the selected option
+				for (i = 0; i < lookup[selectValue].length; i++) {
+					// Output choice in the target field
+					document.getElementById("choices").innerHTML += ("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+				}
+			}
+		</script>
+	</body>
+</html>
