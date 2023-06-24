@@ -29,6 +29,7 @@
 				<option value="" disabled selected>Select an option</option>
 				<option value="length">Length</option>
 				<option value="time">Time</option>
+				<option value="digital storage">Digital Storage</option>
 			</select>
 		</div>
 		<div>
@@ -53,16 +54,16 @@
 			// Map your choices to your option value
 			var lookup = {
 				'length': ['kilometer', 'meter', 'centimeter', 'milimeter', 'micrometer', 'nanometer',  'mile',  'yard',  'foot',  'inch',  'nautical mile',  'banana', 'furlong', 'smoot', 'lightyear', 'sheppey', 'hammer unit','earth radius','astronomical unit', 'parsec'],
-				'time': ['second', 'minute'],
-				'Option 3': ['Option 3 - Choice 1'],
+				'time': ['nanosecond', 'microsecond', 'millisecond', 'second', 'minute', 'hour', 'day', 'week', 'fortnight', 'month', 'calendar year', 'decade', 'century', 'shake', 'sol'],
+				'digital storage': ['bit','crumb','nibble', 'byte', 'word'],
 			};
 			var values = {
-				'kilometer': 1000,
-				'meter': 1,
-				'centimeter': 0.01,
-				'milimeter': 0.001,
-				'micrometer': 0.000001,
-				'nanometer': 0.000000001,
+				'kilometer': 1000,							// exact
+				'meter': 1,									// exact
+				'centimeter': 0.01,							// exact
+				'milimeter': 0.001,							// exact
+				'micrometer': 0.000001,						// exact
+				'nanometer': 0.000000001,					// exact
 				'mile':1609.34,
 				'yard':0.9144,
 				'foot':0.3048,
@@ -70,16 +71,35 @@
 				'nautical mile':1852,
 				'banana':0.15,
 				'furlong':201.168,
-				'smoot':1.7018,							// the height in 1958 of Oliver R. Smoot
+				'smoot':1.7018,								// the height in 1958 of Oliver R. Smoot
 				'lightyear': 9460730472580800,
-				'sheppey': 1408.18,						// roughly 7/8 of a mile
-				'hammer unit': 0.01905,					// exact
-				'earth radius':6371000,					// exact
-				'astronomical unit':149597870700,		// exact
-				'parsec': (149597870700*648000)/Math.PI,// exact
-				'second':1/60,
-				'minute':1,
+				'sheppey': 1408.18,							// roughly 7/8 of a mile
+				'hammer unit': 0.01905,						// exact
+				'earth radius':6371000,						// exact
+				'astronomical unit':149597870700,			// exact - average distance between the earth and the sun
+				'parsec': (149597870700*648000)/Math.PI,	// exact
 				
+				'nanosecond':1/60000000000,					// exact
+				'microsecond':1/60000000,					// exact
+				'millisecond':1/60000,						// exact
+				'second':1/60,								// exact
+				'minute':1,									// exact
+				'hour': 60,									// exact
+				'day':1440,									// exact
+				'week':10080,								// exact
+				'fortnight':20160,							// exact
+				'month':43800,								// exact
+				'calendar year':525600,						// exact
+				'decade':5256000,							// exact
+				'century':52560000,							// exact
+				'shake':1/6000000000,						// exact - 10 nanoseconds
+				'sol':1479+(35/60),							// exact - 1 day on mars 24 hours, 39 minutes, 35 seconds
+				
+				'bit':1,									// exact
+				'crumb':2,									// exact
+				'nibble':4,									// exact
+				'byte':8,									// exact
+				'word':16,									// exact				
 			};
 
 			
