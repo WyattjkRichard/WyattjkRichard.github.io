@@ -15,34 +15,42 @@
 		</style>
 	</head>
 	<body>
-		<label for="degree">Degree:</label>
-		<input type="number" id="degree" name="degree" value = "2"><br><br>
-		
-		<label for="xvalues">X - Values:</label>	
-		<textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
-		
-		<label for="yvalues">Y - Values:</label>
-		<textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
-		
-		<button onclick="getData()">Calculate</button>
-		
-		<p id="results"></p>
-		
+		<div>
+			<div style = "float: left;">
+				<label for="degree">Degree:</label>
+				<input type="number" id="degree" name="degree" value = "2"><br><br>
+				
+				<label for="xvalues">X - Values:</label>	
+				<textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
+				
+				<label for="yvalues">Y - Values:</label>
+				<textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
+				
+				<button onclick="getData()">Calculate</button>
+				
+				<p id="results"></p>
+			</div>
+			<div style = "float: left; padding: 20px;">
+				<br><br>
+				<canvas id="chartJSContainer" style="width:200%;max-width:600px"></canvas>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
 		<script>
 			function getData() {
 				var degree = document.getElementById("degree").value;
 				var Xs = document.getElementById("xvalues").value;
 				var Ys = document.getElementById("yvalues").value;
+				var resultValues = [];
+				
 				Xs = Xs.replaceAll(/[^0-9,.\n]/g, '');
 				Xs = Xs.replaceAll(/\n+/g, ',');
 				Xs = Xs.replaceAll(/,+/g, ',');
 				Xs = Xs.replaceAll(/^[,]|[,]$/g, ''); //remove if there is no number before or after
-				
 				Ys = Ys.replaceAll(/[^0-9,.\n]/g, '');
 				Ys = Ys.replaceAll(/\n+/g, ',');
 				Ys = Ys.replaceAll(/,+/g, ',');
 				Ys = Ys.replaceAll(/^[,]|[,]$/g, ''); //remove if there is no number before or after
-				
 				Xs = Xs.split(/[,\n]/g);
 				Ys = Ys.split(/[,\n]/g);
 				
@@ -53,14 +61,20 @@
 					window.alert("Please enter a valid degree")
 				}
 				else{
+					let max = Number(Xs[0]);
+					let min = Number(Xs[0]);
 					for(i=0; i<Xs.length;i++){
 						Xs[i] = Number(Xs[i]);
 						Ys[i] = Number(Ys[i]);
+						if(Xs[i]<min)min = Xs[i];
+						if(Xs[i]>max)max = Xs[i];
 					}
 					degree = Number(degree);
+					
 					document.getElementById("xvalues").value = Xs;
 					document.getElementById("yvalues").value = Ys;
-					regression(Xs, Ys, degree)
+					resultValues = regression(Xs, Ys, degree);
+					plotData(Xs, Ys, resultValues, max, min);
 				}
 			}
 
@@ -123,18 +137,113 @@
 					}
 				}
 				var result = "";
+				var resultEquation = "";
 				for(i = 0; i<=degree;i++){
-					result+=(Math.round(m[i][degree+1] * 100) / 100);
-					if(i>0)result+="x";
-					if(i>1)result+=(i+"").sup();
-					if(i<degree)result+="+";
+	
+					if(m[i][degree+1]!=0){
+						result+=(Math.round(m[i][degree+1] * 10000) / 10000);
+						resultEquation+=m[i][degree+1];
+						if(i>0){
+							result+="x";
+							resultEquation+="*x";
+						}
+						if(i>1){
+							result+=(i+"").sup();
+							resultEquation+="**"+i;
+						}
+						if(i<degree && m[i+1][degree+1]>0){
+							result+="+";
+							resultEquation+="+";
+						}
+					}
 				}
 				document.getElementById("results").innerHTML  = result;
-				
-				console.log("m");
-				console.log(m);
-				console.log(result);
+				return resultEquation;
 			}
+			
+			function plotData(Xs, Ys, resultEquation, max, min){
+				var yValues = [];
+				var xValues = [];
+				let step = 1;
+
+				for (let x = min; x <= max; x += step) {
+					yValues.push(eval(resultEquation));
+					xValues.push(x);
+				}
+				var storage = [];
+				for (let i = 0;i<Xs.length;i++){
+					var json = {x: Xs[i], y: Ys[i]};
+					storage.push(json);
+				}
+				const data1 = {
+					labels: xValues, // place labels array in correct spot
+					datasets: [{
+							type: 'line',
+							pointRadius: 0,
+							data: yValues,
+							backgroundColor: 'rgb(0, 0, 255)',
+							borderColor: 'rgb(0, 0, 255)',
+							xAxisID: 'x2' // Specify to which axes to link
+						},
+						{
+							type: 'scatter',
+							pointRadius: 4,
+							pointBackgroundColor: "rgba(255,0,0,1)",
+							data: storage
+						}
+					],
+				}
+
+				const myChart = new Chart('chartJSContainer', {
+					type: 'scatter',
+					data: data1,
+					options: {
+						plugins: {
+							legend: {display: false}
+						},
+						scales: {
+							x: {},
+							x2: { // add extra axes
+								display: false
+							},
+							y: {
+								grid: {
+									display: false
+								}
+							},
+						}
+					}
+				});
+				
+				
+				/*
+				new Chart("myChart", {
+					type: "line",
+					data: {
+						labels: Xs,
+						datasets: [{
+							fill: false,
+							pointRadius: 2,
+							borderColor: "rgba(0,0,255,0.5)",
+							data: yValues
+						}, {
+							fill: false,
+							lineTension: 0,
+							backgroundColor: "rgba(0,0,255,1.0)",
+							borderColor: "rgba(0,0,255,0)",
+							data: Ys
+						}]
+					},
+					options: {
+						legend: {display: false},
+						//scales: {
+						//	yAxes: [{ticks: {min: 6, max:16}}],
+						//}
+					}
+				});*/
+				console.log("breakpoint");
+			}
+			
 
 		</script>
 	</body>

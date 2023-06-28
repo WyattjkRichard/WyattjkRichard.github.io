@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<body>
+
+		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+		<script>
+			const Xs = [0,1,2,3,4,5,6,7,8,9,10];
+			const Ys = [7,8,8,9,9,9,10,11,14,14];
+			
+			var xValues = [];
+			var yValues = [];
+			generateData("Math.sin(x)", 0, 10, 0.5);
+
+			new Chart("myChart", {
+				type: "line",
+				data: {
+					labels: xValues,
+					datasets: [{
+						fill: false,
+						pointRadius: 2,
+						borderColor: "rgba(0,0,255,0.5)",
+						data: yValues
+					}, {
+						fill: false,
+						lineTension: 0,
+						backgroundColor: "rgba(0,0,255,1.0)",
+						borderColor: "rgba(0,0,255,0)",
+						data: Ys
+					}]
+				},
+				options: {
+					legend: {display: false},
+				}
+			});
+			function generateData(value, min, max, step = 1) {
+				for (let x = min; x <= max; x += step) {
+					yValues.push(eval(value));
+					xValues.push(x);
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<canvas id="chartJSContainer" style="width:100%;max-width:600px"></canvas>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
+		<script>
+			const Xs = [1,3,5,5,5,10,10,10,15,15,20,20,20,20,25,25,25];
+			const Ys = [73.5675,160.4425,274.2979,294.9363591,270.6064586,596.3602161,842.8434998,690.8916419,1190.755794,1223.453,1710.069081,1712.259635,1714.400575,1741.625728,2324.714842,2425.686231,2205.667844];
+			var storage = [];
+			for (let i = 0;i<Xs.length;i++){
+				var json = {x: Xs[i], y: Ys[i]};
+				storage.push(json);
+			}
+			
+			var xValues = [];
+			var yValues = [];
+			generateData("Math.sin(x)", 1, 25, 0.5);
+		
+			const data1 = {
+				labels: xValues, // place labels array in correct spot
+				datasets: [{
+						type: 'line',
+						data: yValues,
+						backgroundColor: 'rgb(0, 0, 255)',
+						borderColor: 'rgb(0, 0, 255)',
+						xAxisID: 'x2' // Specify to which axes to link
+					},
+					{
+						type: 'scatter',
+						pointRadius: 4,
+						pointBackgroundColor: "rgba(0,0,255,1)",
+						data: storage
+					}
+				],
+			}
+
+			const myChart = new Chart('chartJSContainer', {
+				type: 'scatter',
+				data: data1,
+				options: {
+					plugins: {
+						legend: {display: false}
+					},
+					scales: {
+						x: {},
+						x2: { // add extra axes
+							display: false
+						},
+						y: {
+							grid: {
+								display: false
+							}
+						},
+					}
+				}
+			});
+			
+			function generateData(value, min, max, step = 1) {
+				for (let x = min; x <= max; x += step) {
+					yValues.push(eval(value));
+					xValues.push(x);
+				}
+			}
+		</script>
+	</body>
+</html>
