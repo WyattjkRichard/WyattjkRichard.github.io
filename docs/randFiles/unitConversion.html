@@ -30,44 +30,48 @@
 				<option value="length">Length</option>
 				<option value="time">Time</option>
 				<option value="digital storage">Digital Storage</option>
+				<option value="temperature">Temperature</option>
 			</select>
 		</div>
 		<div>
+			<div class="inline">
+				<input type="number" id="value0" value = "0">
+				<select id="input0">
+					<option value="" disabled selected>Select an option</option>
+				</select>
+			</div>
+			<div class="inline">
+				<h2 style = "display: inline-block;">=</h2>
+			</div>
 			<div class="inline">
 				<input type="number" id="value1" value = "0">
 				<select id="input1">
 					<option value="" disabled selected>Select an option</option>
 				</select>
-			</div>
-			<div class="inline">
-				<h2 style = "display: inline-block">=</h2>
-			</div>
-			<div class="inline">
-				<input type="number" id="value2" value = "0">
-				<select id="input2">
-					<option value="" disabled selected>Select an option</option>
-				</select>
+				
 			</div>
 		</div>
-		
+		<p id="p0"></p>
+		<p id="p1"></p>
 		<script>
 			// Map your choices to your option value
 			var lookup = {
-				'length': ['kilometer', 'meter', 'centimeter', 'milimeter', 'micrometer', 'nanometer',  'mile',  'yard',  'foot',  'inch',  'nautical mile',  'banana', 'furlong', 'smoot', 'lightyear', 'sheppey', 'hammer unit','earth radius','astronomical unit', 'parsec'],
+				'length': ['nanometre', 'micrometre', 'milimetre', 'centimetre', 'metre', 'kilometre',  'inch',  'foot',  'yard',  'mile',  'nautical mile',  'banana', 'furlong', 'smoot', 'lightyear', 'sheppey', 'hammer unit','earth radius','astronomical unit', 'parsec'],
 				'time': ['nanosecond', 'microsecond', 'millisecond', 'second', 'minute', 'hour', 'day', 'week', 'fortnight', 'month', 'calendar year', 'decade', 'century', 'shake', 'sol'],
 				'digital storage': ['bit','crumb','nibble', 'byte', 'word'],
+				'temperature': ['celcius','fahrenheit','kelvin ', 'rankine', 'reaumur'],
 			};
 			var values = {
-				'kilometer': 1000,							// exact
-				'meter': 1,									// exact
-				'centimeter': 0.01,							// exact
-				'milimeter': 0.001,							// exact
-				'micrometer': 0.000001,						// exact
-				'nanometer': 0.000000001,					// exact
-				'mile':1609.34,
-				'yard':0.9144,
-				'foot':0.3048,
+				'nanometre': 0.000000001,					// exact
+				'micrometre': 0.000001,						// exact
+				'milimetre': 0.001,							// exact
+				'centimetre': 0.01,							// exact
+				'metre': 1,									// exact
+				'kilometre': 1000,							// exact
 				'inch':0.0254,
+				'foot':0.3048,
+				'yard':0.9144,
+				'mile':1609.34,
 				'nautical mile':1852,
 				'banana':0.15,
 				'furlong':201.168,
@@ -102,6 +106,61 @@
 				'word':16,									// exact				
 			};
 
+			var descriptions = {
+				'planck length':		"<b>planck length:</b> ",
+				'quectometre':			"<b>quectometre:</b> ",
+				'rontometre':			"<b>rontometre:</b> ",
+				'yoctometre':			"<b>yoctometre:</b> ",
+				'zeptometre':			"<b>zeptometre:</b> ",
+				'attometre':			"<b>attometre:</b> ",
+				'femtometre':			"<b>femtometre:</b> a unit of length equal to one quadrillionth of a metre",
+				'picometre':			"<b>picometre:</b> a unit of length equal to one trillionth of a metre",
+				'nanometre':			"<b>nanometre:</b> a unit of length equal to one billionth of a metre",
+				'micrometre':			"<b>micrometre:</b> ",
+				'milimetre':			"<b>milimetre:</b> ",
+				'centimetre':			"<b>centimetre:</b> ",
+				'metre':				"<b>metre:</b> the SI base unit of length",
+				'kilometre':			"<b>kilometre:</b> a metric unit of length equal to 1,000 meters",
+				'inch':					"<b>inch:</b> ",
+				'foot':					"<b>foot:</b> ",
+				'yard':					"<b>yard:</b> ",
+				'mile':					"<b>mile:</b> ",
+				'nautical mile':		"<b>nautical mile:</b> ",
+				'banana':				"<b>banana:</b> ",
+				'furlong':				"<b>furlong:</b> ",
+				'smoot':				"<b>smoot:</b> ",
+				'lightyear':			"<b>lightyear:</b> ",
+				'sheppey':				"<b>sheppey:</b> ",
+				'hammer unit':			"<b>hammer unit:</b> ",
+				'earth radius':			"<b>earth radius:</b> ",
+				'astronomical unit':	"<b>astronomical unit:</b> ",
+				'parsec': 				"<b>parsec:</b> ",
+				
+				'nanosecond':			"<b>nanosecond:</b> ",
+				'microsecond':			"<b>microsecond:</b> ",
+				'millisecond':			"<b>millisecond:</b> ",
+				'second':				"<b>second:</b> ",
+				'minute':				"<b>minute:</b> ",
+				'hour':					"<b>hour:</b> ",
+				'day':					"<b>day:</b> ",
+				'week':					"<b>week:</b> ",
+				'fortnight':			"<b>fortnight:</b> ",
+				'month':				"<b>month:</b> ",
+				'calendar year':		"<b>calendar year:</b> ",
+				'decade':				"<b>decade:</b> ",
+				'century':				"<b>century:</b> ",
+				'shake':				"<b>shake:</b> ",
+				'sol':					"<b>sol:</b> ",
+				
+				'bit':					"<b>bit:</b> ",
+				'crumb':				"<b>crumb:</b> ",
+				'nibble':				"<b>nibble:</b> ",
+				'byte':					"<b>byte:</b> ",
+				'word':					"<b>word:</b> ",			
+			};
+			
+			
+			let lastUpdated = 0;
 			
 			// When an option is changed, search the above for matching choices
 			document.getElementById("variable").onchange = function() {updateInput()};
@@ -119,28 +178,50 @@
 					// Output choice in the target field
 					document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
 				}
-				document.getElementById("input2").innerHTML = document.getElementById("input1").innerHTML;
+				document.getElementById("input0").innerHTML = document.getElementById("input1").innerHTML;
+				document.getElementById("value0").value = 0;
 				document.getElementById("value1").value = 0;
-				document.getElementById("value2").value = 0;
+				document.getElementById("p0").innerHTML = ""
+				document.getElementById("p1").innerHTML = ""
 			}
 			
-			document.getElementById("input1").onchange = function() {updateValue2()};
-			document.getElementById("value1").onchange = function() {updateValue2()};
+			document.getElementById("input1").onchange = function() {
+				updateValue();
+				updateDescription();
+			};
+			document.getElementById("value1").onchange = function() {
+				lastUpdated = 1;
+				updateValue();
+			};
+			document.getElementById("input0").onchange = function() {
+				updateValue();
+				updateDescription();
+			};
+			document.getElementById("value0").onchange = function() {
+				lastUpdated = 0;
+				updateValue();
+			};
 			
-			function updateValue2() {
-				if(document.getElementById("input1").value!=""&&document.getElementById("input2").value!=""){
-					document.getElementById("value2").value = document.getElementById("value1").value * values[document.getElementById("input1").value] / values[document.getElementById("input2").value]
+			function updateValue() {
+				if(document.getElementById("input1").value!=""&&document.getElementById("input0").value!=""){
+					if(lastUpdated){
+						document.getElementById("value0").value = document.getElementById("value1").value * values[document.getElementById("input1").value] / values[document.getElementById("input0").value]
+					}else{
+						document.getElementById("value1").value = document.getElementById("value0").value * values[document.getElementById("input0").value] / values[document.getElementById("input1").value]
+					}
 				}
 			}
 			
-			document.getElementById("input2").onchange = function() {updateValue1()};
-			document.getElementById("value2").onchange = function() {updateValue1()};
-			
-			function updateValue1() {
-				if(document.getElementById("input1").value!=""&&document.getElementById("input2").value!=""){
-					document.getElementById("value1").value = document.getElementById("value2").value * values[document.getElementById("input2").value] / values[document.getElementById("input1").value]
+			function updateDescription(){
+				if(document.getElementById("input0").value!=""){
+					document.getElementById("p0").innerHTML = descriptions[document.getElementById("input0").value]
+				}
+				if(document.getElementById("input1").value!=""){
+					document.getElementById("p1").innerHTML = descriptions[document.getElementById("input1").value]
 				}
 			}
+			
+			
 			
 		</script>
 		
