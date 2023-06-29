@@ -55,358 +55,341 @@
 		<p id="p1"></p>
 		<script>
 			// Map your choices to your option value
-			var pause_menu = {
-				pause_button : { someProperty : "prop1", someOther : "prop2" },
-				resume_button : { resumeProp : "prop", resumeProp2 : false },
-				quit_button : false
-			};
-			
-			
 			var lookup = {
 				'length': { //in metres
 					'planck length':{
-						value: (1.6 * 10**(-35)),
+						name: 'planck length',
+						value: (1.616255 * 10**(-35)),
 						description: "<b>planck length:</b> "
 					},
 					'quectometre':{
+						name: 'quectometre',
 						value: 10**(-30),
+						description: "<b>quectometre:</b> "
 					},
 					'rontometre':{
+						name: 'rontometre',
 						value: 10**(-27),
+						description: "<b>rontometre:</b> "
 					},
 					'yoctometre':{
+						name: 'yoctometre',
 						value: 10**(-24),
+						description: "<b>yoctometre:</b> "
 					},
 					'zeptometre':{
+						name: 'zeptometre',
 						value: 10**(-21),
+						description: "<b>zeptometre:</b> "
 					},
 					'attometre':{
+						name: 'attometre',
 						value: 10**(-18),
+						description: "<b>attometre:</b> "
 					},
 					'femtometre':{
+						name: 'femtometre',
 						value: 10**(-15),
+						description: "<b>femtometre:</b> a unit of length equal to one quadrillionth of a metre"
 					},
 					'picometre':{
+						name: 'picometre',
 						value: 10**(-12),
+						description: "<b>picometre:</b> a unit of length equal to one trillionth of a metre"
 					},
 					'nanometre':{
+						name: 'nanometre',
 						value: 10**(-9),
+						description: "<b>nanometre:</b> a unit of length equal to one billionth of a metre"
 					},
 					'micrometre':{
+						name: 'micrometre',
 						value: 0.000001,
+						description: "<b>micrometre:</b> "
 					},
 					'milimetre':{
+						name: 'milimetre',
 						value: 0.001,
+						description: "<b>milimetre:</b> "
 					},
 					'centimetre':{
+						name: 'centimetre',
 						value: 0.01,
+						description: "<b>centimetre:</b> "
 					},
 					'decimetre':{
+						name: 'decimetre',
 						value: 0.1,
+						description: "<b>decimetre:</b> "
 					},
 					'metre':{
+						name: 'metre',
 						value: 1,
+						description: "<b>metre:</b> the SI base unit of length"
 					},
 					'decametre':{
+						name: 'decametre',
 						value: 10,
+						description: "<b>decametre:</b> "
 					},
 					'hectometre':{
+						name: 'hectometre',
 						value: 100,
-						description: "<b>planck length:</b> "
+						description: "<b>hectometre:</b> "
 					},
 					'kilometre':{
+						name: 'kilometre',
 						value: 1000,							
-						description: "<b>planck length:</b> "
+						description: "<b>kilometre:</b> a metric unit of length equal to 1,000 meters"
 					},
 					'megametre':{
+						name: 'megametre',
 						value: 1000000,						
-						description: "<b>planck length:</b> "
+						description: "<b>megametre:</b> "
 					},
 					'gigametre':{
+						name: 'gigametre',
 						value: 10**9,						
-						description: "<b>planck length:</b> "
+						description: "<b>gigametre:</b> "
 					},
 					'terametre':{
+						name: 'terametre',
 						value: 10**12,					
-						description: "<b>planck length:</b> "
+						description: "<b>terametre:</b> "
 					},
 					'petametre':{
+						name: 'petametre',
 						value: 10**15,				
-						description: "<b>planck length:</b> "
+						description: "<b>petametre:</b> "
 					},
 					'exametre':{
+						name: 'exametre',
 						value: 10**18,			
-						description: "<b>planck length:</b> "
+						description: "<b>exametre:</b> "
 					},
 					'zettametre':{
+						name: 'zettametre',
 						value: 10**21,			
-						description: "<b>planck length:</b> "
+						description: "<b>zettametre:</b> "
 					},
 					'yottametre':{
+						name: 'yottametre',
 						value: 10**24,		
-						description: "<b>planck length:</b> "
+						description: "<b>yottametre:</b> "
 					},
 					'ronnametre':{
+						name: 'ronnametre',
 						value: 10**27,	
-						description: "<b>planck length:</b> "
+						description: "<b>ronnametre:</b> "
 					},
 					'inch':{
+						name: 'inch',
 						value: 0.0254,
-						description: "<b>planck length:</b> "
+						description: "<b>inch:</b> "
 					},
 					'foot':{
+						name: 'foot',
 						value: 0.3048,
-						description: "<b>planck length:</b> "
+						description: "<b>foot:</b> "
 					},
 					'yard':{
+						name: 'yard',
 						value: 0.9144,
-						description: "<b>planck length:</b> "
+						description: "<b>yard:</b> "
 					},
 					'mile':{
+						name: 'mile',
 						value: 1609.344,
-						description: "<b>planck length:</b> "
+						description: "<b>mile:</b> "
 					},
 					'nautical mile':{
+						name: 'nautical mile',
 						value: 1852,
-						description: "<b>planck length:</b> "
+						description: "<b>nautical mile:</b> "
 					},
 					'banana':{
+						name: 'banana',
 						value: 0.15,
-						description: "<b>planck length:</b> "
+						description: "<b>banana:</b> "
 					},
 					'furlong':{
+						name: 'furlong',
 						value: 201.168,
-						description: "<b>planck length:</b> "
+						description: "<b>furlong:</b> "
 					},
 					'smoot':{
+						name: 'smoot',
 						value: 1.7018,
-						description: "<b>planck length:</b> "
+						description: "<b>smoot:</b> "
 					},
 					'lightyear':{
+						name: 'lightyear',
 						value: 9460730472580800,
-						description: "<b>planck length:</b> "
+						description: "<b>lightyear:</b> "
 					},
 					'sheppey':{
+						name: 'sheppey',
 						value: 1408.18,
-						description: "<b>planck length:</b> "
+						description: "<b>sheppey:</b> "
 					},
 					'hammer unit':{
+						name: 'hammer unit',
 						value: 0.01905,
-						description: "<b>planck length:</b> "
+						description: "<b>hammer unit:</b> "
 					},
 					'earth radius':{
+						name: 'earth radius',
 						value: 6371000,
-						description: "<b>planck length:</b> "
+						description: "<b>earth radius:</b> "
 					},
 					'astronomical unit':{
+						name: 'astronomical unit',
 						value: 149597870700,
-						description: "<b>planck length:</b> "
+						description: "<b>astronomical unit:</b> "
 					},
 					'parsec':{
+						name: 'parsec',
 						value: (149597870700*648000)/Math.PI,
-						description: "<b>planck length:</b> "
+						description: "<b>parsec:</b> "
 					}
 				},
 				'time': {
 					'nanosecond':{
-						value: 'something'
+						name: 'nanosecond',
+						value: 1/60000000000,
+						description: "<b>nanosecond:</b> "
 					},
 					'microsecond': {
-						value: 'something'
+						name: 'microsecond',
+						value: 1/60000000,
+						description: "<b>microsecond:</b> "
 						},
 					'millisecond': {
-						value:  'something'
+						name: 'millisecond',
+						value:  1/60000,
+						description: "<b>millisecond:</b> "
 						},
 					'second': {
-						value:  'something'
+						name: 'second',
+						value:  1/60,
+						description: "<b>second:</b> "
 						},
 					'minute': {
-						value:  'something'
+						name: 'minute',
+						value:  1,
+						description: "<b>minute:</b> "
 						},
 					'hour': {
-						value:  'something'
+						name: 'hour',
+						value:  60,
+						description: "<b>hour:</b> "
 						},
 					'day': {
-						value:  'something'
+						name: 'day',
+						value:  1440,
+						description: "<b>day:</b> "
 						},
 					'week': {
-						value:  'something'
+						name: 'week',
+						value:  10080,
+						description: "<b>week:</b> "
 						},
 					'fortnight': {
-						value:  'something'
+						name: 'fortnight',
+						value:  20160,
+						description: "<b>fortnight:</b> "
 						},
 					'month': {
-						value:  'something'
+						name: 'month',
+						value: 43800,
+						description: "<b>month:</b> "
 						},
 					'calendar year': {
-						value:  'something'
+						name: 'calendar year',
+						value: 525600,
+						description: "<b>calendar year:</b> "
 						},
 					'decade': {
-						value:  'something'
+						name: 'decade',
+						value: 5256000,
+						description: "<b>decade:</b> "
 						},
 					'century': {
-						value:  'something'
+						name: 'century',
+						value: 52560000,
+						description: "<b>century:</b> "
 						},
 					'shake': {
-						value:  'something'
+						name: 'shake',
+						value: 1/6000000000,
+						description: "<b>shake:</b> "
 						},
 					'sol': {
-						value:  'something'
+						name: 'sol',
+						value: 1479+(35/60),
+						description: "<b>sol:</b> "
 						},
 				},
 				'digital storage': {
 					'bit': {
-						value:  'something'
-						},
+						name: 'bit',
+						value: 1,
+						description: "<b>bit:</b> "
+					},
 					'crumb': {
-						value:  'something'
-						},
+						name: 'crumb',
+						value: 2,
+						description: "<b>crumb:</b> "
+					},
 					'nibble': {
-						value:  'something'
-						},
+						name: 'nibble',
+						value: 4,
+						description: "<b>nibble:</b> "
+					},
 					'byte': {
-						value:  'something'
-						},
+						name: 'byte',
+						value: 8,
+						description: "<b>byte:</b> "
+					},
 					'word': {
-						value: 'something'
-						}
+						name: 'word',
+						value: 16,
+						description: "<b>word:</b> "
+					}
 				},
 				'temperature': {
-					'celcius': {
-						value:  'something'
+					'celsius': {
+						name: 'celsius',
+						toValue: 'x',
+						fromValue: 'x',
+						description: "<b>celsius:</b> "
 						},
 					'fahrenheit': {
-						value:  'something'
+						name: 'fahrenheit',
+						toValue: '(x-32)*5/9',
+						fromValue: '(x*(9/5))+32',
+						description: "<b>fahrenheit:</b> "
 						},
-					'kelvin ': {
-						value:  'something'
+					'kelvin': {
+						name: 'kelvin',
+						toValue: 'x-273.15',
+						fromValue: '+x+273.15',
+						description: "<b>kelvin:</b> "
 						},
 					'rankine': {
-						value:  'something'
+						name: 'rankine',
+						toValue: '(x-491.67)*5/9',
+						fromValue: 'x*(9/5)+491.67',
+						description: "<b>rankine:</b> "
 						},
 					'reaumur': {
-						value:  'something'
+						name: 'reaumur',
+						toValue: 'x*(5/4)',
+						fromValue: 'x*(4/5)',
+						description: "<b>reaumur:</b> "
 						}
 				},
 			};
-			
-			var values = {
-				'planck length':	(1.6 * 10**(-35)),
-				'quectometre':		10**(-30),
-				'rontometre':		10**(-27),
-				'yoctometre':		10**(-24),
-				'zeptometre':		10**(-21),
-				'attometre':		10**(-18),
-				'femtometre':		10**(-15),
-				'picometre':		10**(-12),
-				'nanometre':		10**(-9),
-				'micrometre':		0.000001,
-				'milimetre':		0.001,							
-				'centimetre':		0.01,							
-				'decimetre':		0.1,							
-				'metre':			1,								
-				'decametre':		10,								
-				'hectometre':		100,							
-				'kilometre':		1000,							
-				'megametre':		1000000,						
-				'gigametre':		10**9,						
-				'terametre':		10**12,					
-				'petametre':		10**15,				
-				'exametre':			10**18,			
-				'zettametre':		10**21,			
-				'yottametre':		10**24,		
-				'ronnametre':		10**27,	
-				'inch':				0.0254,
-				'foot':				0.3048,
-				'yard':				0.9144,
-				'mile':				1609.344,
-				'nautical mile':	1852,
-				'banana':0.15,
-				'furlong':201.168,
-				'smoot':1.7018,								// the height in 1958 of Oliver R. Smoot
-				'lightyear': 9460730472580800,
-				'sheppey': 1408.18,							// roughly 7/8 of a mile
-				'hammer unit': 0.01905,						// exact
-				'earth radius':6371000,						// exact
-				'astronomical unit':149597870700,			// exact - average distance between the earth and the sun
-				'parsec': (149597870700*648000)/Math.PI,	// exact
-				
-				'nanosecond':1/60000000000,					// exact
-				'microsecond':1/60000000,					// exact
-				'millisecond':1/60000,						// exact
-				'second':1/60,								// exact
-				'minute':1,									// exact
-				'hour': 60,									// exact
-				'day':1440,									// exact
-				'week':10080,								// exact
-				'fortnight':20160,							// exact
-				'month':43800,								// exact
-				'calendar year':525600,						// exact
-				'decade':5256000,							// exact
-				'century':52560000,							// exact
-				'shake':1/6000000000,						// exact - 10 nanoseconds
-				'sol':1479+(35/60),							// exact - 1 day on mars 24 hours, 39 minutes, 35 seconds
-				
-				'bit':1,									// exact
-				'crumb':2,									// exact
-				'nibble':4,									// exact
-				'byte':8,									// exact
-				'word':16,									// exact				
-			};
-
-			var descriptions = {
-				'planck length':		"<b>planck length:</b> ",
-				'quectometre':			"<b>quectometre:</b> ",
-				'rontometre':			"<b>rontometre:</b> ",
-				'yoctometre':			"<b>yoctometre:</b> ",
-				'zeptometre':			"<b>zeptometre:</b> ",
-				'attometre':			"<b>attometre:</b> ",
-				'femtometre':			"<b>femtometre:</b> a unit of length equal to one quadrillionth of a metre",
-				'picometre':			"<b>picometre:</b> a unit of length equal to one trillionth of a metre",
-				'nanometre':			"<b>nanometre:</b> a unit of length equal to one billionth of a metre",
-				'micrometre':			"<b>micrometre:</b> ",
-				'milimetre':			"<b>milimetre:</b> ",
-				'centimetre':			"<b>centimetre:</b> ",
-				'metre':				"<b>metre:</b> the SI base unit of length",
-				'kilometre':			"<b>kilometre:</b> a metric unit of length equal to 1,000 meters",
-				'inch':					"<b>inch:</b> ",
-				'foot':					"<b>foot:</b> ",
-				'yard':					"<b>yard:</b> ",
-				'mile':					"<b>mile:</b> ",
-				'nautical mile':		"<b>nautical mile:</b> ",
-				'banana':				"<b>banana:</b> ",
-				'furlong':				"<b>furlong:</b> ",
-				'smoot':				"<b>smoot:</b> ",
-				'lightyear':			"<b>lightyear:</b> ",
-				'sheppey':				"<b>sheppey:</b> ",
-				'hammer unit':			"<b>hammer unit:</b> ",
-				'earth radius':			"<b>earth radius:</b> ",
-				'astronomical unit':	"<b>astronomical unit:</b> ",
-				'parsec': 				"<b>parsec:</b> ",
-				
-				'nanosecond':			"<b>nanosecond:</b> ",
-				'microsecond':			"<b>microsecond:</b> ",
-				'millisecond':			"<b>millisecond:</b> ",
-				'second':				"<b>second:</b> ",
-				'minute':				"<b>minute:</b> ",
-				'hour':					"<b>hour:</b> ",
-				'day':					"<b>day:</b> ",
-				'week':					"<b>week:</b> ",
-				'fortnight':			"<b>fortnight:</b> ",
-				'month':				"<b>month:</b> ",
-				'calendar year':		"<b>calendar year:</b> ",
-				'decade':				"<b>decade:</b> ",
-				'century':				"<b>century:</b> ",
-				'shake':				"<b>shake:</b> ",
-				'sol':					"<b>sol:</b> ",
-				
-				'bit':					"<b>bit:</b> ",
-				'crumb':				"<b>crumb:</b> ",
-				'nibble':				"<b>nibble:</b> ",
-				'byte':					"<b>byte:</b> ",
-				'word':					"<b>word:</b> ",			
-			};
-			
 			
 			let lastUpdated = 0;
 			
@@ -420,11 +403,12 @@
 				document.getElementById("input1").innerHTML = "";
 				document.getElementById("input1").innerHTML += ("<option value='' disabled selected>Select an option</option>");
 				
-				// For each chocie in the selected option
-				for (i = 0; i < Object.keys(lookup).length; i++) {
-					// Output choice in the target field
-					document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue].value + "'>" + lookup[selectValue][i] + "</option>");
+				// For each choice in the selected option
+				for (const key in lookup[selectValue]) {
+					//console.log(lookup[selectValue][key].name);
+					document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue][key].name + "'>" + lookup[selectValue][key].name + "</option>");
 				}
+
 				document.getElementById("input0").innerHTML = document.getElementById("input1").innerHTML;
 				document.getElementById("value0").value = 0;
 				document.getElementById("value1").value = 0;
@@ -451,24 +435,39 @@
 			
 			function updateValue() {
 				if(document.getElementById("input1").value!=""&&document.getElementById("input0").value!=""){
-					if(lastUpdated){
-						document.getElementById("value0").value = document.getElementById("value1").value * values[document.getElementById("input1").value] / values[document.getElementById("input0").value]
-					}else{
-						document.getElementById("value1").value = document.getElementById("value0").value * values[document.getElementById("input0").value] / values[document.getElementById("input1").value]
+					if(document.getElementById("variable").value == 'temperature'){
+						if(lastUpdated){
+							let x = document.getElementById("value1").value;
+							x = eval(lookup[document.getElementById("variable").value][document.getElementById("input1").value].toValue);
+							document.getElementById("value0").value = eval(lookup[document.getElementById("variable").value][document.getElementById("input0").value].fromValue);
+						}else{
+							let x = document.getElementById("value0").value;
+							x = eval(lookup[document.getElementById("variable").value][document.getElementById("input0").value].toValue);
+							document.getElementById("value1").value = eval(lookup[document.getElementById("variable").value][document.getElementById("input1").value].fromValue);
+						}
+						
+					}
+					else{
+						if(lastUpdated){
+							document.getElementById("value0").value = document.getElementById("value1").value * lookup[document.getElementById("variable").value][document.getElementById("input1").value].value / lookup[document.getElementById("variable").value][document.getElementById("input0").value].value;
+						}else{
+							document.getElementById("value1").value = document.getElementById("value0").value * lookup[document.getElementById("variable").value][document.getElementById("input0").value].value / lookup[document.getElementById("variable").value][document.getElementById("input1").value].value;
+						}
 					}
 				}
 			}
 			
 			function updateDescription(){
 				if(document.getElementById("input0").value!=""){
-					document.getElementById("p0").innerHTML = descriptions[document.getElementById("input0").value]
+					document.getElementById("p0").innerHTML = lookup[document.getElementById("variable").value][document.getElementById("input0").value].description
 				}
 				if(document.getElementById("input1").value!=""){
-					document.getElementById("p1").innerHTML = descriptions[document.getElementById("input1").value]
+					document.getElementById("p1").innerHTML = lookup[document.getElementById("variable").value][document.getElementById("input1").value].description
+				}
+				if(document.getElementById("input1").value == document.getElementById("input0").value){
+					document.getElementById("p1").innerHTML = ""
 				}
 			}
-			
-			
 			
 		</script>
 		
