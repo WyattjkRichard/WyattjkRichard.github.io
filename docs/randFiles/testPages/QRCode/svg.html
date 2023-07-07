@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<svg width="21" height="21" id="QR">
+			
+		</svg><br>
+		<label for="mask">Mask (between 0 and 7)</label><br>
+		<input type="number" id="mask" value = "0" max = "7" min = "0"><br>
+		
+		<label for="mask">Scale</label><br>
+		<input type="number" id="scale" value = "10" min = "1">
+		
+		<script>
+			//21x21 modules to 177x177 modules (Versions 1 to 40, increasing in steps of 4 modules per side)
+			//error correction levels: L 7%, M 15%, Q 25%, H 30%
+			//dark module:1, light module: 0
+			
+			
+			let maskPatterns = ["(i+j)%2==0","i%2==0","j%3==0","(i+j)%3==0","(Math.floor(i/2)+Math.floor(j/3))%2==0","(i*j)%2 + (i*j)%3 == 0","((i*j)%2+(i*j)%3)%2==0","((i+j)%2 + (i*j)%3)%2==0"];
+			let maskIndex = 0;
+			let scale = 10;
+			
+			document.getElementById("QR").style.width = scale * 21;
+			document.getElementById("QR").style.height = scale * 21;
+			for(let i = 0; i<21;i++){ // x
+				for(let j = 0; j<21;j++){ // y
+					if(eval(maskPatterns[maskIndex])){
+						document.getElementById("QR").innerHTML+= "<rect x='"+i*scale+"' y='"+j*scale+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
+					}
+				}
+			}
+			
+			
+			document.getElementById("mask").onchange = function() {updateMask()};
+			function updateMask() {
+				maskIndex = document.getElementById("mask").value;
+				if(maskIndex<0)maskIndex = 0;
+				else if(maskIndex>7)maskIndex = 7;
+				document.getElementById("mask").value = maskIndex;
+				updateQR();
+			}
+			
+			document.getElementById("scale").onchange = function() {updateScale()};
+			function updateScale() {
+				scale = document.getElementById("scale").value;
+				if(scale<1)scale = 1;
+				document.getElementById("scale").value = scale;
+				updateQR();
+			}
+			
+			function updateQR() {
+				document.getElementById("QR").style.width = scale * 21; //21 only works for model 1, need to change eventually
+				document.getElementById("QR").style.height = scale * 21;
+				document.getElementById("QR").innerHTML = "";
+				for(let i = 0; i<21;i++){ //x
+					for(let j = 0; j<21;j++){ //y
+						if(eval(maskPatterns[maskIndex])){
+							document.getElementById("QR").innerHTML+= "<rect x='"+j*scale+"' y='"+i*scale+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
+						}
+					}
+				}
+			}
+			
+			
+			
+			//https://www.nayuki.io/page/qr-code-generator-library
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Text Input</title>
+		<link rel="icon" href="../../assets/images/icon.png">
+		<meta name="robots" content="noindex">		<style>
+		.textbox{
+			width: 300px;
+			height: 150px;
+			text-align: left;
+			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+		}
+		</style>
+	</head>
+	<body>
+		<label for="xvalues">Text Input:</label>	
+		<textarea type="text" id="textInput" placeholder = "input data here" class="textbox"></textarea><br><br>
+		
+		<button onclick="getData()">Calculate</button>
+
+		<script>
+			function getData() {
+				var textInput = document.getElementById("textInput").value;
+				textInput = textInput.toUpperCase();
+				textInput = textInput.replaceAll(/[^0-9A-Z $%*]/g, '');
+				document.getElementById("textInput").value = textInput;
+			}
+		</script>
+
+	</body>
+</html>
