@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Text Input</title>
-		<link rel="icon" href="../../assets/images/icon.png">
+		<link rel="icon" href="../../../assets/images/icon.png">
 		<meta name="robots" content="noindex">		<style>
 		.textbox{
 			width: 300px;
@@ -16,13 +16,27 @@
 		<label for="xvalues">Text Input:</label>	
 		<textarea type="text" id="textInput" placeholder = "input data here" class="textbox"></textarea><br><br>
 		
-		<button onclick="getData()">Calculate</button>
+		<button onclick="getData()">Convert</button>
+		
+		<select id="modes">
+			<option value="" disabled selected>Select an option</option>
+			<option value="Numeric">Numeric</option>
+			<option value="Alphanumeric">Alphanumeric</option>
 
+		</select>
+		
 		<script>
 			function getData() {
-				var textInput = document.getElementById("textInput").value;
-				textInput = textInput.toUpperCase();
-				textInput = textInput.replaceAll(/[^0-9A-Z $%*]/g, '');
+				let textInput = document.getElementById("textInput").value;
+				let mode = document.getElementById("modes").value;
+				if (mode == "Numeric"){
+					textInput = textInput.replaceAll(/[^0-9]/g, '');
+				}
+				else if(mode == "Alphanumeric"){
+					textInput = textInput.toUpperCase();
+					textInput = textInput.replaceAll(/[^0-9A-Z $%*+-.:/]|\,/g, '');
+				}
+				
 				document.getElementById("textInput").value = textInput;
 			}
 		</script>
