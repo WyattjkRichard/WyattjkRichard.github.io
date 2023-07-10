@@ -5,7 +5,10 @@
 			
 		</svg><br>
 		<label for="mask">Mask (between 0 and 7)</label><br>
-		<input type="number" id="mask" value = "0" max = "7" min = "0"><br>
+		<input type="number" id="mask" value = "0" min = "0" max = "7"><br>
+		
+		<label for="version">Version (between 1 and 40)</label><br>
+		<input type="number" id="version" value = "1" min = "1" max = "40"><br>
 		
 		<label for="mask">Scale</label><br>
 		<input type="number" id="scale" value = "10" min = "1">
@@ -16,19 +19,18 @@
 			//dark module:1, light module: 0
 			
 			
-			let maskPatterns = ["(i+j)%2==0","i%2==0","j%3==0","(i+j)%3==0","(Math.floor(i/2)+Math.floor(j/3))%2==0","(i*j)%2 + (i*j)%3 == 0","((i*j)%2+(i*j)%3)%2==0","((i+j)%2 + (i*j)%3)%2==0"];
-			let maskIndex = 0;
-			let scale = 10;
+			const maskPatterns = ["(i+j)%2==0","j%2==0","i%3==0","(i+j)%3==0","(Math.floor(j/2)+Math.floor(i/3))%2==0","(i*j)%2 + (i*j)%3 == 0","((i*j)%2+(i*j)%3)%2==0","((i+j)%2 + (i*j)%3)%2==0"];
+			const PositionDetectionPatterns = [	1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, ]
 			
-			document.getElementById("QR").style.width = scale * 21;
-			document.getElementById("QR").style.height = scale * 21;
-			for(let i = 0; i<21;i++){ // x
-				for(let j = 0; j<21;j++){ // y
-					if(eval(maskPatterns[maskIndex])){
-						document.getElementById("QR").innerHTML+= "<rect x='"+i*scale+"' y='"+j*scale+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
-					}
-				}
-			}
+			let maskIndex = 0;
+			let version = 1;
+			let scale = 10;
+			let qrCode = [];
+			
+			length = 21
+			qrCode.length = Math.pow(length,2);
+			
+			generateQR();
 			
 			
 			document.getElementById("mask").onchange = function() {updateMask()};
@@ -37,7 +39,18 @@
 				if(maskIndex<0)maskIndex = 0;
 				else if(maskIndex>7)maskIndex = 7;
 				document.getElementById("mask").value = maskIndex;
-				updateQR();
+				generateQR();
+			}
+			
+			document.getElementById("version").onchange = function() {updateVersion()};
+			function updateVersion() {
+				version = document.getElementById("version").value;
+				if(version<1)version = 1;
+				else if(version>40)version = 40;
+				document.getElementById("version").value = version;
+				length = (version*4)+17;
+				qrCode.length = Math.pow(length,2);
+				generateQR();
 			}
 			
 			document.getElementById("scale").onchange = function() {updateScale()};
@@ -45,22 +58,67 @@
 				scale = document.getElementById("scale").value;
 				if(scale<1)scale = 1;
 				document.getElementById("scale").value = scale;
-				updateQR();
+				generateQR();
 			}
 			
-			function updateQR() {
-				document.getElementById("QR").style.width = scale * 21; //21 only works for model 1, need to change eventually
-				document.getElementById("QR").style.height = scale * 21;
+			function printQR() {
+				document.getElementById("QR").style.width = scale * length;
+				document.getElementById("QR").style.height = scale * length;
 				document.getElementById("QR").innerHTML = "";
-				for(let i = 0; i<21;i++){ //x
-					for(let j = 0; j<21;j++){ //y
-						if(eval(maskPatterns[maskIndex])){
-							document.getElementById("QR").innerHTML+= "<rect x='"+j*scale+"' y='"+i*scale+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
+				
+				applyMasking();
+				setPositionDetectionPatterns();
+				
+				for(let i = 0; i<length;i++){ //x
+					for(let j = 0; j<length;j++){ //y
+						if(eval(qrCode[i+j*length])){
+							document.getElementById("QR").innerHTML+= "<rect x='"+i*scale+"' y='"+j*scale+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
 						}
 					}
 				}
 			}
 			
+			function generateQR(){
+				applyMasking()
+				setPositionDetectionPatterns()
+				printQR();
+			}
+			
+			function setPositionDetectionPatterns(){
+				for(let i = 0;i<8;i++){
+					for(let j = 0;j<8;j++){
+						if(i<7&&j<7){
+							qrCode[i+length*j] = PositionDetectionPatterns[i + j*7];
+							qrCode[i+length*j+(length-8)+1] = PositionDetectionPatterns[i + j*7];
+							qrCode[i+length*(length-j-1)] = PositionDetectionPatterns[i + j*7];
+						}
+						else if (i == 7){
+							qrCode[i+length*j] = 0;
+							qrCode[i+length*(length-j-1)] = 0;
+							qrCode[i+length*j+(length-15)] = 0;
+						}
+						else if (j==7){
+							qrCode[i+length*j] = 0;
+							qrCode[i+length*(length-j-1)] = 0;
+							qrCode[i+length*j+(length-7)] = 0;
+						}
+					}
+				}
+			}
+			
+			function applyMasking(){
+				for(let i = 0; i<length;i++){ //x
+					for(let j = 0; j<length;j++){ //y
+						if(eval(maskPatterns[maskIndex])){
+							qrCode[i+j*length]=1;
+						}
+						else{
+							qrCode[i+j*length]=0;
+						}
+					}
+				}
+			}
+				
 			
 			
 			//https://www.nayuki.io/page/qr-code-generator-library
