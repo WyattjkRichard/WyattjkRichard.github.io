@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<svg width="21" height="21" id="QR">
+		<svg id="QR">
 			
 		</svg><br>
 		<label for="mask">Mask (between 0 and 7)</label><br>
@@ -9,6 +9,9 @@
 		
 		<label for="version">Version (between 1 and 40)</label><br>
 		<input type="number" id="version" value = "1" min = "1" max = "40"><br>
+		
+		<label for="quietZone">Quiet Zone</label><br>
+		<input type="number" id="quietZone" value = "1" min = "0"><br>
 		
 		<label for="mask">Scale</label><br>
 		<input type="number" id="scale" value = "10" min = "1">
@@ -20,31 +23,17 @@
 			
 			
 			const maskPatterns = ["(i+j)%2==0","j%2==0","i%3==0","(i+j)%3==0","(Math.floor(j/2)+Math.floor(i/3))%2==0","(i*j)%2 + (i*j)%3 == 0","((i*j)%2+(i*j)%3)%2==0","((i+j)%2 + (i*j)%3)%2==0"];
-			const PositionDetectionPatterns = [	1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, ]
 			
-			let maskIndex = 0;
 			let version = 1;
 			let scale = 10;
+			let quietZone = 1;
 			let qrCode = [];
 			
-			//mode indicators:
-			let numeric = 0b1
-			let alphanumeric = 0b10
-			
-			length = 21
+			let length = (version*4)+17;
 			qrCode.length = Math.pow(length,2);
 			
 			generateQR();
-			
-			
-			document.getElementById("mask").onchange = function() {updateMask()};
-			function updateMask() {
-				maskIndex = document.getElementById("mask").value;
-				if(maskIndex<0)maskIndex = 0;
-				else if(maskIndex>7)maskIndex = 7;
-				document.getElementById("mask").value = maskIndex;
-				generateQR();
-			}
+
 			
 			document.getElementById("version").onchange = function() {updateVersion()};
 			function updateVersion() {
@@ -57,26 +46,31 @@
 				generateQR();
 			}
 			
+			document.getElementById("quietZone").onchange = function() {updateQuietZone()};
+			function updateQuietZone() {
+				quietZone = document.getElementById("quietZone").value;
+				if(quietZone<0)quietZone = 0;
+				document.getElementById("quietZone").value = quietZone;
+				generateQR();//shouldnt have to regenerate
+			}
+			
 			document.getElementById("scale").onchange = function() {updateScale()};
 			function updateScale() {
 				scale = document.getElementById("scale").value;
 				if(scale<1)scale = 1;
 				document.getElementById("scale").value = scale;
-				generateQR();
+				generateQR(); //shouldnt have to regenerate
 			}
 			
 			function printQR() {
-				document.getElementById("QR").style.width = scale * length;
-				document.getElementById("QR").style.height = scale * length;
+				document.getElementById("QR").style.width = scale * (length+2*quietZone);
+				document.getElementById("QR").style.height = scale * (length+2*quietZone);
 				document.getElementById("QR").innerHTML = "";
-				
-				applyMasking();
-				setPositionDetectionPatterns();
-				
+
 				for(let i = 0; i<length;i++){ //x
 					for(let j = 0; j<length;j++){ //y
 						if(eval(qrCode[i+j*length])){
-							document.getElementById("QR").innerHTML+= "<rect x='"+i*scale+"' y='"+j*scale+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
+							document.getElementById("QR").innerHTML+= "<rect x='"+(quietZone*scale+i*scale)+"' y='"+(quietZone*scale+j*scale)+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
 						}
 					}
 				}
@@ -84,36 +78,13 @@
 			
 			function generateQR(){
 				applyMasking()
-				setPositionDetectionPatterns()
 				printQR();
-			}
-			
-			function setPositionDetectionPatterns(){
-				for(let i = 0;i<8;i++){
-					for(let j = 0;j<8;j++){
-						if(i<7&&j<7){
-							qrCode[i+length*j] = PositionDetectionPatterns[i + j*7];
-							qrCode[i+length*j+(length-8)+1] = PositionDetectionPatterns[i + j*7];
-							qrCode[i+length*(length-j-1)] = PositionDetectionPatterns[i + j*7];
-						}
-						else if (i == 7){
-							qrCode[i+length*j] = 0;
-							qrCode[i+length*(length-j-1)] = 0;
-							qrCode[i+length*j+(length-15)] = 0;
-						}
-						else if (j==7){
-							qrCode[i+length*j] = 0;
-							qrCode[i+length*(length-j-1)] = 0;
-							qrCode[i+length*j+(length-7)] = 0;
-						}
-					}
-				}
 			}
 			
 			function applyMasking(){
 				for(let i = 0; i<length;i++){ //x
 					for(let j = 0; j<length;j++){ //y
-						if(eval(maskPatterns[maskIndex])){
+						if(i==0||j==0||i==length-1||j==length-1){
 							qrCode[i+j*length]=1;
 						}
 						else{
