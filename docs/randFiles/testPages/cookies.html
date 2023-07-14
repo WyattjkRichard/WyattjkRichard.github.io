@@ -13,22 +13,34 @@
 		</style>
 	</head>
 	<body>
-		<label for="text">Text:</label>	
-		<textarea type="text" id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
-		<button onclick="setCookie()">Set Cookie</button>
-		<button onclick="getCookie()">Get Cookie</button>
+		<label for="cName">Cookie Name:</label>	
+		<textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
 		
+		<label for="cContents">Cookie Contents:</label>	
+		<textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
+		
+		<button onclick="AddCookie()">Add Cookie</button>
+		<button onclick="RemoveCookie()">Remove Cookie</button>
+		
+		<select id="addedCookies" name="addedCookies"></select>
 
 		<script>
-			function setCookie() {
-				let inputText = document.getElementById("text").value;
-				document.cookie = "text="+inputText+"";
+			function AddCookie() {
+				let cName = document.getElementById("cName").value;
+				let cContents = document.getElementById("cContents").value;
+				document.cookie = cName+"="+cContents;
 			}
 			
 			function getCookie() {
 				let outputText = document.cookie;
 				document.getElementById("text").value = outputText;
 				
+			}
+			document.cookie.onchange = function() {updateCookieMenu()};
+			function updateCookieMenu() {
+				// Set selected option as variable
+				console.log("Cookies Updated:")
+				console.log(document.cookie)
 			}
 		</script>
 
