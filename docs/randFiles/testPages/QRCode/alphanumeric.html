@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Text Input</title>
+		<link rel="icon" href="../../../assets/images/icon.png">
+		<meta name="robots" content="noindex">		<style>
+		.textbox{
+			width: 300px;
+			height: 150px;
+			text-align: left;
+			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+		}
+		</style>
+	</head>
+	<body>
+		<label for="xvalues">Text Input:</label>	
+		<textarea type="text" id="textInput" placeholder = "input data here" class="textbox">AC-42</textarea><br><br>
+		
+		<button onclick="getData()">Convert</button>
+		<select id="modes" >
+			<option value="" disabled selected>Select an option</option>
+			<option value="Numeric">Numeric</option>
+			<option selected value="Alphanumeric">Alphanumeric</option>
+
+		</select>
+		
+		<script>
+			let alphanumericValues = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',' ','$','%','*','+','-','.','/',':']
+			//number of bits in character count indicator for versions: 1-9, 10-26, 27-40
+			let charCountBits = [	10,12,14, 	// numeric
+									9,11,13,	// Alphanumeric
+									8,16,16,	// 8-Bit Byte
+									8,10,12];	// Kanji
+			// let ECI = 0b0111;
+			let numeric = 0b0001;
+			let alphanumeric = 0b0010;
+			// let eightBitByte = 0b0100;
+			// let kanji = 0b1000;
+			// let structuredAppend = 0b0011;
+			let terminator = 0b0000;
+			
+			function getData() {
+				let textInput = document.getElementById("textInput").value;
+				let mode = document.getElementById("modes").value;
+				if (mode == "Numeric"){
+					textInput = textInput.replaceAll(/[^0-9]/g, '');
+				}
+				else if(mode == "Alphanumeric"){
+					textInput = textInput.toUpperCase();
+					textInput = textInput.replaceAll(/[^0-9A-Z $%*+-.:/]|\,/g, '');
+					let output = [];
+					for(let i = 0;i<textInput.length;i+=2){
+						
+						if(alphanumericValues.indexOf(textInput[i+1])!=-1){
+							let val1 = alphanumericValues.indexOf(textInput[i]);
+							let val2 = alphanumericValues.indexOf(textInput[i+1]);
+							let binVal = (val1*45+val2).toString(2);
+							binVal = "00000000000".substr(binVal.length) + binVal;
+							output[i/2] = binVal;
+						}
+						else{
+							let binVal = alphanumericValues.indexOf(textInput[i]).toString(2);
+							binVal = "000000".substr(binVal.length) + binVal;
+							output[i/2] = binVal;
+						}
+					}
+					console.log(output)
+				}
+				
+				document.getElementById("textInput").value = textInput;
+			}
+			//https://www.thonky.com/qr-code-tutorial/error-correction-coding
+		</script>
+
+	</body>
+</html>

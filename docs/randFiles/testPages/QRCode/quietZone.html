@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<svg id="QR">
+			
+		</svg><br>
+		<label for="mask">Mask (between 0 and 7)</label><br>
+		<input type="number" id="mask" value = "0" min = "0" max = "7"><br>
+		
+		<label for="version">Version (between 1 and 40)</label><br>
+		<input type="number" id="version" value = "1" min = "1" max = "40"><br>
+		
+		<label for="quietZone">Quiet Zone</label><br>
+		<input type="number" id="quietZone" value = "1" min = "0"><br>
+		
+		<label for="mask">Scale</label><br>
+		<input type="number" id="scale" value = "10" min = "1">
+		
+		<script>
+			//21x21 modules to 177x177 modules (Versions 1 to 40, increasing in steps of 4 modules per side)
+			//error correction levels: L 7%, M 15%, Q 25%, H 30%
+			//dark module:1, light module: 0
+			
+			
+			const maskPatterns = ["(i+j)%2==0","j%2==0","i%3==0","(i+j)%3==0","(Math.floor(j/2)+Math.floor(i/3))%2==0","(i*j)%2 + (i*j)%3 == 0","((i*j)%2+(i*j)%3)%2==0","((i+j)%2 + (i*j)%3)%2==0"];
+			
+			let version = 1;
+			let scale = 10;
+			let quietZone = 1;
+			let qrCode = [];
+			
+			let length = (version*4)+17;
+			qrCode.length = Math.pow(length,2);
+			
+			generateQR();
+
+			
+			document.getElementById("version").onchange = function() {updateVersion()};
+			function updateVersion() {
+				version = document.getElementById("version").value;
+				if(version<1)version = 1;
+				else if(version>40)version = 40;
+				document.getElementById("version").value = version;
+				length = (version*4)+17;
+				qrCode.length = Math.pow(length,2);
+				generateQR();
+			}
+			
+			document.getElementById("quietZone").onchange = function() {updateQuietZone()};
+			function updateQuietZone() {
+				quietZone = document.getElementById("quietZone").value;
+				if(quietZone<0)quietZone = 0;
+				document.getElementById("quietZone").value = quietZone;
+				generateQR();//shouldnt have to regenerate
+			}
+			
+			document.getElementById("scale").onchange = function() {updateScale()};
+			function updateScale() {
+				scale = document.getElementById("scale").value;
+				if(scale<1)scale = 1;
+				document.getElementById("scale").value = scale;
+				generateQR(); //shouldnt have to regenerate
+			}
+			
+			function printQR() {
+				document.getElementById("QR").style.width = scale * (length+2*quietZone);
+				document.getElementById("QR").style.height = scale * (length+2*quietZone);
+				document.getElementById("QR").innerHTML = "";
+
+				for(let i = 0; i<length;i++){ //x
+					for(let j = 0; j<length;j++){ //y
+						if(eval(qrCode[i+j*length])){
+							document.getElementById("QR").innerHTML+= "<rect x='"+(quietZone*scale+i*scale)+"' y='"+(quietZone*scale+j*scale)+"' width='"+scale+"' height='"+scale+"' style='fill:rgb(0,0,0)' />";
+						}
+					}
+				}
+			}
+			
+			function generateQR(){
+				applyMasking()
+				printQR();
+			}
+			
+			function applyMasking(){
+				for(let i = 0; i<length;i++){ //x
+					for(let j = 0; j<length;j++){ //y
+						if(i==0||j==0||i==length-1||j==length-1){
+							qrCode[i+j*length]=1;
+						}
+						else{
+							qrCode[i+j*length]=0;
+						}
+					}
+				}
+			}
+				
+			
+			
+			//https://www.nayuki.io/page/qr-code-generator-library
+		</script>
+	</body>
+</html>
