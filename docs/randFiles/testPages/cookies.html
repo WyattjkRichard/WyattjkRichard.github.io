@@ -16,27 +16,29 @@
 		<label for="cName">Cookie Name:</label>	
 		<textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
 		
-		<label for="cContents">Cookie Contents:</label>	
+		<label for="cContents">Cookie Text:</label>	
 		<textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
 		
 		<button onclick="AddCookie()">Add Cookie</button>
 		<button onclick="RemoveCookie()">Remove Cookie</button>
 		
-		<select id="addedCookies" name="addedCookies"></select>
+		<select id="addedCookies" name="addedCookies">
+			<option value="" disabled selected>Select an option</option>
+		</select>
 
 		<script>
 			function AddCookie() {
 				let cName = document.getElementById("cName").value;
 				let cContents = document.getElementById("cContents").value;
-				document.cookie = cName+"="+cContents;
+				document.cookie = cName+"="+cContents+"; path=/";
+				updateCookieMenu();
 			}
 			
-			function getCookie() {
-				let outputText = document.cookie;
-				document.getElementById("text").value = outputText;
-				
+			function RemoveCookie() {
+				let cName = document.getElementById("cName").value;
+				document.cookie = cName"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+				updateCookieMenu();
 			}
-			document.cookie.onchange = function() {updateCookieMenu()};
 			function updateCookieMenu() {
 				// Set selected option as variable
 				console.log("Cookies Updated:")
