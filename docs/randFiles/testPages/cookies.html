@@ -44,12 +44,26 @@
 				console.log("Cookies Updated:")
 				console.log(document.cookie)
 				console.log(decodeURIComponent(document.cookie))
-				splitCookie = document.cookie.split(';');
-				splitCookie = document.cookie.split('=');
+				splitCookie = document.cookie.split('; ');
+				//splitCookie = 'cookie1=this is a test1; cookie2=this is a test2'.split('; ');
+				document.getElementById("addedCookies").innerHTML = "";
+				document.getElementById("addedCookies").innerHTML += ("<option value='' disabled selected>Select an option</option>");
 				for(let i =0;i<splitCookie.length;i++){
-					
+					splitCookie[i] = splitCookie[i].split('=')
+					document.getElementById("addedCookies").innerHTML += ("<option value='" + i + "'>" + splitCookie[i][0] + "</option>");
 				}
 			}
+			
+			document.getElementById("addedCookies").onchange = function() {
+				splitCookie = document.cookie.split('; ');
+				//splitCookie = 'cookie1=this is a test1; cookie2=this is a test2'.split('; ');
+				for(let i =0;i<splitCookie.length;i++){
+					splitCookie[i] = splitCookie[i].split('=')
+				}
+				let index = document.getElementById("addedCookies").value*1;
+				document.getElementById("cName").value = splitCookie[index][0];
+				document.getElementById("cContents").value = splitCookie[index][1];
+			};
 		</script>
 
 	</body>
