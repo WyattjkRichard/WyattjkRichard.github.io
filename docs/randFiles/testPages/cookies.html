@@ -43,6 +43,12 @@
 				// Set selected option as variable
 				console.log("Cookies Updated:")
 				console.log(document.cookie)
+				console.log(decodeURIComponent(document.cookie))
+				splitCookie = document.cookie.split(';');
+				splitCookie = document.cookie.split('=');
+				for(let i =0;i<splitCookie.length;i++){
+					
+				}
 			}
 		</script>
 
