@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Braille</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">		<style>
+		.textbox{
+			width: 300px;
+			height: 150px;
+			text-align: left;
+			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+		}
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<input type="checkbox" id="checkbox_0">
+			<input type="checkbox" id="checkbox_3"><br>
+			<input type="checkbox" id="checkbox_1">
+			<input type="checkbox" id="checkbox_4"><br>
+			<input type="checkbox" id="checkbox_2">
+			<input type="checkbox" id="checkbox_5"><br><br>
+		</div>
+		<button onclick="AddCharacter()">Add character</button>
+		<button onclick="RemoveCharacter()">Remove character</button>
+		<button onclick="Convert()">Convert</button>
+		<p>Enter braille pattern with either checkboxes or numpad (7, 8, 4, 5, 1, 2, +, -, enter) and convert to text, currently no special characters are supported</p>
+		<p id="Braille_TB"></p>
+		<p id="Converted_Text"></p>
+		<script>
+			let charArray = [];
+			let letterLookUp = ['01','03','09','19','11','0b','1b','13','0a','1a','05','07','0d','1d','15','0f','1f','17','0e','1e','25','27','3a','2d','3d','35']; //a-z
+			let numberLookUp = ['1a','01','03','09','19','11','0b','1b','13','0a'];
+			function AddCharacter(){
+				let charVal = 0;
+				for(let i = 0;i<6;i++){
+					charVal |= document.getElementById("checkbox_"+i).checked << i
+					document.getElementById("checkbox_"+i).checked = false;
+				}
+				charVal = charVal.toString(16).padStart(2, '0')
+				console.log(charVal)
+				charArray.push(charVal);
+				//console.log(String.fromCodePoint('0x28'+charVal))
+				document.getElementById('Braille_TB').innerHTML+= '&#x28'+charVal+';'
+			}
+			function RemoveCharacter(){
+				charArray.pop();
+				document.getElementById('Braille_TB').innerHTML='';
+				for(let i = 0;i<charArray.length;i++){
+					document.getElementById('Braille_TB').innerHTML+= '&#x28'+charArray[i]+';';
+				}
+			}
+			function Convert(){
+				let isNumber = false; // following input is a number - 3456
+				let isCapSingle = false; // Capitalizes next letter - 6
+				let isCapDouble = false; // Capitalizes next word - 6 6
+				let isItalicSingle = false; // Italicizes  next word - 46
+				let isItalicDouble = false; // Italicizes  next phrase - 46 46
+				
+				document.getElementById('Converted_Text').innerHTML='';
+				for(let i = 0;i<charArray.length;i++){
+					if(charArray[i] == '3c'){ //check number escape
+						isNumber = true;
+					}
+					
+					else if(charArray[i] == '20'){ // capital composition sign
+						isCapSingle = true;
+						if(charArray[i+1]!= null){
+							i++
+						}
+						if(charArray[i] == '20'){
+							isCapSingle = false;
+							isCapDouble = true;
+							if(charArray[i+1]!= null){
+								i++
+							}
+						}
+					}
+					
+					if(charArray[i] == '28'){ //italic composition sign
+						isItalicSingle = true;
+						if(charArray[i+1]!= null){
+							i++
+						}
+						if(charArray[i] == '28'){
+							isItalicSingle = false;
+							isItalicDouble = true;
+							if(charArray[i+1]!= null){
+								i++
+							}
+						}
+					}
+					
+					if(isNumber){
+						let index = numberLookUp.indexOf(charArray[i])
+						if(index!=-1){
+							document.getElementById('Converted_Text').innerHTML+= index;
+						}
+						else if(charArray[i] == '30'){ // letter sign
+							isNumber = false;
+						}
+					}
+					
+					else{
+						let index = letterLookUp.indexOf(charArray[i])
+						if(index!=-1){
+							let offset = 97
+							if (isCapSingle) offset-=32
+							document.getElementById('Converted_Text').innerHTML+= String.fromCharCode(index+offset); //65 for upper
+							isCapSingle = false;
+						}
+					}
+					if(charArray[i] == '00'){
+						document.getElementById('Converted_Text').innerHTML+= ' '
+						isNumber = false;
+						isCapSingle = false;
+						isCapDouble = false;
+						isItalicSingle = false;
+						isItalicDouble = false;
+					}
+					
+				}
+			}
+			
+			document.addEventListener('keydown', function (event) {
+				if ([36,103].indexOf(event.keyCode) != -1) {			// 7
+					document.getElementById("checkbox_0").checked = !document.getElementById("checkbox_0").checked;
+				}
+				else if ([38,104].indexOf(event.keyCode) != -1) {			// 8
+					document.getElementById("checkbox_3").checked = !document.getElementById("checkbox_3").checked
+				}
+				else if ([37,100].indexOf(event.keyCode) != -1) {			// 4
+					document.getElementById("checkbox_1").checked = !document.getElementById("checkbox_1").checked
+				}
+				else if ([12,101].indexOf(event.keyCode) != -1) {			// 5
+					document.getElementById("checkbox_4").checked = !document.getElementById("checkbox_4").checked
+				}
+				else if ([35,97].indexOf(event.keyCode) != -1) {			// 1
+					document.getElementById("checkbox_2").checked = !document.getElementById("checkbox_2").checked
+				}
+				else if ([40,98].indexOf(event.keyCode) != -1) {			// 2
+					document.getElementById("checkbox_5").checked = !document.getElementById("checkbox_5").checked
+				}
+				else if ([8,109].indexOf(event.keyCode) != -1) {
+					RemoveCharacter();
+				}
+				else if (event.keyCode == 107) {
+					AddCharacter();
+				}
+				else if (event.keyCode == 13) {
+					Convert();
+				}
+				//console.log(event.keyCode)
+				
+			}, true);
+			// http://www.brl.org/intro/index.html
+		</script>
+
+	</body>
+</html>
