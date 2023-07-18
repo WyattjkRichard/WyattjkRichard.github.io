@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Roman Numerals</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">		<style>
+		.textbox{
+			width: 300px;
+			height: 150px;
+			text-align: left;
+			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+		}
+		</style>
+	</head>
+	<body>
+		<textarea type="text" id="roman" placeholder = "input roman numerals here" class="textbox"></textarea><br><br>
+		
+		<textarea type="text" id="decimal" placeholder = "input decimal value here" class="textbox"></textarea><br><br>
+		<p>I = 1<br>V = 5<br>X = 10<br>L = 50<br>C = 100<br>D = 500<br>M = 1000</p>
+		<script>
+			characters = ['M', 'D', 'C', 'L', 'X', 'V', 'I'];
+			values = [1000,500,100,50,10,5,1];
+			
+			document.getElementById("roman").onchange = function() {
+				let rNum = document.getElementById("roman").value;
+				rNum = rNum.toUpperCase();
+				rNum = rNum.replaceAll(/[^IVXLCDM]/g, '');
+				document.getElementById("roman").value = rNum;
+				let result = 0;
+				for(let i = 0;i<rNum.length;i++){
+					if ((characters.indexOf(rNum[i])>characters.indexOf(rNum[i+1]))&&(characters.indexOf(rNum[i+1])!=-1)){
+						result += (values[characters.indexOf(rNum[i+1])] - values[characters.indexOf(rNum[i])])
+						i++;
+					}
+					else{
+						result += values[characters.indexOf(rNum[i])]
+					}
+				}
+				document.getElementById("decimal").value = result;
+			}
+
+			document.getElementById("decimal").onchange = function() {
+				let dNum = document.getElementById("decimal").value;
+				dNum = dNum.replaceAll(/[^0-9]/g, '');
+				document.getElementById("decimal").value = dNum;
+				let result = '';
+				
+				for(let i = 0;i<values.length;i++){
+					
+					numOfCurrentValue = Math.floor(dNum/values[i]);
+					
+					if((['I','X','C'].indexOf(characters[i]) != -1)&&(numOfCurrentValue == 4)){
+						result+=characters[i]+characters[i-1]
+						dNum -= numOfCurrentValue*values[i]
+					}
+					else if((['V','L','D'].indexOf(characters[i]) != -1)&&(Math.floor(dNum/values[i+1]) == 9)){
+						result+=characters[i+1]+characters[i-1]
+						dNum-=Math.floor(dNum/values[i+1])*values[i+1]
+						i++;
+					}
+					else{
+						for (let j = 0;j<numOfCurrentValue;j++){
+							result+=characters[i];
+						}
+						dNum -= numOfCurrentValue*values[i]
+					}
+					
+					
+				}
+				document.getElementById("roman").value = result;
+			}
+			
+		</script>
+
+	</body>
+</html>
