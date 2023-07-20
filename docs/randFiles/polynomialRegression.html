@@ -12,6 +12,10 @@
 			border: 1px solid black;
 			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
 		}
+		canvas{
+			width:1000px !important;
+			height:300px !important;
+		}
 		</style>
 	</head>
 	<body>
@@ -162,6 +166,11 @@
 			}
 			
 			function plotData(Xs, Ys, resultEquation, max, min){
+				if(window.myChart != null){
+					window.myChart.destroy();
+				}
+
+				
 				var yValues = [];
 				var xValues = [];
 				let step = 1;
@@ -194,7 +203,7 @@
 					],
 				}
 
-				const myChart = new Chart('chartJSContainer', {
+				window.myChart = new Chart('chartJSContainer', {
 					type: 'scatter',
 					data: data1,
 					options: {
@@ -211,40 +220,12 @@
 									display: false
 								}
 							},
-						}
+						},
+						responsive: true,
+						maintainAspectRatio: false
 					}
 				});
-				
-				
-				/*
-				new Chart("myChart", {
-					type: "line",
-					data: {
-						labels: Xs,
-						datasets: [{
-							fill: false,
-							pointRadius: 2,
-							borderColor: "rgba(0,0,255,0.5)",
-							data: yValues
-						}, {
-							fill: false,
-							lineTension: 0,
-							backgroundColor: "rgba(0,0,255,1.0)",
-							borderColor: "rgba(0,0,255,0)",
-							data: Ys
-						}]
-					},
-					options: {
-						legend: {display: false},
-						//scales: {
-						//	yAxes: [{ticks: {min: 6, max:16}}],
-						//}
-					}
-				});*/
-				console.log("breakpoint");
 			}
-			
-
 		</script>
 	</body>
 </html>

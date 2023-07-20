@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mouse Test</title>
+		<link rel="icon" href="../../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+			<style>
+				canvas {
+					border: 2px solid black;
+				}
+			</style>
+	</head>
+	<body>
+		<canvas id="canvas" height="300" width="300"></canvas>
+	</body>
+	<script>
+		var drag = false;
+		var dragStart;
+		var dragEnd;
+		var gridSize = 50;
+		var movingShape;
+		
+		let shapes = {
+			rect1: {
+				x: 0,
+				y: 0,
+				height: gridSize,
+				width: gridSize
+			},
+			rect2: {
+				x: gridSize*2,
+				y: gridSize,
+				height: gridSize*2,
+				width: gridSize
+			},
+			rect3: {
+				x: gridSize*4,
+				y: gridSize*2,
+				height: gridSize,
+				width: gridSize*2
+			}
+		}
+		
+
+		draw()
+		
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				for (const rect in shapes){
+					ctx.fillRect(shapes[rect].x+1, shapes[rect].y+1, shapes[rect].width-2, shapes[rect].height-2);
+				}
+				for (let i = 0;i<6;i++){
+					for (let j = 0;j<6;j++){
+						ctx.strokeRect((gridSize*.1)+i*gridSize, (gridSize*.1)+j*gridSize, (gridSize*.8), (gridSize*.8));
+					}
+				}
+			}
+		}
+		
+		function snap(){
+			if(shapes[movingShape].x<0){
+				shapes[movingShape].x = 0;
+			}else if(shapes[movingShape].x>(6-shapes[movingShape].width/gridSize)*gridSize){
+				shapes[movingShape].x = (6-shapes[movingShape].width/gridSize)*gridSize;
+			}
+			if(shapes[movingShape].y<0){
+				shapes[movingShape].y = 0;
+			}else if(shapes[movingShape].y>(6-shapes[movingShape].height/gridSize)*gridSize){
+				shapes[movingShape].y = (6-shapes[movingShape].height/gridSize)*gridSize;
+			}
+		
+			if(shapes[movingShape].x%gridSize<gridSize/2){
+				shapes[movingShape].x = Math.floor(shapes[movingShape].x/gridSize)*gridSize
+			}
+			else{
+				shapes[movingShape].x = (Math.floor(shapes[movingShape].x/gridSize)+1)*gridSize
+			}
+			if(shapes[movingShape].y%gridSize<gridSize/2){
+				shapes[movingShape].y = Math.floor(shapes[movingShape].y/gridSize)*gridSize
+			}
+			else{
+				shapes[movingShape].y = (Math.floor(shapes[movingShape].y/gridSize)+1)*gridSize
+			}
+		}
+
+		canvas.addEventListener('mousedown', function(event) {
+			console.log('mousedown');
+			for (const rect in shapes){
+				if(event.pageX - canvas.offsetLeft > shapes[rect].x && event.pageX - canvas.offsetLeft < shapes[rect].x+shapes[rect].width && event.pageY - canvas.offsetTop > shapes[rect].y && event.pageY - canvas.offsetTop < shapes[rect].y+shapes[rect].height){
+					console.log('hovering')
+					drag = true;
+					movingShape = rect;
+					dragOffset = {
+						x: event.pageX - canvas.offsetLeft - shapes[rect].x,
+						y: event.pageY - canvas.offsetTop - shapes[rect].y
+					}
+				}
+			}
+			
+			
+		})
+	
+		canvas.addEventListener('mousemove', function(event) {
+			if (drag) {
+				//console.log(event.pageX+', '+event.pageY);
+				shapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
+				shapes[movingShape].y = event.pageY - canvas.offsetTop - dragOffset.y
+				draw();
+			}
+			
+		})
+
+		canvas.addEventListener('mouseup', function(event) {
+			console.log('mouseup');
+			drag = false;
+			snap();
+			draw();
+		})
+	</script>
+</html>
