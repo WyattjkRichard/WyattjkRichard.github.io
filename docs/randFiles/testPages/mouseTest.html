@@ -4,11 +4,11 @@
 		<title>Mouse Test</title>
 		<link rel="icon" href="../../assets/images/icon.png">
 		<meta name="robots" content="noindex">
-			<style>
-				canvas {
-					border: 2px solid black;
-				}
-			</style>
+		<style>
+			canvas {
+				border: 2px solid black;
+			}
+		</style>
 	</head>
 	<body>
 		<canvas id="canvas" height="300" width="300"></canvas>
@@ -25,19 +25,25 @@
 				x: 0,
 				y: 0,
 				height: gridSize,
-				width: gridSize
+				width: gridSize,
+				direction: "vertical",
+				colour: "red"
 			},
 			rect2: {
 				x: gridSize*2,
 				y: gridSize,
 				height: gridSize*2,
-				width: gridSize
+				width: gridSize,
+				direction: "vertical",
+				colour: "blue"
 			},
 			rect3: {
 				x: gridSize*4,
 				y: gridSize*2,
 				height: gridSize,
-				width: gridSize*2
+				width: gridSize*2,
+				direction: "horizontal",
+				colour: "green"
 			}
 		}
 		
@@ -49,13 +55,14 @@
 			if (canvas.getContext) {
 				const ctx = canvas.getContext("2d");
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				for (const rect in shapes){
-					ctx.fillRect(shapes[rect].x+1, shapes[rect].y+1, shapes[rect].width-2, shapes[rect].height-2);
-				}
 				for (let i = 0;i<6;i++){
 					for (let j = 0;j<6;j++){
 						ctx.strokeRect((gridSize*.1)+i*gridSize, (gridSize*.1)+j*gridSize, (gridSize*.8), (gridSize*.8));
 					}
+				}
+				for (const rect in shapes){
+					ctx.fillStyle = shapes[rect].colour;
+					ctx.fillRect(shapes[rect].x+1, shapes[rect].y+1, shapes[rect].width-2, shapes[rect].height-2);
 				}
 			}
 		}
@@ -105,7 +112,6 @@
 	
 		canvas.addEventListener('mousemove', function(event) {
 			if (drag) {
-				//console.log(event.pageX+', '+event.pageY);
 				shapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
 				shapes[movingShape].y = event.pageY - canvas.offsetTop - dragOffset.y
 				draw();

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rush Hour</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+	</head>
+	<body>
+		<canvas id="canvas" height="300" width="300"></canvas>
+	</body>
+	<script>
+		var drag = false;
+		var dragOffset;
+		var gridSize = 50;
+		var movingShape;
+		let shapes = {
+			red: {
+				x: 0,
+				y: 0,
+				height: gridSize*2,
+				width: gridSize,
+				direction: "vertical",
+				colour: "red"
+			},
+			blue: {
+				x: gridSize*2,
+				y: gridSize,
+				height: gridSize*2,
+				width: gridSize,
+				direction: "vertical",
+				colour: "blue"
+			},
+			green: {
+				x: gridSize*4,
+				y: gridSize*2,
+				height: gridSize,
+				width: gridSize*2,
+				direction: "horizontal",
+				colour: "green"
+			},
+			yellow: {
+				x: gridSize*3,
+				y: gridSize,
+				height: gridSize*2,
+				width: gridSize,
+				direction: "vertical",
+				colour: "yellow"
+			},
+		}
+		
+		draw()
+		
+		
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
+				
+				if(shapes.red.direction == "vertical"){
+					ctx.clearRect(0*gridSize, 0, gridSize, 2);
+				}
+				else{
+					ctx.clearRect(0, 3*gridSize, 2, gridSize);
+				}
+				
+				
+				for (let i = 0;i<6;i++){
+					for (let j = 0;j<6;j++){
+						ctx.strokeRect((gridSize*.1)+i*gridSize, (gridSize*.1)+j*gridSize, (gridSize*.8), (gridSize*.8));
+					}
+				}
+				for (const rect in shapes){
+					ctx.fillStyle = shapes[rect].colour;
+					ctx.fillRect(shapes[rect].x+2, shapes[rect].y+2, shapes[rect].width-4, shapes[rect].height-4);
+				}
+			}
+		}
+		
+		function snap(){
+			if(shapes[movingShape].x%gridSize<gridSize/2){
+				shapes[movingShape].x = Math.floor(shapes[movingShape].x/gridSize)*gridSize
+			}
+			else{
+				shapes[movingShape].x = (Math.floor(shapes[movingShape].x/gridSize)+1)*gridSize
+			}
+			if(shapes[movingShape].y%gridSize<gridSize/2){
+				shapes[movingShape].y = Math.floor(shapes[movingShape].y/gridSize)*gridSize
+			}
+			else{
+				shapes[movingShape].y = (Math.floor(shapes[movingShape].y/gridSize)+1)*gridSize
+			}
+		}
+
+		function updateDragOffset(){
+			dragOffset = {
+				x: event.pageX - canvas.offsetLeft - shapes[movingShape].x,
+				y: event.pageY - canvas.offsetTop - shapes[movingShape].y
+			}
+		}
+		
+		canvas.addEventListener('mousedown', function(event) {
+			//console.log('mousedown');
+			for (const rect in shapes){
+				if(event.pageX - canvas.offsetLeft > shapes[rect].x && event.pageX - canvas.offsetLeft < shapes[rect].x+shapes[rect].width && event.pageY - canvas.offsetTop > shapes[rect].y && event.pageY - canvas.offsetTop < shapes[rect].y+shapes[rect].height){
+					//console.log('hovering')
+					drag = true;
+					movingShape = rect;
+					updateDragOffset()
+				}
+			}
+			
+			
+		})
+	
+		canvas.addEventListener('mousemove', function(event) {
+			if (drag) {
+				//console.log(event.pageX+', '+event.pageY);
+				if(shapes[movingShape].direction == "vertical"){
+					shapes[movingShape].y = event.pageY - canvas.offsetTop - dragOffset.y
+				}
+				else if(shapes[movingShape].direction == "horizontal"){
+					shapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
+				}
+				
+				for (const rect in shapes){
+					if(rect!=movingShape){
+						if(shapes[movingShape].x<shapes[rect].x+shapes[rect].width&&shapes[movingShape].x > shapes[rect].x+shapes[rect].width/2&&shapes[movingShape].y >= shapes[rect].y && shapes[movingShape].y < shapes[rect].y+shapes[rect].height){
+							shapes[movingShape].x = shapes[rect].x+shapes[rect].width;
+							updateDragOffset();
+						}
+						else if(shapes[movingShape].x+shapes[movingShape].width>shapes[rect].x && shapes[movingShape].x + shapes[movingShape].width < shapes[rect].x+shapes[rect].width/2&&shapes[movingShape].y >= shapes[rect].y && shapes[movingShape].y < shapes[rect].y+shapes[rect].height){
+							shapes[movingShape].x = shapes[rect].x-shapes[movingShape].width;
+							updateDragOffset();
+						}
+						else if(shapes[movingShape].y<shapes[rect].y+shapes[rect].height&&shapes[movingShape].y > shapes[rect].y+shapes[rect].height/2&&shapes[movingShape].x >= shapes[rect].x && shapes[movingShape].x < shapes[rect].x+shapes[rect].width){
+							shapes[movingShape].y = shapes[rect].y+shapes[rect].height;
+							updateDragOffset();
+						}
+						else if(shapes[movingShape].y+shapes[movingShape].height>shapes[rect].y && shapes[movingShape].y + shapes[movingShape].height < shapes[rect].y+shapes[rect].height/2&&shapes[movingShape].x >= shapes[rect].x && shapes[movingShape].x < shapes[rect].x+shapes[rect].width){
+							shapes[movingShape].y = shapes[rect].y-shapes[movingShape].height;
+							updateDragOffset();
+						}
+					}
+				}
+				//allow red car to move out of canvas -> win game yay
+				if(shapes[movingShape].x<0){
+					shapes[movingShape].x = 0;
+					updateDragOffset()
+				}
+				else if(shapes[movingShape].x>(6-shapes[movingShape].width/gridSize)*gridSize){
+					shapes[movingShape].x = (6-shapes[movingShape].width/gridSize)*gridSize;
+					updateDragOffset()
+				}
+				if(shapes[movingShape].y<0){
+					shapes[movingShape].y = 0;
+					updateDragOffset()
+				}
+				else if(shapes[movingShape].y>(6-shapes[movingShape].height/gridSize)*gridSize){
+					shapes[movingShape].y = (6-shapes[movingShape].height/gridSize)*gridSize;
+					updateDragOffset()
+				}
+				
+				
+				//if block is being moved out of square, dont allow it, update drag offset
+				draw();
+				
+			}
+			
+		})
+
+		addEventListener('mouseup', function(event) {
+			//console.log('mouseup');
+			drag = false;
+			snap();
+			draw();
+		})
+	
+	</script>
+</html>
