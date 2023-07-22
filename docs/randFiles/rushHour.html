@@ -13,13 +13,18 @@
 		var dragOffset;
 		var gridSize = 50;
 		var movingShape;
+		var movementRange = {
+			xMin: 0,
+			xMax: canvas.width,
+			yMin: 0,
+			yMax: canvas.height
+		}
 		let shapes = {
 			red: {
 				x: 0,
 				y: 0,
 				height: gridSize*2,
 				width: gridSize,
-				direction: "vertical",
 				colour: "red"
 			},
 			blue: {
@@ -27,7 +32,6 @@
 				y: gridSize,
 				height: gridSize*2,
 				width: gridSize,
-				direction: "vertical",
 				colour: "blue"
 			},
 			green: {
@@ -35,7 +39,6 @@
 				y: gridSize*2,
 				height: gridSize,
 				width: gridSize*2,
-				direction: "horizontal",
 				colour: "green"
 			},
 			yellow: {
@@ -43,13 +46,15 @@
 				y: gridSize,
 				height: gridSize*2,
 				width: gridSize,
-				direction: "vertical",
 				colour: "yellow"
 			},
 		}
 		
 		draw()
-		
+		for (const rect in shapes){
+			movingShape = rect;
+			snap();
+		}
 		
 		function draw() {
 			const canvas = document.getElementById("canvas");
@@ -58,10 +63,10 @@
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
 				
-				if(shapes.red.direction == "vertical"){
+				if(shapes.red.height>shapes.red.width){ // vertical
 					ctx.clearRect(0*gridSize, 0, gridSize, 2);
 				}
-				else{
+				else{ // horizontal
 					ctx.clearRect(0, 3*gridSize, 2, gridSize);
 				}
 				
@@ -100,6 +105,50 @@
 			}
 		}
 		
+		function updateMovementRange(){
+			movementRange = {
+				xMin: 0,
+				xMax: canvas.width,
+				yMin: 0,
+				yMax: canvas.height
+			}
+			for (const rect in shapes){
+				if(rect!=movingShape){
+					if (shapes[movingShape].height>shapes[movingShape].width){ // vertical
+						if(shapes[rect].x==shapes[movingShape].x || shapes[rect].x<shapes[movingShape].x && shapes[rect].x+shapes[rect].width>shapes[movingShape].x){
+							if(shapes[rect].y<shapes[movingShape].y){
+								if(shapes[rect].y+shapes[rect].height>movementRange.yMin){
+									movementRange.yMin = shapes[rect].y+shapes[rect].height;
+								}
+							}
+							else if(shapes[rect].y>shapes[movingShape].y){ // below
+								if(shapes[rect].y<movementRange.yMax){
+									movementRange.yMax = shapes[rect].y;
+								}
+							}
+						}
+					}
+					else{ // horizontal
+						//check for any rectangle that is in the same row, set max and min range of movement
+						if(shapes[rect].y==shapes[movingShape].y || shapes[rect].y<shapes[movingShape].y && shapes[rect].y+shapes[rect].height>shapes[movingShape].y){
+							if(shapes[rect].x<shapes[movingShape].x){
+								console.log('same row - left')
+								if(shapes[rect].x+shapes[rect].width>movementRange.xMin){
+									movementRange.xMin = shapes[rect].x+shapes[rect].width;
+								}
+							}
+							else{
+								if(shapes[rect].x<movementRange.xMax){
+									movementRange.xMax = shapes[rect].x;
+								}
+								console.log('same row - right')
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		canvas.addEventListener('mousedown', function(event) {
 			//console.log('mousedown');
 			for (const rect in shapes){
@@ -108,70 +157,37 @@
 					drag = true;
 					movingShape = rect;
 					updateDragOffset()
+					updateMovementRange()
 				}
 			}
-			
-			
 		})
 	
-		canvas.addEventListener('mousemove', function(event) {
+		addEventListener('mousemove', function(event) {
 			if (drag) {
-				//console.log(event.pageX+', '+event.pageY);
-				if(shapes[movingShape].direction == "vertical"){
+				if(shapes[movingShape].height>shapes[movingShape].width){ // vertical
 					shapes[movingShape].y = event.pageY - canvas.offsetTop - dragOffset.y
-				}
-				else if(shapes[movingShape].direction == "horizontal"){
-					shapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
-				}
-				
-				for (const rect in shapes){
-					if(rect!=movingShape){
-						if(shapes[movingShape].x<shapes[rect].x+shapes[rect].width&&shapes[movingShape].x > shapes[rect].x+shapes[rect].width/2&&shapes[movingShape].y >= shapes[rect].y && shapes[movingShape].y < shapes[rect].y+shapes[rect].height){
-							shapes[movingShape].x = shapes[rect].x+shapes[rect].width;
-							updateDragOffset();
-						}
-						else if(shapes[movingShape].x+shapes[movingShape].width>shapes[rect].x && shapes[movingShape].x + shapes[movingShape].width < shapes[rect].x+shapes[rect].width/2&&shapes[movingShape].y >= shapes[rect].y && shapes[movingShape].y < shapes[rect].y+shapes[rect].height){
-							shapes[movingShape].x = shapes[rect].x-shapes[movingShape].width;
-							updateDragOffset();
-						}
-						else if(shapes[movingShape].y<shapes[rect].y+shapes[rect].height&&shapes[movingShape].y > shapes[rect].y+shapes[rect].height/2&&shapes[movingShape].x >= shapes[rect].x && shapes[movingShape].x < shapes[rect].x+shapes[rect].width){
-							shapes[movingShape].y = shapes[rect].y+shapes[rect].height;
-							updateDragOffset();
-						}
-						else if(shapes[movingShape].y+shapes[movingShape].height>shapes[rect].y && shapes[movingShape].y + shapes[movingShape].height < shapes[rect].y+shapes[rect].height/2&&shapes[movingShape].x >= shapes[rect].x && shapes[movingShape].x < shapes[rect].x+shapes[rect].width){
-							shapes[movingShape].y = shapes[rect].y-shapes[movingShape].height;
-							updateDragOffset();
-						}
+					if(shapes[movingShape].y<movementRange.yMin){
+						shapes[movingShape].y = movementRange.yMin
+					}
+					else if(shapes[movingShape].y>movementRange.yMax-shapes[movingShape].height){
+						shapes[movingShape].y = movementRange.yMax-shapes[movingShape].height
 					}
 				}
-				//allow red car to move out of canvas -> win game yay
-				if(shapes[movingShape].x<0){
-					shapes[movingShape].x = 0;
-					updateDragOffset()
+				else if(shapes[movingShape].height<shapes[movingShape].width){ // horizontal
+					shapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
+					if(shapes[movingShape].x<movementRange.xMin){
+						shapes[movingShape].x = movementRange.xMin
+					}
+					else if(shapes[movingShape].x>movementRange.xMax-shapes[movingShape].width){
+						shapes[movingShape].x = movementRange.xMax-shapes[movingShape].width
+					}
 				}
-				else if(shapes[movingShape].x>(6-shapes[movingShape].width/gridSize)*gridSize){
-					shapes[movingShape].x = (6-shapes[movingShape].width/gridSize)*gridSize;
-					updateDragOffset()
-				}
-				if(shapes[movingShape].y<0){
-					shapes[movingShape].y = 0;
-					updateDragOffset()
-				}
-				else if(shapes[movingShape].y>(6-shapes[movingShape].height/gridSize)*gridSize){
-					shapes[movingShape].y = (6-shapes[movingShape].height/gridSize)*gridSize;
-					updateDragOffset()
-				}
-				
-				
 				//if block is being moved out of square, dont allow it, update drag offset
 				draw();
-				
 			}
-			
 		})
 
 		addEventListener('mouseup', function(event) {
-			//console.log('mouseup');
 			drag = false;
 			snap();
 			draw();
