@@ -12,6 +12,7 @@
 	</body>
 	<script>
 		// variables
+		var levelStatus = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 		var drag = false;
 		var dragOffset;
 		var gridSize = 50;
@@ -3251,13 +3252,20 @@
 			snap();
 		}
 		draw()
-		
-		document.getElementById('levelSelect').innerHTML= "<option value='' disabled selected>Select a Level</option>"
-		for (const level in levelLayouts){
-			document.getElementById('levelSelect').innerHTML+="<option value='"+level+"'>"+level+"</option>"
-		}
+		updateDropDown()
 		
 		// functions
+		function updateDropDown(){
+			document.getElementById('levelSelect').innerHTML= "<option value='' disabled selected>Select a Level</option>"
+			for (const level in levelLayouts){
+				if(levelStatus[Object.keys(levelLayouts).indexOf(level)]){
+					document.getElementById('levelSelect').innerHTML+="<option value='"+level+"'>"+level+" &#x2714;</option>"
+				}
+				else{
+					document.getElementById('levelSelect').innerHTML+="<option value='"+level+"'>"+level+"</option>"
+				}
+			}
+		}
 		
 		function draw() {
 			const canvas = document.getElementById("canvas");
@@ -3395,15 +3403,18 @@
 				var keys = Object.keys(levelLayouts)
 				var loc = keys.indexOf(document.getElementById('levelSelect').value);
 				if (keys[loc+1]!=null){
+					levelStatus[loc] = true;
+					updateDropDown()
 					document.getElementById('levelSelect').value = keys[loc+1];
 					shapes = levelLayouts[document.getElementById('levelSelect').value];
 				}
 				draw();
+				
 			}
 		})
 		
 		document.getElementById("levelSelect").onchange = function() {
-			shapes = levelLayouts[document.getElementById('levelSelect').value]			
+			shapes = JSON.parse(JSON.stringify(levelLayouts[document.getElementById('levelSelect').value]));
 			draw();
 		};
 	
