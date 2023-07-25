@@ -9,7 +9,9 @@
 		<canvas id="canvas" height="300" width="300"></canvas>
 		<br>
 		<select id="levelSelect" name="Level Select"></select>
+		<button onclick="resetCookies()">Reset Progress</button>
 	</body>
+	
 	<script>
 		// variables
 		var levelStatus = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -3255,8 +3257,30 @@
 		updateDropDown()
 		
 		// functions
+		function resetCookies(){
+			document.cookie = "levelStatus=0000000000; path=/";
+			updateDropDown()
+		}
+		
 		function updateDropDown(){
 			document.getElementById('levelSelect').innerHTML= "<option value='' disabled selected>Select a Level</option>"
+			splitCookie = document.cookie.split('=')[1]
+			//splitCookie = 'levelStatus=FFFFFFFFFF'.split('=')[1]
+			if(splitCookie!=null){
+				for (let i = 0; i < splitCookie.length; i++){ // 0-9
+					var currentWord = parseInt(splitCookie[i], 16).toString(2).padStart(4, '0')
+					for (let j = 0; j < 4; j++){ // 0-9
+						if (currentWord[j] == '1'){
+							levelStatus[i*4+j] = true
+						}
+						else{
+							levelStatus[i*4+j] = false
+						}
+					}
+				}
+			}
+			
+			
 			for (const level in levelLayouts){
 				if(levelStatus[Object.keys(levelLayouts).indexOf(level)]){
 					document.getElementById('levelSelect').innerHTML+="<option value='"+level+"'>"+level+" &#x2714;</option>"
@@ -3402,9 +3426,17 @@
 			if(shapes["X"].x >= canvas.width-gridSize){
 				var keys = Object.keys(levelLayouts)
 				var loc = keys.indexOf(document.getElementById('levelSelect').value);
+				levelStatus[loc] = true;
+				let levelStatusString = '';
+				for(let i = 0;i<levelStatus.length;i++){
+					if (levelStatus[i])levelStatusString+='1'
+					else levelStatusString+='0'
+				}
+				levelStatusString = parseInt(levelStatusString , 2).toString(16).toUpperCase();
+				document.cookie = "levelStatus="+levelStatusString+"; path=/";
+				updateDropDown()
+				
 				if (keys[loc+1]!=null){
-					levelStatus[loc] = true;
-					updateDropDown()
 					document.getElementById('levelSelect').value = keys[loc+1];
 					shapes = levelLayouts[document.getElementById('levelSelect').value];
 				}
