@@ -150,7 +150,7 @@
 			shapes = {};
 			for (const rect in allShapes){
 				if(document.getElementById(rect).checked){
-					shapes[rect] = allShapes[rect];
+					shapes[rect] = Object.assign({}, allShapes[rect]);
 				}
 			}
 			draw();
