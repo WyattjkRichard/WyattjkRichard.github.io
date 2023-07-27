@@ -3264,9 +3264,19 @@
 		
 		function updateDropDown(){
 			document.getElementById('levelSelect').innerHTML= "<option value='' disabled selected>Select a Level</option>"
-			splitCookie = document.cookie.split('=')[1]
+			//splitCookie = document.cookie.split('=')[1]
+			splitCookie = document.cookie.split(';')
+			let levelStatus = null;
+			for(let i = 0; i<splitCookie.length;i++){
+				if (splitCookie.split('=')[0] == "levelStatus"){
+					levelStatus = splitCookie.split('=')[1];
+					break;
+				}
+			}
+			
+			
 			//splitCookie = 'levelStatus=FFFFFFFFFF'.split('=')[1]
-			if(splitCookie!=null){
+			if(levelStatus!=null){
 				for (let i = 0; i < splitCookie.length; i++){ // 0-9
 					var currentWord = parseInt(splitCookie[i], 16).toString(2).padStart(4, '0')
 					for (let j = 0; j < 4; j++){ // 0-9
