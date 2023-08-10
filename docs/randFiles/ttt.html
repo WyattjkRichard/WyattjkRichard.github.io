@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tic Tac Toe</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+	</head>
+	<body>
+	go first or <button onclick="comsTurn(true)">let computer go first</button> <br><br>
+		<canvas id="canvas" height="300" width="300"></canvas>
+	</body>
+	
+	<script>
+		// variables
+		let placedShapes = [["","",""],["","",""],["","",""]];
+		let comMoves = [];
+		let playerMoves = [];
+		let isPlayerTurn = true;
+		let playerChar = "X"; //Starting Player is X's
+		let comChar = "O";
+		let x = 0;
+		let y = 0;
+		// setup
+		draw();
+		// functions
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				
+				ctx.beginPath();
+				ctx.moveTo(canvas.width/3, 0);
+				ctx.lineTo(canvas.width/3, canvas.height);
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.moveTo(2*canvas.width/3, 0);
+				ctx.lineTo(2*canvas.width/3, canvas.height);
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.moveTo(0, canvas.height/3);
+				ctx.lineTo(canvas.width, canvas.height/3);
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.moveTo(0, 2*canvas.height/3);
+				ctx.lineTo(canvas.width, 2*canvas.height/3);
+				ctx.stroke();
+				
+				for(let i = 0; i < placedShapes.length; i++){
+					for(let j = 0; j<placedShapes[i].length; j++){
+						if (placedShapes[i][j] == "X"){
+							ctx.beginPath();
+							ctx.moveTo(i*canvas.width/3, j*canvas.height/3);
+							ctx.lineTo((i+1)*canvas.width/3, (j+1)*canvas.height/3);
+							ctx.stroke();
+							
+							ctx.beginPath();
+							ctx.moveTo(i*canvas.width/3, (j+1)*canvas.height/3);
+							ctx.lineTo((i+1)*canvas.width/3, j*canvas.height/3);
+							ctx.stroke();
+						}
+						else if (placedShapes[i][j] == "O"){
+							ctx.beginPath();
+							ctx.arc(i*canvas.width/3 + canvas.width/6, j*canvas.height/3 + canvas.height/6, canvas.width/6, 0, 2 * Math.PI);
+							ctx.stroke();
+						}
+					}
+				}
+			}
+		}
+		
+		function comsTurn(buttonPress){
+			if (buttonPress && placedShapes.every(row => row.every(cell => cell == ""))){ // first turn, com leads
+				playerChar = "O";
+				comChar = "X";
+				x = Math.floor(Math.random() * 2)*2
+				y = Math.floor(Math.random() * 2)*2
+				comMoves.push([x, y]); //play in a random corner
+				placedShapes[x][y] = comChar;
+			}
+			else if(numPlaced(playerChar) == 1 && numPlaced(comChar) == 0){ // first turn, player leads
+				
+			}
+			else if(numPlaced(playerChar) == 1 && numPlaced(comChar) == 1){ // second turn, com leads
+				/*
+				if (placedShapes[1][1] == playerChar){ // user placed in center
+					do{
+						x = (Math.floor(Math.random() * 2)+1)-comMoves[0][0]/2
+						y = (Math.floor(Math.random() * 2)+1)-comMoves[0][1]/2
+					}
+					while(x == 1 && y == 1)
+					comMoves.push([x, y]); //play in a random corner
+					placedShapes[x][y] = comChar;
+				}
+				*/
+				else{
+				
+				}
+				// if player played center play in either oposite corner, or two spaces adjacent to oposite corner
+				// else play in any corner not blocked by player move
+			}
+			else if(numPlaced(playerChar) == 2 && numPlaced(comChar) == 1){ // second turn, player leads
+			}
+			else if(numPlaced(playerChar) == 2 && numPlaced(comChar) == 2){ // third turn, com leads
+			}
+			else if(numPlaced(playerChar) == 3 && numPlaced(comChar) == 2){ // third turn, player leads
+			}
+			else if(numPlaced(playerChar) == 3 && numPlaced(comChar) == 3){ // fourth turn, com leads
+			}
+			else if(numPlaced(playerChar) == 4 && numPlaced(comChar) == 3){ // fourth turn, player leads
+			}
+			else if(numPlaced(playerChar) == 4 && numPlaced(comChar) == 4){ // fifth turn, com leads
+			}
+			else if(numPlaced(playerChar) == 5 && numPlaced(comChar) == 4){ // fifth turn, player leads
+			}
+			isPlayerTurn = true;
+			draw();
+		}
+		
+		function numPlaced(value){
+			let numPlacedValue = 0;
+			for(let i = 0; i < placedShapes.length; i++){
+				for(let j = 0; j<placedShapes[i].length; j++){
+					if(placedShapes[i][j] == value){
+						numPlacedValue++;
+					}
+				}
+			}
+			return numPlacedValue;
+		}
+		
+		
+		canvas.addEventListener('mousedown', function(event) {
+			let userInputX = Math.floor((event.pageX - canvas.offsetLeft)/(canvas.width/3));
+			let userInputY = Math.floor((event.pageY - canvas.offsetTop)/(canvas.height/3));
+			if(isPlayerTurn == true && placedShapes[userInputX][userInputY] == ""){
+				placedShapes[userInputX][userInputY] = playerChar;
+				isPlayerTurn = false;
+				draw();
+				comsTurn();
+			}
+			//console.log(userInputX+", "+userInputY);
+		})
+	
+	</script>
+</html>
