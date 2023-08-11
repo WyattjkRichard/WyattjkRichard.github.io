@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Char Hz</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">		<style>
+		.textbox{
+			width: 300px;
+			height: 150px;
+			text-align: left;
+			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+		}
+		</style>
+	</head>
+	<body>
+		<label for="text">Text:</label>	
+		<textarea type="text" id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
+		<button onclick="encrypt()">Calculate Frequency</button>
+		
+
+		<script>
+			function encrypt() {
+				let inputText = document.getElementById("text").value;
+				let outputText = "";
+				let charsOnly = inputText.replaceAll(/[^a-zA-Z]/g, '').toUpperCase();
+				let charHz = [];
+				for (let i = 0; i < 26; i++){
+					charHz.push([String.fromCharCode(i+65), charsOnly.split(String.fromCharCode(i+65)).length-1])
+				}
+				charHz.sort(sortFunction);
+			}
+			
+			function sortFunction(a, b) {
+				if (a[0] === b[0]) {
+					return 0;
+				}
+				else {
+					return (a[1] > b[1]) ? -1 : 1;
+				}
+			}
+		</script>
+
+	</body>
+</html>
+
+
+
+
+

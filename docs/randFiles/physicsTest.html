@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Physics Test</title>
+		<link rel="icon" href="../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+	</head>
+	<body>
+		<canvas id="canvas" height="500" width="700"></canvas>
+	</body>
+	
+	<script>
+	// https://stackoverflow.com/questions/29982228/how-to-apply-gravity-to-bouncing-balls-in-javascript
+		// variables
+		let ballLoc = {
+			x: 10,
+			y: 10
+		}
+		let ballVel = {
+			x: 5,
+			y: 0
+		}
+		let radius = 5;
+		let drag = false;
+		let dragOffset;
+		let gravity = 0.2;
+		let damping = 0.9;
+		let traction = 0.8;
+		// setup
+		draw();
+		setInterval(updateBall, 10);
+		// functions
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
+				
+				ctx.beginPath();
+				ctx.arc(ballLoc.x, ballLoc.y, radius, 0, 2 * Math.PI);
+				ctx.stroke();
+			}
+		}
+		
+		function updateDragOffset(){
+			dragOffset = {
+				x: event.pageX - canvas.offsetLeft - ballLoc.x,
+				y: event.pageY - canvas.offsetTop - ballLoc.y
+			}
+		}
+		
+		function updateBall(){
+			if (drag){
+				// calculate velocities
+			}
+			else{
+				// let velocities move ball
+				ballVel.y+=gravity
+				ballLoc.y+=ballVel.y
+				ballLoc.x+=ballVel.x
+			}
+			limits()
+			draw()
+		}
+		
+		function limits(){
+			if(ballLoc.x+radius<=canvas.offsetLeft){ // ball hits left wall
+				ballLoc.x = radius;
+				ballVel.x = -ballVel.x * damping
+			}
+			else if(ballLoc.x+radius>=canvas.offsetLeft+canvas.width){ // ball hits right wall
+				ballLoc.x = canvas.width-radius;
+				ballVel.x = -ballVel.x * damping
+			}
+			if(ballLoc.y+radius<=canvas.offsetTop){ // ball hits top
+				ballLoc.y = radius;
+				ballVel.y = -ballVel.y * damping
+			}
+			else if(ballLoc.y+radius>=canvas.offsetTop+canvas.height){ // ball hits bottom
+				ballLoc.y = canvas.height-radius;
+				ballVel.y = -ballVel.y * damping
+				ballVel.x *= traction;
+
+			}
+		}
+		
+		canvas.addEventListener('mousedown', function(event) {
+			//console.log('mousedown');
+			if(Math.sqrt(Math.pow(event.pageX - canvas.offsetLeft - ballLoc.x, 2) + Math.pow(event.pageY - canvas.offsetTop - ballLoc.y, 2))<radius){
+				drag = true;
+				updateDragOffset()
+			}
+			
+			
+		})
+	
+		addEventListener('mousemove', function(event) {
+			if (drag) {
+				ballLoc.y = event.pageY - canvas.offsetTop - dragOffset.y
+				ballLoc.x = event.pageX - canvas.offsetLeft - dragOffset.x
+				limits()
+				draw();
+			}
+		})
+
+		addEventListener('mouseup', function(event) {
+			drag = false;
+			draw();
+			//set horizontal and vertical velocities
+		})
+	</script>
+</html>
