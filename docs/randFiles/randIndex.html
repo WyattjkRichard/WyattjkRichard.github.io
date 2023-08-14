@@ -52,6 +52,7 @@
 			.grid_item_rmn { grid-area: roman; }
 			.grid_item_rh { grid-area: rushHour; }
 			.grid_item_rhmm { grid-area: rushHourMM; }
+			.grid_item_pt { grid-area: physicsTest; }
 
 			.grid-container {
 				padding: 0 10% 0 10%;
@@ -59,7 +60,7 @@
 				grid-template-columns: repeat(3, 1fr);
 				grid-auto-rows: auto;
 				grid-gap: 10px;
-				grid-template-areas: "cat pay pr, unit caesar vigenere, railFence cookies braille, roman rushHour rushHourMM"
+				grid-template-areas: "cat pr unit, caesar vigenere railFence, cookies braille roman, rushHour rushHourMM physicsTest"
 				
 			}
 
@@ -165,21 +166,27 @@
 					<p>July 2023</p>
 				</div>
 			</a>
+			<a href="physicsTest.html">
+				<div class="physicsTest">
+					<p>Bouncing Ball</p>
+					<p>August 2023</p>
+				</div>
+			</a>
 		</div>
 
 <script>
-window.onscroll = function() {myFunction()};
+	window.onscroll = function() {myFunction()};
 
-var header = document.getElementById("myHeader");
-var sticky = header.offsetTop;
+	var header = document.getElementById("myHeader");
+	var sticky = header.offsetTop;
 
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
+	function myFunction() {
+		if (window.pageYOffset > sticky) {
+			header.classList.add("sticky");
+		} else {
+			header.classList.remove("sticky");
+		}
+	}
 </script>
 
 </body>
