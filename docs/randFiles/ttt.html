@@ -7,10 +7,18 @@
 	</head>
 	<body>
 	go first or <button onclick="comsTurn(true)">let computer go first</button> <br><br>
-		<canvas id="canvas" height="300" width="300"></canvas>
+		<canvas id="canvas" height="300" width="300"></canvas> <br><br>
+		<button onclick="reset()">Play Again</button>
 	</body>
 	
 	<script>
+	/*
+	 1 | 2 | 4
+	-----------
+	 8 |16 |32
+	-----------
+	64 |128|256
+	*/
 		// variables
 		let placed = [0,0] // player, com
 		let comMoves = [];
@@ -18,6 +26,7 @@
 		let isPlayerTurn = true;
 		let playerChar = "X"; //Starting Player is X's
 		let comChar = "O";
+		let winner = -1;
 		
 		// setup
 		draw();
@@ -82,6 +91,11 @@
 		}
 		
 		function comsTurn(buttonPress){
+			if(buttonPress){
+				reset();
+				isPlayerTurn = false;
+			}
+			
 			let x = 0;
 			let y = 0;
 			let possibleWins = 0;
@@ -110,33 +124,192 @@
 				y = Math.floor(Math.random() * 2)*2
 				comMoves.push([x, y]); //play in a random corner
 				placeShape(x,y,1)
+				return;
 			}
-			else if(numPlaced(0) == 1 && numPlaced(1) == 0){ // first turn, player leads
+			
+			if(numPlaced(0) == 1 && numPlaced(1) == 0){ // first turn, player leads
+				//if player placed in a corner or edge, take the center
+				if((placed[0]&325) != 0 || (placed[0]&170) != 0){
+					x = 1
+					y = 1
+					comMoves.push([x, y]);
+					placeShape(x,y,1)
+					return;
+				}
 				
+				//if player placed in center, take a corner
+				if((placed[0]&16)!=0){
+					x = Math.floor(Math.random() * 2)*2
+					y = Math.floor(Math.random() * 2)*2
+					comMoves.push([x, y]); //play in a random corner
+					placeShape(x,y,1)
+					return;
+				}
 			}
+			
 			else if(numPlaced(0) == 1 && numPlaced(1) == 1){ // second turn, com leads
-				if (checkPlace(1,1)){ // user placed in center
+				// if player placed in opposite corner, place in one of the other two corners
+				if (checkPlace(comMoves[0][0]^0b10,comMoves[0][1]^0b10)){ 
+					if(Math.floor(Math.random() * 2)){
+						x = comMoves[0][0]
+						y = comMoves[0][1]^0b10
+						comMoves.push([x, y]);
+						placeShape(x,y,1)
+					}
+					else{
+						x = comMoves[0][0]^0b10
+						y = comMoves[0][1]
+						comMoves.push([x, y]);
+						placeShape(x,y,1)
+					}
+				}
+				else{ // place in opposite corner from first move
 					x = comMoves[0][0]^0b10
 					y = comMoves[0][1]^0b10
 					comMoves.push([x, y]);
 					placeShape(x,y,1)
 				}
-				// if player played center play in either oposite corner, or two spaces adjacent to oposite corner
-				// else play in any corner not blocked by player move
 			}
+			
 			else if(numPlaced(0) == 2 && numPlaced(1) == 1){ // second turn, player leads
+				// if player placed in the center
+				if((placed[0]&16) != 0){
+					if(((placed[0]|placed[1])&1) == 0){
+						x = 0;
+						y = 0;
+					}
+					else if(((placed[0]|placed[1])&4) == 0){
+						x = 2;
+						y = 0;
+
+					}else if(((placed[0]|placed[1])&64) == 0){
+						x = 0;
+						y = 2;
+
+					}else if(((placed[0]|placed[1])&256) == 0){
+						x = 2;
+						y = 2;
+
+					}
+					comMoves.push([x, y]);
+					placeShape(x,y,1)
+					return;
+				}
+				// if com placed in the center (player starts in corner)
+				if((placed[1]&16) != 0){
+					if(((placed[0]|placed[1])&2) == 0){
+						x = 1;
+						y = 0;
+					}
+					else if(((placed[0]|placed[1])&8) == 0){
+						x = 0;
+						y = 1;
+
+					}else if(((placed[0]|placed[1])&32) == 0){
+						x = 2;
+						y = 1;
+
+					}else if(((placed[0]|placed[1])&128) == 0){
+						x = 1;
+						y = 2;
+
+					}
+					comMoves.push([x, y]);
+					placeShape(x,y,1)
+					return;
+				}
 			}
+			
 			else if(numPlaced(0) == 2 && numPlaced(1) == 2){ // third turn, com leads
+				// place in remaining corner
+				if(((placed[0]|placed[1])&0b1) == 0){
+					comMoves.push([0,0]);
+					placeShape(0,0,1)
+				}else if(((placed[0]|placed[1])&4) == 0){
+					comMoves.push([2,0]);
+					placeShape(2,0,1)
+				}else if(((placed[0]|placed[1])&64) == 0){
+					comMoves.push([0,2]);
+					placeShape(0,2,1)
+				}else if(((placed[0]|placed[1])&256) == 0){
+					comMoves.push([2,2]);
+					placeShape(2,2,1)
+				}
 			}
+			
 			else if(numPlaced(0) == 3 && numPlaced(1) == 2){ // third turn, player leads
+				// if com placed in the center (player starts in corner)
+				if((placed[1]&16) != 0){
+					if(((placed[0]|placed[1])&257)==0){
+						if(Math.floor(Math.random() * 2)){
+							x = 0;
+							y = 0;
+						}
+						else{
+							x = 2;
+							y = 2;
+						}
+					}
+					else if(((placed[0]|placed[1])&68)==0){
+						if(Math.floor(Math.random() * 2)){
+							x = 2;
+							y = 0;
+						}
+						else{
+							x = 0;
+							y = 2;
+						}
+					}
+					else if(((placed[0]|placed[1])&130)==0){
+						if(Math.floor(Math.random() * 2)){
+							x = 1;
+							y = 0;
+						}
+						else{
+							x = 1;
+							y = 2;
+						}
+					}
+					else if(((placed[0]|placed[1])&40)==0){
+						if(Math.floor(Math.random() * 2)){
+							x = 0;
+							y = 1;
+						}
+						else{
+							x = 2;
+							y = 1;
+						}
+					}
+					comMoves.push([x, y]);
+					placeShape(x,y,1)
+					return;
+				}
 			}
+			
 			else if(numPlaced(0) == 3 && numPlaced(1) == 3){ // fourth turn, com leads
+				console.log("this should never run")
 			}
+			
 			else if(numPlaced(0) == 4 && numPlaced(1) == 3){ // fourth turn, player leads
+				// place in first remaining spot
+				(placed[0]|placed[1])^511
+				for(let i = 0;i<9;i++){
+					if(((placed[0]|placed[1])^511)& 1 << i){
+						x = i%3
+						y = Math.floor(i/3)
+						comMoves.push([x, y]);
+						placeShape(x,y,1)
+						return;
+					}
+				}
 			}
+			
 			else if(numPlaced(0) == 4 && numPlaced(1) == 4){ // fifth turn, com leads
+				console.log("this should never run")
 			}
+			
 			else if(numPlaced(0) == 5 && numPlaced(1) == 4){ // fifth turn, player leads
+			
 			}
 			
 		}
@@ -160,46 +333,40 @@
 			let emptyColSpace = 0;
 			let emptyD1Space = 0;
 			let emptyD2Space = 0;
-			
+
 			for(let i = 0; i < 3; i++){
 				for(let j = 0; j < 3; j++){
-					if((placed[value] & (1<<j+i*3)) >> j+i*3 != 0){ // rows
+					if((placed[value] & (1<<j+i*3)) != 0){ // rows
 						placedInRow++;
-					}else if ((placed[value^1] & (1<<j+i*3)) >> j+i*3 == 0){
+					}else if ((placed[value^1] & (1<<j+i*3)) == 0){
 						emptyRowSpace = j;
 					}else{
-						placedInRow = 0;
+						placedInRow = -1;
 					}
-					
-					if((placed[value] & (1<<i+j*3)) >> i+j*3 != 0){ // columns
+					if((placed[value] & (1<<i+j*3)) != 0){ // columns
 						placedInCol++;
-					}else if ((placed[value^1] & (1<<i+j*3)) >> i+j*3 == 0){
+					}else if ((placed[value^1] & (1<<i+j*3)) == 0){
 						emptyColSpace = j;
 					}
 					else{
-						placedInCol = 0;
+						placedInCol = -1;
 					}
 				}
-				if((placed[value] & (1<<(2-i)+i*3)) >> (2-i)+i*3 != 0){ // top right to bottom left
+				if((placed[value] & (1<<(2-i)+i*3)) != 0){ // diagonal: top right to bottom left
 					placedInD1++;
-				}else if ((placed[value^1] & (1<<(2-i)+i*3)) >> (2-i)+i*3 == 0){
+				}else if ((placed[value^1] & (1<<(2-i)+i*3)) == 0){
 					emptyD1Space = i;
 				}
 				else{
-					placedInD1 = 0;
+					placedInD1 = -1;
 				}
-				
-				if((placed[value] & (1<<i+i*3)) >> i+i*3 != 0){ // top left to bottom right
+				if((placed[value] & (1<<i+i*3)) != 0){ // diagonal: top left to bottom right
 					placedInD2++;
-				}else if ((placed[value^1] & (1<<i+i*3)) >> i+i*3 == 0){
+				}else if ((placed[value^1] & (1<<i+i*3)) == 0){
 					emptyD2Space = i;
 				}
 				else{
-					placedInD2 = 0;
-				}
-				
-				if(placedInRow == 3 || placedInCol == 3 || placedInD1 == 3 || placedInD2 == 3){
-					// win
+					placedInD2 = -1;
 				}
 				
 				if(placedInRow == 2){
@@ -225,10 +392,10 @@
 			if((placed[0]& 1 << x+y*3) == 0 && (placed[1]& 1 << x+y*3) == 0){
 				placed[user]|= 1 << x+y*3
 				draw();
-				if (user){
+				// check for wins
+				if (user && !checkWins(user)){
 					isPlayerTurn = true;
 				}
-				
 				return true;
 			}
 			else{
@@ -245,11 +412,59 @@
 			}
 		}
 		
+		function checkWins(user){
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d");
+		
+			for(let i = 0; i<3;i++){
+				if((placed[user]& 0b111<<i*3) == 0b111<<i*3){
+					ctx.beginPath();
+					ctx.moveTo(0, canvas.height/6 + i*canvas.height/3);
+					ctx.lineTo(canvas.width, canvas.height/6 + i*canvas.height/3);
+					ctx.stroke();
+					return true;
+				}
+				if((placed[user]& 0b001001001<<i) == 0b001001001<<i){
+					ctx.beginPath();
+					ctx.moveTo(canvas.width/6 + i*canvas.width/3, 0);
+					ctx.lineTo(canvas.width/6 + i*canvas.width/3, canvas.height);
+					ctx.stroke();
+					return true;
+				}
+			}
+			if((placed[user]& 0b100010001) == 0b100010001){
+				ctx.beginPath();
+				ctx.moveTo(0, 0);
+				ctx.lineTo(canvas.width, canvas.height);
+				ctx.stroke();
+				return true;
+			}
+			if((placed[user]& 0b001010100) == 0b001010100){
+				ctx.beginPath();
+				ctx.moveTo(canvas.width, 0);
+				ctx.lineTo(0, canvas.height);
+				ctx.stroke();
+				return true;
+			}
+			return false;
+		}
+		
+		function reset(){
+			placed = [0,0]
+			comMoves = [];
+			playerMoves = [];
+			isPlayerTurn = true;
+			playerChar = "X"; //Starting Player is X's
+			comChar = "O";
+			winner = -1;
+			draw();
+		}
+		
 		canvas.addEventListener('mousedown', function(event) {
 			let userInputX = Math.floor((event.pageX - canvas.offsetLeft)/(canvas.width/3));
 			let userInputY = Math.floor((event.pageY - canvas.offsetTop)/(canvas.height/3));
-			if(isPlayerTurn == true){
-				placeShape(userInputX, userInputY, 0)
+			if(isPlayerTurn && placeShape(userInputX, userInputY, 0)){
+				playerMoves.push([userInputX, userInputY]);
 				isPlayerTurn = false;
 				comsTurn();
 			}
