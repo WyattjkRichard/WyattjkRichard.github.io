@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Phone Test</title>
+		<link rel="icon" href="../../assets/images/icon.png">
+		<meta name="robots" content="noindex">
+	</head>
+	<body>
+		<canvas id="canvas" height="300" width="300"></canvas>
+		<br><br><br>
+		<div id="log"></div>
+	</body>
+	<script>
+		// variables
+		var drag = false;
+		var dragOffset;
+		var gridSize = 50;
+		var movingShape = {
+			x: gridSize*0,
+			y: gridSize*0,
+			height: gridSize*1,
+			width: gridSize*2,
+			colour: 'LightGreen',
+		}
+		// setup
+		checkBrowser();
+		snap();
+		draw();
+		
+		// functions
+
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
+
+				ctx.fillStyle = movingShape.colour;
+				ctx.fillRect(movingShape.x+2, movingShape.y+2, movingShape.width-4, movingShape.height-4);
+			}
+		}
+		
+		function snap(){
+			if(movingShape.x<0){
+				movingShape.x = 0;
+			}else if(movingShape.x>(6-movingShape.width/gridSize)*gridSize){
+				movingShape.x = (6-movingShape.width/gridSize)*gridSize;
+			}
+			if(movingShape.y<0){
+				movingShape.y = 0;
+			}else if(movingShape.y>(6-movingShape.height/gridSize)*gridSize){
+				movingShape.y = (6-movingShape.height/gridSize)*gridSize;
+			}
+
+			if(movingShape.x%gridSize<gridSize/2){
+				movingShape.x = Math.floor(movingShape.x/gridSize)*gridSize
+			}
+			else{
+				movingShape.x = (Math.floor(movingShape.x/gridSize)+1)*gridSize
+			}
+			if(movingShape.y%gridSize<gridSize/2){
+				movingShape.y = Math.floor(movingShape.y/gridSize)*gridSize
+			}
+			else{
+				movingShape.y = (Math.floor(movingShape.y/gridSize)+1)*gridSize
+			}
+		}
+
+		function updateDragOffset(){
+			dragOffset = {
+				x: event.pageX - canvas.offsetLeft - movingShape.x,
+				y: event.pageY - canvas.offsetTop - movingShape.y
+			}
+		}
+		
+		function inPageLog(log){
+			document.getElementById("log").innerHTML += log + "<br>"
+		}
+		
+		canvas.addEventListener('mousedown', function(event) {
+			//console.log('mousedown');
+			if(event.pageX - canvas.offsetLeft > movingShape.x && event.pageX - canvas.offsetLeft < movingShape.x+movingShape.width && event.pageY - canvas.offsetTop > movingShape.y && event.pageY - canvas.offsetTop < movingShape.y+movingShape.height){
+				//console.log('hovering')
+				drag = true;
+				updateDragOffset()
+			}
+			inPageLog("Mouse down")
+		})
+	
+		addEventListener('mousemove', function(event) {
+			if (drag) {
+				movingShape.y = event.pageY - canvas.offsetTop - dragOffset.y
+				movingShape.x = event.pageX - canvas.offsetLeft - dragOffset.x
+				draw();
+			}
+		})
+
+		addEventListener('mouseup', function(event) {
+			drag = false;
+			snap();
+			draw();
+			inPageLog("Mouse up")
+		})
+		
+		canvas.addEventListener("dblclick", function(event){
+			if(event.pageX - canvas.offsetLeft > movingShape.x && event.pageX - canvas.offsetLeft < movingShape.x+movingShape.width && event.pageY - canvas.offsetTop > movingShape.y && event.pageY - canvas.offsetTop < movingShape.y+movingShape.height){
+				let temp = movingShape.height;
+				movingShape.height = movingShape.width
+				movingShape.width = temp
+			}
+			draw()
+		})
+		
+		function checkBrowser() {
+			'use strict';
+    
+			var module = {
+				options: [],
+				header: [navigator.platform, navigator.userAgent, navigator.appVersion, navigator.vendor, window.opera],
+				dataos: [
+					{ name: 'Windows Phone', value: 'Windows Phone', version: 'OS' },
+					{ name: 'Windows', value: 'Win', version: 'NT' },
+					{ name: 'iPhone', value: 'iPhone', version: 'OS' },
+					{ name: 'iPad', value: 'iPad', version: 'OS' },
+					{ name: 'Kindle', value: 'Silk', version: 'Silk' },
+					{ name: 'Android', value: 'Android', version: 'Android' },
+					{ name: 'PlayBook', value: 'PlayBook', version: 'OS' },
+					{ name: 'BlackBerry', value: 'BlackBerry', version: '/' },
+					{ name: 'Macintosh', value: 'Mac', version: 'OS X' },
+					{ name: 'Linux', value: 'Linux', version: 'rv' },
+					{ name: 'Palm', value: 'Palm', version: 'PalmOS' }
+				],
+				databrowser: [
+					{ name: 'Chrome', value: 'Chrome', version: 'Chrome' },
+					{ name: 'Firefox', value: 'Firefox', version: 'Firefox' },
+					{ name: 'Safari', value: 'Safari', version: 'Version' },
+					{ name: 'Internet Explorer', value: 'MSIE', version: 'MSIE' },
+					{ name: 'Opera', value: 'Opera', version: 'Opera' },
+					{ name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
+					{ name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' }
+				],
+				init: function () {
+					var agent = this.header.join(' '),
+						os = this.matchItem(agent, this.dataos),
+						browser = this.matchItem(agent, this.databrowser);
+					
+					return { os: os, browser: browser };
+				},
+				matchItem: function (string, data) {
+					var i = 0,
+						j = 0,
+						html = '',
+						regex,
+						regexv,
+						match,
+						matches,
+						version;
+					
+					for (i = 0; i < data.length; i += 1) {
+						regex = new RegExp(data[i].value, 'i');
+						match = regex.test(string);
+						if (match) {
+							regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+							matches = string.match(regexv);
+							version = '';
+							if (matches) { if (matches[1]) { matches = matches[1]; } }
+							if (matches) {
+								matches = matches.split(/[._]+/);
+								for (j = 0; j < matches.length; j += 1) {
+									if (j === 0) {
+										version += matches[j] + '.';
+									} else {
+										version += matches[j];
+									}
+								}
+							} else {
+								version = '0';
+							}
+							return {
+								name: data[i].name,
+								version: parseFloat(version)
+							};
+						}
+					}
+					return { name: 'unknown', version: 0 };
+				}
+			};
+			
+			var e = module.init(),
+				debug = '';
+			
+			debug += 'os.name = ' + e.os.name + '<br/>';
+			debug += 'os.version = ' + e.os.version + '<br/>';
+			debug += 'browser.name = ' + e.browser.name + '<br/>';
+			debug += 'browser.version = ' + e.browser.version + '<br/>';
+			
+			debug += '<br/>';
+			debug += 'navigator.userAgent = ' + navigator.userAgent + '<br/>';
+			debug += 'navigator.appVersion = ' + navigator.appVersion + '<br/>';
+			debug += 'navigator.platform = ' + navigator.platform + '<br/>';
+			debug += 'navigator.vendor = ' + navigator.vendor + '<br/>';
+			
+			document.getElementById('log').innerHTML = debug;
+		}
+		
+	</script>
+</html>
