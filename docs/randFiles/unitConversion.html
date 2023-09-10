@@ -33,6 +33,7 @@
 				<option value="speed">Speed</option>
 				<option value="temperature">Temperature</option>
 				<option value="digital storage">Digital Storage</option>
+				<option value="quantity">Quantity</option>
 			</select>
 		</div>
 		<div>
@@ -487,6 +488,33 @@
 						toCelsius: '(x-580.8)/72',
 						fromCelsius: '580.8+x*72',
 						description: "<b>wedgwood (°W):</b><br>an obsolete temperature scale, which was used to measure temperatures above the boiling point of mercury of 356 °C (673 °F)"
+					}
+				},
+				'quantity': { // https://en.wikipedia.org/wiki/Non-numerical_words_for_quantities
+					'brace': {
+						name: 'brace',
+						value: 2,
+						description: "<b>brace:</b><br>"
+					},
+					'pair': {
+						name: 'pair',
+						value: 2,
+						description: "<b>pair:</b><br>"
+					},
+					'dozen': {
+						name: 'dozen',
+						value: 12,
+						description: "<b>dozen:</b><br>"
+					},
+					'bakers dozen': {
+						name: "bakers dozen",
+						value: 13,
+						description: "<b>baker's dozen:</b><br>"
+					},
+					'gross': {
+						name: 'gross',
+						value: 144,
+						description: "<b>gross:</b><br>"
 					}
 				},
 			};
