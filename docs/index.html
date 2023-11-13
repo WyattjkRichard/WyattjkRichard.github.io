@@ -82,8 +82,17 @@
 		<script>
 			var codeStatus = 0;
 			
+			splitCookie = document.cookie.split(';')
+			for(let i = 0; i<splitCookie.length;i++){
+				if (splitCookie[i] == "button=revealed"){
+					toggleButton()
+				}
+			}
+			
+			
 			function toggleButton() {
-				document.getElementById("hideable-button").className = 'button show'; 
+				document.getElementById("hideable-button").className = 'button show';
+				document.cookie = "button=revealed; path=/";
 			}
 		
 			document.addEventListener('keydown', function (event) {
