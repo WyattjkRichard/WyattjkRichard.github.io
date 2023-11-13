@@ -3264,19 +3264,18 @@
 		
 		function updateDropDown(){
 			document.getElementById('levelSelect').innerHTML= "<option value='' disabled selected>Select a Level</option>"
-			splitCookie = document.cookie.split(';')
-			//splitCookie = "cookie1=something;cookie2=somethingelse;levelStatus=FFFFFFFFFF;cookie4=anotherthing".split(';')
+			splitCookie = document.cookie.split('; ')
+			//splitCookie = "cookie1=something; cookie2=somethingelse; levelStatus=8000000000; cookie4=anotherthing".split('; ')
 
 			for(let i = 0; i<splitCookie.length;i++){
 				if (splitCookie[i].split('=')[0] == "levelStatus"){
-					splitCookie = splitCookie[i].split('=')[1];
+					splitCookie = splitCookie[i].split('=');
 					break;
 				}
 			}
-			
-			if(levelStatus!=null){
-				for (let i = 0; i < splitCookie.length; i++){ // 0-9
-					var currentWord = parseInt(splitCookie[i], 16).toString(2).padStart(4, '0')
+			if(splitCookie[0] == "levelStatus"){
+				for (let i = 0; i < splitCookie[1].length; i++){ // 0-9
+					var currentWord = parseInt(splitCookie[1][i], 16).toString(2).padStart(4, '0')
 					for (let j = 0; j < 4; j++){ // 0-9
 						if (currentWord[j] == '1'){
 							levelStatus[i*4+j] = true
