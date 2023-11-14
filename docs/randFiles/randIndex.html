@@ -1,207 +1,155 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My Projects</title>
-		<link href='../assets/css/style.css' rel='stylesheet'>
-		<link rel="icon" href="../assets/images/icon.png">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="robots" content="noindex">
-		<style>
-			body {
-				margin: 0;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-			.header {
-				padding: 26px 40px;
-				background: #191919;
-				color: #f1f1f1;
-				width: 100%;
-			}
+<head>
+	<title>My Projects</title>
+	<link href='../assets/css/style.css' rel='stylesheet'>
+	<link href='../assets/css/header.css' rel='stylesheet'>
+	<link rel="icon" href="../assets/images/icon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex">
+	<style>
+		.grid_item_cat { grid-area: cat; }
+		.grid_item_pr { grid-area: pr; }
+		.grid_item_unit { grid-area: unit; }
+		.grid_item_csr { grid-area: caesar; }
+		.grid_item_vig { grid-area: vigenere; }
+		.grid_item_rf { grid-area: railFence; }
+		.grid_item_cks { grid-area: cookies; }
+		.grid_item_brl { grid-area: braille; }
+		.grid_item_rmn { grid-area: roman; }
+		.grid_item_rh { grid-area: rushHour; }
+		.grid_item_rhmm { grid-area: rushHourMM; }
+		.grid_item_pt { grid-area: physicsTest; }
+		.grid_item_ttt { grid-area: ttt; }
+		.grid_item_dice { grid-area: dice; }
+		.grid-container {
+			padding: 0 10% 0 10%;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-auto-rows: auto;
+			grid-gap: 10px;
+			grid-template-areas: "cat pr unit, caesar vigenere railFence, cookies braille roman, rushHour rushHourMM physicsTest, ttt dice"
+		}
+		
+		.grid-container > a > div {
+			background-color: #000000;
+			color: #ffffff;
+		}
 
-			.content {
-				padding: 16px;
-			}
-
-			.sticky {
-				position: fixed;
-				top: 0;
-				width: 100%;
-			}
-
-			.sticky + .content {
-				padding-top: 102px;
-			}
-			
-			.headerLink{
-				color: #a9a9a9;
-				font-size: 15px;
-				text-decoration:none;           <!-- Removes underline from the link -->				
-			}
-			.headerLink:hover {
-				color: #ffffff;
-			}
-			
-			.grid_item_cat { grid-area: cat; }
-			.grid_item_pr { grid-area: pr; }
-			.grid_item_unit { grid-area: unit; }
-			.grid_item_csr { grid-area: caesar; }
-			.grid_item_vig { grid-area: vigenere; }
-			.grid_item_rf { grid-area: railFence; }
-			.grid_item_cks { grid-area: cookies; }
-			.grid_item_brl { grid-area: braille; }
-			.grid_item_rmn { grid-area: roman; }
-			.grid_item_rh { grid-area: rushHour; }
-			.grid_item_rhmm { grid-area: rushHourMM; }
-			.grid_item_pt { grid-area: physicsTest; }
-			.grid_item_ttt { grid-area: ttt; }
-			.grid_item_dice { grid-area: dice; }
-
-			.grid-container {
-				padding: 0 10% 0 10%;
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				grid-auto-rows: auto;
-				grid-gap: 10px;
-				grid-template-areas: "cat pr unit, caesar vigenere railFence, cookies braille roman, rushHour rushHourMM physicsTest, ttt dice"
-				
-			}
-
-			.grid-container > a > div {
-				background-color: #000000;
-				color: #ffffff;
-				
-			}
-			
-			a{
-				text-decoration: none;
-			}
-			
-			img{
-				max-width: 100%;
-				max-height: 100%;
-				display: block; /* remove extra space below image */
-			}
-			
-			p{
-				text-align: center;
-				margin: 5px;
-				
-			}
-		</style>
+		a{
+			text-decoration: none;
+		}
+		
+		img{
+			max-width: 100%;
+			max-height: 100%;
+			display: block; /* remove extra space below image */
+		}
+		
+		p{
+			text-align: center;
+			margin: 5px;
+		}
+	</style>
 </head>
 <body>
-<div class="header" id="myHeader">
-	<div style="float: left">
-		<a href="../index.html" class="headerLink"><strong>Home</strong></a>
-		<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
-		<a href="randIndex.html" class="headerLink" style="color: #ffffff;"><strong>Random Things</strong></a>
-	</div>
-	<div style="margin: 0 auto; width: 135px;">
-		<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
-	</div>
-</div>
-
-<div class="grid-container">
-			<a href="cat.html">
-				<div class="grid_item_cat">
-					<p>Le Chat</p>
-					<p> June 2023</p>
-				</div>
-			</a>
-			<a href="polynomialRegression.html">
-				<div class="grid_item_pr">
-					<p>Polynomial Regression</p>
-					<p>June 2023</p>
-				</div>
-			</a>
-			<a href="unitConversion.html">
-				<div class="grid_item_unit">
-					<p>Unit Conversion</p>
-					<p>June 2023</p>
-				</div>
-			</a>
-			<a href="caesarCipher.html">
-				<div class="grid_item_csr">
-					<p>Caesar Cipher</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="vigenereCipher.html">
-				<div class="grid_item_vig">
-					<p>Viggenere Cipher</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="railFenceCipher.html">
-				<div class="grid_item_rf">
-					<p>Rail Fence Cipher</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="cookies.html">
-				<div class="grid_item_cks">
-					<p>Cookies</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="braille.html">
-				<div class="grid_item_brl">
-					<p>Braille</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="roman.html">
-				<div class="grid_item_rmn">
-					<p>Roman Numerals</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="rushHour.html">
-				<div class="grid_item_rh">
-					<p>Rush Hour</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="rushHourMapMaker.html">
-				<div class="grid_item_rhmm">
-					<p>Rush Hour Map Maker</p>
-					<p>July 2023</p>
-				</div>
-			</a>
-			<a href="physicsTest.html">
-				<div class="grid_item_pt">
-					<p>Bouncing Ball</p>
-					<p>August 2023</p>
-				</div>
-			</a>
-			<a href="ttt.html">
-				<div class="grid_item_ttt">
-					<p>Tic Tac Toe</p>
-					<p>August 2023</p>
-				</div>
-			</a>
-			<a href="dice.html">
-				<div class="grid_item_ttt">
-					<p>Dice Roller</p>
-					<p>August 2023</p>
-				</div>
-			</a>
+	<div class="header" id="myHeader">
+		<div style="float: left">
+			<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+			<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+			<a href="randIndex.html" class="headerLink" style="color: #ffffff;"><strong>Random Things</strong></a>
 		</div>
+		<div style="margin: 0 auto; width: 135px;">
+			<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+		</div>
+	</div>
 
-<script>
-	window.onscroll = function() {myFunction()};
-
-	var header = document.getElementById("myHeader");
-	var sticky = header.offsetTop;
-
-	function myFunction() {
-		if (window.pageYOffset > sticky) {
-			header.classList.add("sticky");
-		} else {
-			header.classList.remove("sticky");
-		}
-	}
-</script>
-
+	<div class="grid-container">
+		<a href="cat.html">
+			<div class="grid_item_cat">
+				<p>Le Chat</p>
+				<p> June 2023</p>
+			</div>
+		</a>
+		<a href="polynomialRegression.html">
+			<div class="grid_item_pr">
+				<p>Polynomial Regression</p>
+				<p>June 2023</p>
+			</div>
+		</a>
+		<a href="unitConversion.html">
+			<div class="grid_item_unit">
+				<p>Unit Conversion</p>
+				<p>June 2023</p>
+			</div>
+		</a>
+		<a href="caesarCipher.html">
+			<div class="grid_item_csr">
+				<p>Caesar Cipher</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="vigenereCipher.html">
+			<div class="grid_item_vig">
+				<p>Viggenere Cipher</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="railFenceCipher.html">
+			<div class="grid_item_rf">
+				<p>Rail Fence Cipher</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="cookies.html">
+			<div class="grid_item_cks">
+				<p>Cookies</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="braille.html">
+			<div class="grid_item_brl">
+				<p>Braille</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="roman.html">
+			<div class="grid_item_rmn">
+				<p>Roman Numerals</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="rushHour.html">
+			<div class="grid_item_rh">
+				<p>Rush Hour</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="rushHourMapMaker.html">
+			<div class="grid_item_rhmm">
+				<p>Rush Hour Map Maker</p>
+				<p>July 2023</p>
+			</div>
+		</a>
+		<a href="physicsTest.html">
+			<div class="grid_item_pt">
+				<p>Bouncing Ball</p>
+				<p>August 2023</p>
+			</div>
+		</a>
+		<a href="ttt.html">
+			<div class="grid_item_ttt">
+				<p>Tic Tac Toe</p>
+				<p>August 2023</p>
+			</div>
+		</a>
+		<a href="dice.html">
+			<div class="grid_item_ttt">
+				<p>Dice Roller</p>
+				<p>August 2023</p>
+			</div>
+		</a>
+	</div>
+	<script src='../assets/js/header.js'></script>
 </body>
 </html>

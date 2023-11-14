@@ -3,15 +3,31 @@
 	<head>
 		<title>Rush Hour</title>
 		<link rel="icon" href="../assets/images/icon.png">
+		<link href='../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 	</head>
 	<body>
-		<canvas id="canvas" height="300" width="300"></canvas>
-		<br>
-		<select id="levelSelect" name="Level Select"></select>
-		<button onclick="resetCookies()">Reset Progress</button>
+		<div class="header" id="myHeader">
+			<script src='../assets/js/header.js'></script>
+			<div style="float: left">
+				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="randIndex.html" class="headerLink"><strong>Random Things</strong></a>
+				<a href="rushHour.html" class="headerLink" style="color: #ffffff;"><strong>Rush Hour</strong></a>
+			</div>
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+			</div>
+		</div>
+		
+		<div class="content">
+			<canvas id="canvas" height="300" width="300"></canvas>
+			<br>
+			<select id="levelSelect" name="Level Select"></select>
+			<button onclick="resetCookies()">Reset Progress</button>
+		</div>
 	</body>
-	
+
 	<script>
 		// variables
 		var levelStatus = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -3394,7 +3410,7 @@
 				}
 			}
 		})
-	
+
 		addEventListener('mousemove', function(event) {
 			if (drag) {
 				if(shapes[movingShape].height>shapes[movingShape].width){ // vertical
@@ -3456,6 +3472,6 @@
 			shapes = JSON.parse(JSON.stringify(levelLayouts[document.getElementById('levelSelect').value]));
 			draw();
 		};
-	
+
 	</script>
 </html>

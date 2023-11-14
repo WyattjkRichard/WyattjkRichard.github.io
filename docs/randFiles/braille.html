@@ -3,24 +3,40 @@
 	<head>
 		<title>Braille</title>
 		<link rel="icon" href="../assets/images/icon.png">
+		<link href='../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 	</head>
 	<body>
-		
-		<div>
-			<input type="checkbox" id="checkbox_0">
-			<input type="checkbox" id="checkbox_3"><br>
-			<input type="checkbox" id="checkbox_1">
-			<input type="checkbox" id="checkbox_4"><br>
-			<input type="checkbox" id="checkbox_2">
-			<input type="checkbox" id="checkbox_5"><br><br>
+		<div class="header" id="myHeader">
+			<script src='../assets/js/header.js'></script>
+			<div style="float: left">
+				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="randIndex.html" class="headerLink"<strong>Random Things</strong></a>
+				<a href="braille.html" class="headerLink" style="color: #ffffff;"><strong>Braille</strong></a>
+			</div>
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+			</div>
 		</div>
-		<button onclick="AddCharacter()">Add character</button>
-		<button onclick="RemoveCharacter()">Remove character</button>
-		<button onclick="Convert()">Convert</button>
-		<p>Enter braille pattern with either checkboxes or numpad (7, 8, 4, 5, 1, 2, +, -, enter) and convert to text, currently no special characters are supported</p>
-		<p id="Braille_TB"></p>
-		<p id="Converted_Text"></p>
+		
+		<div class = "content">
+			<div>
+				<input type="checkbox" id="checkbox_0">
+				<input type="checkbox" id="checkbox_3"><br>
+				<input type="checkbox" id="checkbox_1">
+				<input type="checkbox" id="checkbox_4"><br>
+				<input type="checkbox" id="checkbox_2">
+				<input type="checkbox" id="checkbox_5"><br><br>
+			</div>
+			<button onclick="AddCharacter()">Add character</button>
+			<button onclick="RemoveCharacter()">Remove character</button>
+			<button onclick="Convert()">Convert</button>
+			<p>Enter braille pattern with either checkboxes or numpad (7, 8, 4, 5, 1, 2, +, -, enter) and convert to text, currently no special characters are supported</p>
+			<p id="Braille_TB"></p>
+			<p id="Converted_Text"></p>
+		</div>
+		
 		<script>
 			let charArray = [];
 			let letterLookUp = ['01','03','09','19','11','0b','1b','13','0a','1a','05','07','0d','1d','15','0f','1f','17','0e','1e','25','27','3a','2d','3d','35']; //a-z

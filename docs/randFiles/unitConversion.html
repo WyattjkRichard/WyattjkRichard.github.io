@@ -3,6 +3,7 @@
 	<head>
 		<title>Unit Conversion</title>
 		<link rel="icon" href="../assets/images/icon.png">
+		<link href='../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 		<style>
 			#variable{
@@ -23,39 +24,54 @@
 			
 		</style>
 	</head>
-	<body>	
-		<div>
-			<select id="variable" name="variable">
-				<option value="" disabled selected>Select an option</option>
-				<option value="length">Length</option>
-				<option value="time">Time</option>
-				<option value="mass">Mass</option>
-				<option value="speed">Speed</option>
-				<option value="temperature">Temperature</option>
-				<option value="digital storage">Digital Storage</option>
-				<option value="quantity">Quantity</option>
-			</select>
-		</div>
-		<div>
-			<div class="inline">
-				<input type="number" id="value0" value = "0">
-				<select id="input0">
-					<option value="" disabled selected>Select an option</option>
-				</select>
+	<body>
+		<div class="header" id="myHeader">
+			<script src='../assets/js/header.js'></script>
+			<div style="float: left">
+				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="randIndex.html" class="headerLink"<strong>Random Things</strong></a>
+				<a href="unitConversion.html" class="headerLink" style="color: #ffffff;"><strong>Unit Conversion</strong></a>
 			</div>
-			<div class="inline">
-				<h2 style = "display: inline-block;">=</h2>
-			</div>
-			<div class="inline">
-				<input type="number" id="value1" value = "0">
-				<select id="input1">
-					<option value="" disabled selected>Select an option</option>
-				</select>
-				
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
 			</div>
 		</div>
-		<p id="p0"></p>
-		<p id="p1"></p>
+	
+		<div class="content">
+			<div>
+				<select id="variable" name="variable">
+					<option value="" disabled selected>Select an option</option>
+					<option value="length">Length</option>
+					<option value="time">Time</option>
+					<option value="mass">Mass</option>
+					<option value="speed">Speed</option>
+					<option value="temperature">Temperature</option>
+					<option value="digital storage">Digital Storage</option>
+					<option value="quantity">Quantity</option>
+				</select>
+			</div>
+			<div>
+				<div class="inline">
+					<input type="number" id="value0" value = "0">
+					<select id="input0">
+						<option value="" disabled selected>Select an option</option>
+					</select>
+				</div>
+				<div class="inline">
+					<h2 style = "display: inline-block;">=</h2>
+				</div>
+				<div class="inline">
+					<input type="number" id="value1" value = "0">
+					<select id="input1">
+						<option value="" disabled selected>Select an option</option>
+					</select>
+					
+				</div>
+			</div>
+			<p id="p0"></p>
+			<p id="p1"></p>
+		</div>
 		<script>
 			// Map your choices to your option value
 			var lookup = {

@@ -3,6 +3,7 @@
 	<head>
 		<title>Cookies</title>
 		<link rel="icon" href="../assets/images/icon.png">
+		<link href='../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 		<style>
 		.textbox{
@@ -14,19 +15,34 @@
 		</style>
 	</head>
 	<body>
-		<label for="cName">Cookie Name:</label>	
-		<textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
+		<div class="header" id="myHeader">
+			<script src='../assets/js/header.js'></script>
+			<div style="float: left">
+				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="randIndex.html" class="headerLink"<strong>Random Things</strong></a>
+				<a href="cookies.html" class="headerLink" style="color: #ffffff;"><strong>Cookies</strong></a>
+			</div>
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+			</div>
+		</div>
 		
-		<label for="cContents">Cookie Text:</label>	
-		<textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
+		<div class = "content">
+			<label for="cName">Cookie Name:</label>	
+			<textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
+			
+			<label for="cContents">Cookie Text:</label>	
+			<textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
+			
+			<button onclick="AddCookie()">Add Cookie</button>
+			<button onclick="RemoveCookie()">Remove Cookie</button>
+			
+			<select id="addedCookies" name="addedCookies">
+				<option value="" disabled selected>Select an option</option>
+			</select>
+		</div>
 		
-		<button onclick="AddCookie()">Add Cookie</button>
-		<button onclick="RemoveCookie()">Remove Cookie</button>
-		
-		<select id="addedCookies" name="addedCookies">
-			<option value="" disabled selected>Select an option</option>
-		</select>
-
 		<script>
 			updateCookieMenu();
 			function AddCookie() {
