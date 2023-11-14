@@ -3,16 +3,31 @@
 	<head>
 		<title>Physics Test</title>
 		<link rel="icon" href="../assets/images/icon.png">
+		<link href='../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 	</head>
 	<body>
-		<canvas id="canvas" height="500" width="700"></canvas>
+		<div class="header" id="myHeader">
+			<script src='../assets/js/header.js'></script>
+			<div style="float: left">
+				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="randIndex.html" class="headerLink"><strong>Random Things</strong></a>
+				<a href="physicsTest.html" class="headerLink" style="color: #ffffff;"><strong>Bouncing Ball</strong></a>
+			</div>
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+			</div>
+		</div>
 		
-		<br><br>
-		<label for="degree">Canvas Width:</label>
-		<input type="number" id="canvasWidth" name="canvasWidth" value = "700" onchange="updateCanvas()"><br>
-		<label for="degree">Canvas Height:</label>
-		<input type="number" id="canvasHeight" name="canvasHeight" value = "500" onchange="updateCanvas()">
+		<div class="content">
+			<canvas id="canvas" height="500" width="700"></canvas>
+			<br><br>
+			<label for="degree">Canvas Width:</label>
+			<input type="number" id="canvasWidth" name="canvasWidth" value = "700" onchange="updateCanvas()"><br>
+			<label for="degree">Canvas Height:</label>
+			<input type="number" id="canvasHeight" name="canvasHeight" value = "500" onchange="updateCanvas()">
+		</div>
 	</body>
 	
 	<script>
@@ -84,7 +99,7 @@
 		}
 		
 		function limits(){
-			if(ballLoc.x+radius<=canvas.offsetLeft){ // ball hits left wall
+			if(ballLoc.x+radius<=0){ // ball hits left wall
 				ballLoc.x = radius;
 				ballVel.x = -ballVel.x * resistance
 			}
@@ -92,7 +107,7 @@
 				ballLoc.x = canvas.width-radius;
 				ballVel.x = -ballVel.x * resistance
 			}
-			if(ballLoc.y+radius<=canvas.offsetTop){ // ball hits top
+			if(ballLoc.y+radius<=0){ // ball hits top
 				ballLoc.y = radius;
 				ballVel.y = -ballVel.y * resistance
 			}

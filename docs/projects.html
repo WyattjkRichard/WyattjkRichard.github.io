@@ -32,6 +32,13 @@
 				color: #ffffff;
 			}
 			
+			.hidden {
+				display: none;
+			}
+			.show {
+				display: inline;
+			}
+			
 			img{
 				max-width: 100%;
 				max-height: 100%;
@@ -40,6 +47,9 @@
 			img:hover{
 				filter: brightness(50%);
 				z-index: 1;
+			}
+			.header{
+				z-index: 2;
 			}
 			
 			p{
@@ -57,6 +67,7 @@
 			<div style="float: left">
 				<a href="index.html" class="headerLink"><strong>Home</strong></a>
 				<a href="projects.html" class="headerLink" style="color: #ffffff;"><strong>Projects</strong></a>
+				<a href="./randFiles/randIndex.html" class="headerLink hidden" id="hideable-button"><strong>Random Things</strong></a>
 			</div>
 			<div style="margin: 0 auto; width: 192px;">
 				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
@@ -101,7 +112,14 @@
 			</a>
 		</div>
 		
-		<script src='assets/js/header.js'></script>
+		<script src='assets/js/header.js'>
+			splitCookie = document.cookie.split('; ')
+			for(let i = 0; i<splitCookie.length;i++){
+				if (splitCookie[i] == "button=revealed"){
+					document.getElementById("hideable-button").className = 'headerLink show';
+				}
+			}
+		</script>
 
 	</body>
 </html>
