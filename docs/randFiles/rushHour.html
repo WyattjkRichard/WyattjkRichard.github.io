@@ -3265,7 +3265,7 @@
 		function updateDropDown(){
 			document.getElementById('levelSelect').innerHTML= "<option value='' disabled selected>Select a Level</option>"
 			splitCookie = document.cookie.split('; ')
-			splitCookie = "cookie1=something; cookie2=somethingelse; levelStatus=8000000000; cookie4=anotherthing".split(';')
+			//splitCookie = "cookie1=something; cookie2=somethingelse; levelStatus=8000000000; cookie4=anotherthing".split(';')
 
 			for(let i = 0; i<splitCookie.length;i++){
 				if (splitCookie[i].split('=')[0] == "levelStatus"){
