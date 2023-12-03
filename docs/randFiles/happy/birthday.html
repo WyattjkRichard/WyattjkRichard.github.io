@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>its just beans i swear</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #Button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+		.center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+		}
+    </style>
+</head>
+<body>
+	<!-- Bruh get out of here -->
+    <h1>Beans</h1>
+
+    <p>Click the button for beans:</p>
+	<!-- this is very secret no looksies -->
+    <button id="Button" onclick="buttonClicked()">Click Me!</button>
+
+    <audio id="audioElement" src="audio.wav"></audio>
+	<!-- these is my secret bean code -->
+	<p style="display:none" id="Text">wow that was some wierd audio its almost like it was actually a hidden message :O aint that just crazy<p>
+	
+	<img style="display:none" src="beans.gif" id="Image" class="center" alt="Beans">
+	<!-- very secret many bean -->
+    <script>
+        function buttonClicked() {
+            alert("you have been beaned!");
+            
+            // bean time
+            let audioElement = document.getElementById("audioElement");
+            audioElement.play();
+			
+			let Image = document.getElementById("Image");
+            Image.style.display = "block";
+			
+			let Text = document.getElementById("Text");
+            Text.style.display = "block";
+			
+        }
+    </script>
+	<!-- mmmmm yes very normal audio nothing special at all, def dont try to analyze its spectral image -->
+</body>
+</html>
