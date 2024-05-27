@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 	<head>
 		<title>Caesar Cipher</title>
 		<link rel="icon" href="../assets/images/icon.png">
 		<link href='../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">		<style>
-		.textbox{
+		.textBox{
 			width: 300px;
 			height: 150px;
 			text-align: left;
-			vertical-align: text-top; <!-->aligns labels to top of text box</!-->
+			vertical-align: text-top; /*aligns labels to top of text box*/
 		}
 		</style>
 	</head>
@@ -19,17 +19,17 @@
 			<div style="float: left">
 				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
 				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
-				<a href="randIndex.html" class="headerLink"><strong>Random Things</strong></a>
-				<a href="caesarCipher.html" class="headerLink" style="color: #ffffff;"><strong>Caesar Cipher</strong></a>
+				<a href="./randIndex.html" class="headerLink"><strong>Random Things</strong></a>
+				<a href="./caesarCipher.html" class="headerLink" style="color: #ffffff;"><strong>Caesar Cipher</strong></a>
 			</div>
 			<div style="margin: 0 auto; width: 135px;">
-				<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+				<a href="../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
 			</div>
 		</div>
 		
 		<div class = "content">
 			<label for="text">Text:</label>	
-			<textarea type="text" id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
+			<textarea id="text" placeholder = "input text here" class="textBox"></textarea><br><br>
 			<label for="shift">Shift:</label>
 			<input type="number" id="shift" value = "5" min = "0" max = "25"><br><br>
 			<button onclick="encrypt(1)">Encrypt</button>
@@ -41,7 +41,8 @@
 				let inputText = document.getElementById("text").value;
 				let outputText = "";
 				let shift = document.getElementById("shift").value;
-				for(i = 0;i<inputText.length;i++){
+				let shiftedChar = "";
+				for(let i = 0;i<inputText.length;i++){
 					if(/[a-z]/.test(inputText[i])){
 						shiftedChar = (inputText[i].charCodeAt(0)-97+(shift*direction))
 						if(shiftedChar<0){
