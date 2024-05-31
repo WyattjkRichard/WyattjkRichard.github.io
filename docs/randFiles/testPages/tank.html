@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<title>Tank Test</title>
+		<link rel="icon" href="../../assets/images/icon.png">
+		<link href='../../assets/css/header.css' rel='stylesheet'>
+		<meta name="robots" content="noindex">
+	</head>
+	<body>
+		<div class="header" id="myHeader">
+			<script src='../../assets/js/header.js'></script>
+			<div style="float: left">
+				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="./randIndex.html" class="headerLink"><strong>Random Things</strong></a>
+				<a href="#" class="headerLink" style="color: #ffffff;"><strong>Tank Test</strong></a>
+			</div>
+			<div style="margin: 0 auto; width: 135px;">
+				<a href="../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+			</div>
+		</div>
+		
+		<div class="content">
+			<canvas id="canvas" height="300" width="300"></canvas>
+			<br>
+			<form action="" method="" id="menu">
+                <fieldset>
+                  <legend>Select Inputs</legend>
+                  <button>Start</button>
+                </fieldset>
+              </form>
+		</div>
+	</body>
+
+	<script>
+        // have drop down for number of tanks, 2-max
+        // have options to configure control methods
+        // have option to configure map size
+
+		// Objects
+		class tank {
+			constructor(xpos, ypos, forward, backward, left, right, shoot){
+                this.xpos = xpos;
+                this.ypos = ypos;
+                this.deg = 0;
+                this.shots = 3;
+                this.forward = forward;
+                this.backward = backward;
+                this.left = left;
+                this.right = right;
+                this.shoot = shoot;
+            }
+            
+            check_buttons() {
+
+            }
+		}
+
+        // variables
+        let tanks = [];
+
+		// setup
+        create_tanks(1);
+		draw();
+        
+		// functions
+
+        function create_tanks(num_of_tanks) {
+            tanks = [];
+            for(let i = 0; i<num_of_tanks; i++){
+                xpos = '50';
+                ypos = '50';
+                angle = 0;
+                forward = 'w';
+                backward = 's';
+                left = 'a';
+                right = 'd';
+                shoot = 'e';
+                tanks[i] = new tank(xpos, ypos, forward, backward, left, right, shoot);
+            }
+        }
+
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
+				for (const tank in tanks){
+					ctx.fillRect(tanks[tank].xpos, tanks[tank].ypos, 10, 10);
+				}
+			}
+		}
+
+        document.addEventListener('keydown', function (event) {
+            for (const tank in tanks){
+                tanks[tank].check_buttons(event.key);
+            }
+		}, true);
+
+        document.addEventListener('keyup', function (event) {
+            for (const tank in tanks){
+                tanks[tank].check_buttons(event.key);
+            }
+            console.log("released");
+		}, true);
+
+
+	</script>
+</html>
