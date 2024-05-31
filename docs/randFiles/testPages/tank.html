@@ -2,21 +2,21 @@
 <html lang = "en">
 	<head>
 		<title>Tank Test</title>
-		<link rel="icon" href="../../assets/images/icon.png">
-		<link href='../../assets/css/header.css' rel='stylesheet'>
+		<link rel="icon" href="../../../assets/images/icon.png">
+		<link href='../../../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 	</head>
 	<body>
 		<div class="header" id="myHeader">
-			<script src='../../assets/js/header.js'></script>
+			<script src='../../../assets/js/header.js'></script>
 			<div style="float: left">
-				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
-				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
-				<a href="./randIndex.html" class="headerLink"><strong>Random Things</strong></a>
+				<a href="../../../index.html" class="headerLink"><strong>Home</strong></a>
+				<a href="../../../projects.html" class="headerLink"><strong>Projects</strong></a>
+				<a href="../../randIndex.html" class="headerLink"><strong>Random Things</strong></a>
 				<a href="#" class="headerLink" style="color: #ffffff;"><strong>Tank Test</strong></a>
 			</div>
 			<div style="margin: 0 auto; width: 135px;">
-				<a href="../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+				<a href="../../../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
 			</div>
 		</div>
 		
@@ -36,6 +36,7 @@
         // have drop down for number of tanks, 2-max
         // have options to configure control methods
         // have option to configure map size
+		// use setInterval(loop, 10); to loop game, and update pos of thanks based on boolean for keys pressed, start interval when game starts and end interval when game ends
 
 		// Objects
 		class tank {
@@ -49,10 +50,55 @@
                 this.left = left;
                 this.right = right;
                 this.shoot = shoot;
-            }
-            
-            check_buttons() {
+				this.forward_state = false;
+                this.backward_state = false;
+                this.left_state = false;
+                this.right_state = false;
+                this.shoot_state = false;
+				this.width = 10;
+				this.height = 15;
+				this.vel = 3;
+	        }
 
+			update_pos(){
+				if(this.forward_state){
+					//y change 
+					this.xpos -= tanks[0].vel*Math.sin(tanks[0].deg* Math.PI/180);
+					this.ypos += tanks[0].vel*Math.cos(tanks[0].deg* Math.PI/180);
+
+				}
+				else if (this.backward_state){
+					this.xpos += tanks[0].vel*Math.sin(tanks[0].deg* Math.PI/180);
+					this.ypos -= tanks[0].vel*Math.cos(tanks[0].deg* Math.PI/180);
+				}
+				if(this.left_state){
+					this.deg-=2;
+				}
+				else if(this.right_state){
+					this.deg+=2;
+				}
+			}
+            
+			//need to handle left & right, forward & backward being pressed at the same time
+            check_buttons(button_pressed, event_type) {
+				switch (button_pressed) {
+					case this.forward:
+						this.forward_state = event_type;
+						break;
+					case this.backward:
+						this.backward_state = event_type;
+						break;
+					case this.left:
+						this.left_state = event_type;
+						break;
+					case this.right:
+						this.right_state = event_type;
+						break;
+					case this.shoot:
+						this.shoot_state = event_type;
+						break;
+					default:
+				}
             }
 		}
 
@@ -60,16 +106,15 @@
         let tanks = [];
 
 		// setup
-        create_tanks(1);
-		draw();
+		start();
         
 		// functions
 
         function create_tanks(num_of_tanks) {
             tanks = [];
             for(let i = 0; i<num_of_tanks; i++){
-                xpos = '50';
-                ypos = '50';
+                xpos = 50;
+                ypos = 50;
                 angle = 0;
                 forward = 'w';
                 backward = 's';
@@ -86,23 +131,46 @@
 				const ctx = canvas.getContext("2d");
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
+
 				for (const tank in tanks){
-					ctx.fillRect(tanks[tank].xpos, tanks[tank].ypos, 10, 10);
+					// first save the untranslated/unrotated context
+					ctx.save();
+					ctx.beginPath();
+					// move the rotation point to the center of the rect
+					ctx.translate(tanks[tank].xpos+tanks[tank].width/2, tanks[tank].ypos+tanks[tank].height/2 );
+					// rotate the rect
+					ctx.rotate(tanks[tank].deg*Math.PI/180);
+
+					ctx.fillRect(-tanks[tank].width/10, 0, tanks[tank].width/5, tanks[tank].height);
+
+					ctx.fillRect(-tanks[tank].width/2, -tanks[tank].height/2, tanks[tank].width, tanks[tank].height);
+					ctx.restore();
 				}
 			}
 		}
 
+		function loop(){
+			for(tank in tanks){
+				tanks[tank].update_pos();
+				draw();
+			}
+		}
+
+		function start(){
+			create_tanks(1);
+			setInterval(loop, 10);
+		}
+
         document.addEventListener('keydown', function (event) {
             for (const tank in tanks){
-                tanks[tank].check_buttons(event.key);
+                tanks[tank].check_buttons(event.key, true);
             }
 		}, true);
 
         document.addEventListener('keyup', function (event) {
             for (const tank in tanks){
-                tanks[tank].check_buttons(event.key);
+                tanks[tank].check_buttons(event.key, false);
             }
-            console.log("released");
 		}, true);
 
 
