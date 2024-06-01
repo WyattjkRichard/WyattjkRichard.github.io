@@ -2,23 +2,11 @@
 <html lang = "en">
 	<head>
 		<title>Tank Test</title>
-		<link rel="icon" href="../../../assets/images/icon.png">
-		<link href='../../../assets/css/header.css' rel='stylesheet'>
+		<link rel="icon" href="../../assets/images/icon.png">
+		<link href='../../assets/css/header.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 	</head>
 	<body>
-		<div class="header" id="myHeader">
-			<script src='../../../assets/js/header.js'></script>
-			<div style="float: left">
-				<a href="../../../index.html" class="headerLink"><strong>Home</strong></a>
-				<a href="../../../projects.html" class="headerLink"><strong>Projects</strong></a>
-				<a href="../../randIndex.html" class="headerLink"><strong>Random Things</strong></a>
-				<a href="#" class="headerLink" style="color: #ffffff;"><strong>Tank Test</strong></a>
-			</div>
-			<div style="margin: 0 auto; width: 135px;">
-				<a href="../../../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
-			</div>
-		</div>
 		
 		<div class="content">
 			<canvas id="canvas" height="300" width="300"></canvas>
@@ -39,67 +27,114 @@
 		// use setInterval(loop, 10); to loop game, and update pos of thanks based on boolean for keys pressed, start interval when game starts and end interval when game ends
 
 		// Objects
-		class tank {
+		class Tank {
 			constructor(xpos, ypos, forward, backward, left, right, shoot){
+                // postion variables
                 this.xpos = xpos;
                 this.ypos = ypos;
                 this.deg = 0;
-                this.shots = 3;
+
+                // control variables
                 this.forward = forward;
                 this.backward = backward;
                 this.left = left;
                 this.right = right;
                 this.shoot = shoot;
-				this.forward_state = false;
-                this.backward_state = false;
-                this.left_state = false;
-                this.right_state = false;
-                this.shoot_state = false;
+                
+                // state variables
+                this.isForwardState = false;
+                this.isBackwardState = false;
+                this.isLeftState = false;
+                this.isRightState = false;
+                this.isShootState = false;
+                this.isReloading = false;
+
+                // tanks attributes
 				this.width = 10;
 				this.height = 15;
 				this.vel = 3;
+                this.shots = [];
 	        }
 
 			update_pos(){
-				if(this.forward_state){
-					//y change 
-					this.xpos -= tanks[0].vel*Math.sin(tanks[0].deg* Math.PI/180);
-					this.ypos += tanks[0].vel*Math.cos(tanks[0].deg* Math.PI/180);
+                // Move Forward
+				if(this.isForwardState){
+					this.xpos += this.vel*Math.sin(this.deg* Math.PI/180);
+					this.ypos -= this.vel*Math.cos(this.deg* Math.PI/180);
+				}
+                // Move Backward
+				if (this.isBackwardState){
+					this.xpos -= this.vel*Math.sin(this.deg* Math.PI/180);
+					this.ypos += this.vel*Math.cos(this.deg* Math.PI/180);
+				}
+                // Turn Left
+				if(this.isLeftState){
+					this.deg-=this.vel;
+				}
+                // Turn Right
+				if(this.isRightState){
+					this.deg+=this.vel;
+				}
+                // Shoot
+                if(this.isShootState && !this.isReloading && this.shots.length <3){
+                    this.isReloading = true;
+                    let hyp = Math.sqrt((this.width**2+this.height**2));
+                    let shot_x_pos = this.xpos + this.width/2 + hyp*Math.sin(this.deg* Math.PI/180);
+                    let shot_y_pos = this.ypos + this.height/2 - hyp*Math.cos(this.deg* Math.PI/180);
+                    //myInterval = setInterval(this.removeshot(shots.length), 2000);
+                    //clearInterval(myInterval);
+					this.shots.push(new Shot(shot_x_pos, shot_y_pos, this.deg));
+				}
 
-				}
-				else if (this.backward_state){
-					this.xpos += tanks[0].vel*Math.sin(tanks[0].deg* Math.PI/180);
-					this.ypos -= tanks[0].vel*Math.cos(tanks[0].deg* Math.PI/180);
-				}
-				if(this.left_state){
-					this.deg-=2;
-				}
-				else if(this.right_state){
-					this.deg+=2;
-				}
+                // Reload
+                else if(!this.isShootState && this.isReloading){
+                    this.isReloading = false;
+                }
+                
+                // Move Shots
+                for(const shot in this.shots){
+                    this.shots[shot].xpos += this.shots[shot].vel*Math.sin(this.shots[shot].deg* Math.PI/180);
+					this.shots[shot].ypos -= this.shots[shot].vel*Math.cos(this.shots[shot].deg* Math.PI/180);
+                }
 			}
             
 			//need to handle left & right, forward & backward being pressed at the same time
             check_buttons(button_pressed, event_type) {
 				switch (button_pressed) {
 					case this.forward:
-						this.forward_state = event_type;
+						this.isForwardState = event_type;
 						break;
 					case this.backward:
-						this.backward_state = event_type;
+						this.isBackwardState = event_type;
 						break;
 					case this.left:
-						this.left_state = event_type;
+						this.isLeftState = event_type;
 						break;
 					case this.right:
-						this.right_state = event_type;
+						this.isRightState = event_type;
 						break;
 					case this.shoot:
-						this.shoot_state = event_type;
+						this.isShootState = event_type;
 						break;
 					default:
 				}
             }
+		
+        }
+
+        class Shot {
+			constructor(xpos, ypos, deg){
+                this.xpos = xpos;
+                this.ypos = ypos;
+                this.deg = deg;
+				this.rad = 1;
+				this.vel = 6;
+	        }
+
+			update_pos(){
+				this.xpos -= this.vel*Math.sin(this.deg* Math.PI/180);
+				this.ypos += this.vel*Math.cos(this.deg* Math.PI/180);
+			}
 		}
 
         // variables
@@ -112,6 +147,9 @@
 
         function create_tanks(num_of_tanks) {
             tanks = [];
+            tanks[0] = new Tank(50, 50, 'w', 's', 'a', 'd', 'e');
+            tanks[1] = new Tank(75, 75, 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ');
+            /*
             for(let i = 0; i<num_of_tanks; i++){
                 xpos = 50;
                 ypos = 50;
@@ -122,7 +160,7 @@
                 right = 'd';
                 shoot = 'e';
                 tanks[i] = new tank(xpos, ypos, forward, backward, left, right, shoot);
-            }
+            }*/
         }
 
 		function draw() {
@@ -138,13 +176,20 @@
 					ctx.beginPath();
 					// move the rotation point to the center of the rect
 					ctx.translate(tanks[tank].xpos+tanks[tank].width/2, tanks[tank].ypos+tanks[tank].height/2 );
+
 					// rotate the rect
 					ctx.rotate(tanks[tank].deg*Math.PI/180);
-
-					ctx.fillRect(-tanks[tank].width/10, 0, tanks[tank].width/5, tanks[tank].height);
-
+                    // draw tank turret
+					ctx.fillRect(-tanks[tank].width/10, 0, tanks[tank].width/5, -tanks[tank].height);
+                    // draw tank body
 					ctx.fillRect(-tanks[tank].width/2, -tanks[tank].height/2, tanks[tank].width, tanks[tank].height);
 					ctx.restore();
+                    ctx.closePath()
+                    for(const shot in tanks[tank].shots){
+                        ctx.moveTo(tanks[tank].shots[shot].xpos, tanks[tank].shots[shot].ypos);
+                        ctx.arc(tanks[tank].shots[shot].xpos, tanks[tank].shots[shot].ypos, tanks[tank].shots[shot].rad, 0, 2 * Math.PI);
+                    }
+                    ctx.stroke();
 				}
 			}
 		}
@@ -158,7 +203,7 @@
 
 		function start(){
 			create_tanks(1);
-			setInterval(loop, 10);
+			setInterval(loop, 20);
 		}
 
         document.addEventListener('keydown', function (event) {
@@ -172,6 +217,16 @@
                 tanks[tank].check_buttons(event.key, false);
             }
 		}, true);
+
+        window.addEventListener("gamepadconnected", (e) => {
+            console.log(
+                "Gamepad connected at index %d: %s. %d buttons, %d axes.",
+                e.gamepad.index,
+                e.gamepad.id,
+                e.gamepad.buttons.length,
+                e.gamepad.axes.length,
+            );
+        });
 
 
 	</script>
