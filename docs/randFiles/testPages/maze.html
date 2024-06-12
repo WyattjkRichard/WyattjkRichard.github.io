@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<title>Tank Test</title>
+		<link rel="icon" href="../../assets/images/icon.png">
+		<link href='../../assets/css/header.css' rel='stylesheet'>
+		<meta name="robots" content="noindex">
+	</head>
+	<body>
+		
+		<div class="content">
+			<canvas id="canvas" height="300" width="300"></canvas>
+			<br>
+			<form action="" method="" id="menu">
+                <fieldset>
+                  <legend>Select Inputs</legend>
+                  <button>generate map</button>
+                </fieldset>
+              </form>
+		</div>
+	</body>
+
+	<script>
+
+        // Objects
+        class Stack {
+            constructor() {
+                this.items = [];
+            }
+
+            // Add a number to the stack
+            push(number) {
+                this.items.push(number);
+            }
+
+            // Take the top number off the stack
+            pop() {
+                if (this.items.length === 0) 
+                    return "Oops, the stack is empty!";
+                return this.items.pop();
+            }
+
+            // See what the top number is
+            peek() {
+                return this.items[this.items.length - 1];
+            }
+
+            // Check if the stack is empty
+            isEmpty() {
+                return this.items.length === 0;
+            }
+
+            // Find out how many items are in the stack
+            size() {
+                return this.items.length;
+            }
+        }
+
+        class Maze {
+            constructor(rows, columns) {
+                this.nRows = rows;
+                this.nColumns = columns;
+            }
+        }
+
+        // Using the stack
+        let myStack = new Stack();
+        myStack.push(5);
+        myStack.push(10);
+        console.log(myStack.peek());  // Output: 10
+        myStack.pop();
+        console.log(myStack.peek());  // Output: 5
+        
+        // Variables
+        let maze = [];
+        
+        // setup
+        generateMap(10, 10);
+
+		// functions
+        function generateMap(rows, columns){
+            // Randomized depth-first search
+            // pick a random cell, visit random unvisited neighbouring cell and remove walls seperating cells (push cell to stack)
+            // continue visiting random unvisited neighbouring cells until no unvisited neighbours available
+            // start backtracking through stack poping off cells until curent cell has unvisited neighbours
+            // continue until returned to original cell
+
+            // initialize maze
+            maze = []
+            for (let i = 0; i < rows; i++) {
+                maze[i] = [];
+                for (let j = 0; j < columns; j++) {
+                    maze[i][j] = [1,1,1,1,1];
+                }
+            }
+        }
+        
+		function draw() {
+			const canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.strokeRect(1, 1, canvas.width-2, canvas.height-2);
+
+				for (const tank in tanks){
+					// first save the untranslated/unrotated context
+					ctx.save();
+					ctx.beginPath();
+					// move the rotation point to the center of the rect
+					ctx.translate(tanks[tank].xpos+tanks[tank].width/2, tanks[tank].ypos+tanks[tank].height/2 );
+
+					// rotate the rect
+					ctx.rotate(tanks[tank].deg*Math.PI/180);
+                    // draw tank turret
+					ctx.fillRect(-tanks[tank].width/10, 0, tanks[tank].width/5, -tanks[tank].height);
+                    // draw tank body
+					ctx.fillRect(-tanks[tank].width/2, -tanks[tank].height/2, tanks[tank].width, tanks[tank].height);
+					ctx.restore();
+                    ctx.closePath()
+                    for(const shot in tanks[tank].shots){
+                        ctx.moveTo(tanks[tank].shots[shot].xpos, tanks[tank].shots[shot].ypos);
+                        ctx.arc(tanks[tank].shots[shot].xpos, tanks[tank].shots[shot].ypos, tanks[tank].shots[shot].rad, 0, 2 * Math.PI);
+                    }
+                    ctx.stroke();
+				}
+			}
+		}
+	</script>
+</html>

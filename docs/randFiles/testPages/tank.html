@@ -83,6 +83,7 @@
                     let shot_y_pos = this.ypos + this.height/2 - hyp*Math.cos(this.deg* Math.PI/180);
                     //myInterval = setInterval(this.removeshot(shots.length), 2000);
                     //clearInterval(myInterval);
+					//or use set timeout
 					this.shots.push(new Shot(shot_x_pos, shot_y_pos, this.deg));
 				}
 
