@@ -4,15 +4,9 @@
 		<title>Polynomial Regression</title>
 		<link rel="icon" href="../assets/images/icon.png">
 		<link href='../assets/css/header.css' rel='stylesheet'>
+		<link href='../assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
 		<style>
-		textarea{
-			height: 150px;
-			width: 300px;
-			background-color: white;
-			border: 1px solid black;
-			vertical-align: text-top; /*aligns labels to top of text box*/
-		}
 		canvas{
 			width:1000px !important;
 			height:300px !important;
@@ -34,18 +28,20 @@
 		</div>
 		<div class="content">
 			<div style = "float: left;">
-				<label for="degree">Degree:</label>
-				<input type="number" id="degree" name="degree" value = "2"><br><br>
-				
-				<label for="xvalues">X - Values:</label>	
-				<textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
-				
-				<label for="yvalues">Y - Values:</label>
-				<textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
-				
-				<button onclick="getData()">Calculate</button>
-				
-				<p id="results"></p>
+				<fieldset>
+					<label for="degree">Degree:</label>
+					<input type="number" id="degree" name="degree" value = "2"><br><br>
+					
+					<label for="xvalues">X - Values:</label>	
+					<textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
+					
+					<label for="yvalues">Y - Values:</label>
+					<textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
+					
+					<button onclick="getData()">Calculate</button>
+					
+					<p id="results"></p>
+				</fieldset>
 			</div>
 			<div style = "float: left; padding: 20px;">
 				<br><br>

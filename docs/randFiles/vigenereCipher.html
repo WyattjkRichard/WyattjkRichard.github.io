@@ -4,21 +4,8 @@
 		<title>Vigenere Cipher</title>
 		<link rel="icon" href="../assets/images/icon.png">
 		<link href='../assets/css/header.css' rel='stylesheet'>
+		<link href='../assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
-		<style>
-			.textbox{
-				width: 300px;
-				height: 150px;
-				text-align: left;
-				vertical-align: text-top; /*aligns labels to top of text box*/
-			}
-			.smalltextbox{
-				width: 300px;
-				height: 20px;
-				text-align: left;
-				vertical-align: text-top; /*aligns labels to top of text box*/
-			}
-		</style>
 	</head>
 	<body>
 		<div class="header" id="myHeader">
@@ -35,12 +22,15 @@
 		</div>
 		
 		<div class = "content">
-			<label for="text">Text:</label>	
-			<textarea id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
-			<label for="key">Key:</label>
-			<textarea id="key" placeholder = "input key here" class="smalltextbox"></textarea><br><br>
-			<button onclick="encrypt(1)">Encrypt</button>
-			<button onclick="encrypt(-1)">Decrypt</button>
+			<fieldset>
+				<label for="text">Text:</label>	
+				<textarea id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
+				<label for="key">Key:</label>
+				<textarea id="key" placeholder = "input key here" class="smalltextbox"></textarea><br><br>
+				<button onclick="encrypt(1)">Encrypt</button>
+				<button onclick="encrypt(-1)">Decrypt</button>
+			</fieldset>
+			
 		</div>
 		
 		<script>
