@@ -4,15 +4,8 @@
 		<title>Cookies</title>
 		<link rel="icon" href="../assets/images/icon.png">
 		<link href='../assets/css/header.css' rel='stylesheet'>
+		<link href='../assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
-		<style>
-		.textbox{
-			width: 300px;
-			height: 150px;
-			text-align: left;
-			vertical-align: text-top; /*aligns labels to top of text box*/
-		}
-		</style>
 	</head>
 	<body>
 		<div class="header" id="myHeader">
@@ -29,18 +22,21 @@
 		</div>
 		
 		<div class = "content">
-			<label for="cName">Cookie Name:</label>	
-			<textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
+			<fieldset>
+				<label for="cName">Cookie Name:</label>	<br/>
+				<textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
+				
+				<label for="cContents">Cookie Text:</label>	<br/>
+				<textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
+				
+				<button onclick="AddCookie()">Add Cookie</button>
+				<button onclick="RemoveCookie()">Remove Cookie</button>
+				
+				<select id="addedCookies" name="addedCookies">
+					<option value="" disabled selected>Select an option</option>
+				</select>
+			</fieldset>
 			
-			<label for="cContents">Cookie Text:</label>	
-			<textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
-			
-			<button onclick="AddCookie()">Add Cookie</button>
-			<button onclick="RemoveCookie()">Remove Cookie</button>
-			
-			<select id="addedCookies" name="addedCookies">
-				<option value="" disabled selected>Select an option</option>
-			</select>
 		</div>
 		
 		<script>

@@ -4,15 +4,8 @@
 		<title>Rail Fence Cipher</title>
 		<link rel="icon" href="../assets/images/icon.png">
 		<link href='../assets/css/header.css' rel='stylesheet'>
+		<link href='../assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
-		<style>
-			.textbox{
-				width: 300px;
-				height: 150px;
-				text-align: left;
-				vertical-align: text-top; /*aligns labels to top of text box*/
-			}
-		</style>
 	</head>
 	<body>
 		<div class="header" id="myHeader">
@@ -29,12 +22,15 @@
 		</div>
 		
 		<div class = "content">
-			<label for="text">Text:</label>	
-			<textarea type="text" id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
-			<label for="rails">Rails:</label>
-			<input type="number" id="rails" value = "3" min = "1"><br><br>
-			<button onclick="encrypt()">Encrypt</button>
-			<button onclick="decrypt()">Decrypt</button>
+			<fieldset>
+				<label for="text">Text:</label>	
+				<textarea type="text" id="text" placeholder = "input text here" class="textbox"></textarea><br><br>
+				<label for="rails">Rails:</label>
+				<input type="number" id="rails" value = "3" min = "1"><br><br>
+				<button onclick="encrypt()">Encrypt</button>
+				<button onclick="decrypt()">Decrypt</button>
+			</fieldset>
+			
 		</div>
 
 		<script>

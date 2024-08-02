@@ -4,14 +4,8 @@
 		<title>Dice</title>
 		<link rel="icon" href="../assets/images/icon.png">
 		<link href='../assets/css/header.css' rel='stylesheet'>
+		<link href='../assets/css/style.css' rel='stylesheet'>
 		<meta name="robots" content="noindex">
-		<style>
-			.smalltextbox{
-				width: 50px;
-				text-align: left;
-				vertical-align: text-top; /*aligns labels to top of text box*/
-			}
-		</style>
 	</head>
 	<body>
 		<div class="header" id="myHeader">
@@ -27,36 +21,39 @@
 			</div>
 		</div>
 		<div class="content">
-			<div id = "diceOptions">
-				<div id = "die_0">
-					<input type="number" id="qty0" value = "1" min = "1" class = "smalltextbox" onchange="updateRoll(0)">
-					<select id="die0" name="variable" onchange="updateRoll(0)">
-						<option value="0" disabled selected>Select a die</option>
-						<option value="2">d2</option>
-						<option value="3">d3</option>
-						<option value="4">d4</option>
-						<option value="6">d6</option>
-						<option value="8">d8</option>
-						<option value="10">d10</option>
-						<option value="12">d12</option>
-						<option value="20">d20</option>
-						<option value="100">d100</option>
-					</select>
-					+
-					<input type="number" id="add0" value = "0" min = "0" class = "smalltextbox" onchange="updateRoll(0)">
-					<button onclick="roll(0, 0)">Roll</button>
-					<div id = "diceRoll0">0d0 + 0</div>
+			<fieldset>
+				<div id = "diceOptions">
+					<div id = "die_0">
+						<input type="number" id="qty0" value = "1" min = "1" class = "smalltextbox" onchange="updateRoll(0)">
+						<select id="die0" name="variable" onchange="updateRoll(0)">
+							<option value="0" disabled selected>Select a die</option>
+							<option value="2">d2</option>
+							<option value="3">d3</option>
+							<option value="4">d4</option>
+							<option value="6">d6</option>
+							<option value="8">d8</option>
+							<option value="10">d10</option>
+							<option value="12">d12</option>
+							<option value="20">d20</option>
+							<option value="100">d100</option>
+						</select>
+						+
+						<input type="number" id="add0" value = "0" min = "0" class = "smalltextbox" onchange="updateRoll(0)">
+						<button onclick="roll(0, 0)">Roll</button>
+						<div id = "diceRoll0">0d0 + 0</div>
+					</div>
 				</div>
-			</div>
-			<button onclick="rollAll()" hidden="hidden" id = "roleAllButton">Roll All</button>
-			<br>
-			<button onclick="addDie()">+</button>
-			<br><br>
-			<div>
-				<b>Dice Roll Log</b><br>
-				<button onclick="clearLog()">Clear</button>
-				<div id = "diceRollLog"></div>
-			</div>
+				<button onclick="rollAll()" hidden="hidden" id = "roleAllButton">Roll All</button>
+				<br>
+				<button onclick="addDie()">+</button>
+				<br><br>
+				<div>
+					<b>Dice Roll Log</b><br>
+					<button onclick="clearLog()">Clear</button>
+					<div id = "diceRollLog"></div>
+				</div>
+			</fieldset>
+			
 		</div>
 	</body>
 		
