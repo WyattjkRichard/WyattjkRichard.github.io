@@ -3,13 +3,13 @@
 	<head>
 		<title>Braille</title>
 		<link rel="icon" href="../assets/images/icon.png">
-		<link href='../assets/css/header.css' rel='stylesheet'>
-		<link href='../assets/css/style.css' rel='stylesheet'>
+		<link href="../assets/css/header.css" rel="stylesheet">
+		<link href="../assets/css/style.css" rel="stylesheet">
 		<meta name="robots" content="noindex">
 	</head>
 	<body>
 		<div class="header" id="myHeader">
-			<script src='../assets/js/header.js'></script>
+			<script src="../assets/js/header.js"></script>
 			<div style="float: left">
 				<a href="../index.html" class="headerLink"><strong>Home</strong></a>
 				<a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
@@ -32,141 +32,13 @@
 					<label for="checkbox_5"></label><input type="checkbox" id="checkbox_5"><br><br>
 				</div>
 				<button onclick="AddCharacter()">Add character</button>
-				<button onclick="RemoveCharacter()">Remove character</button>
 				<button onclick="Convert()">Convert</button>
-				<p>Enter braille pattern with either checkboxes or numpad (7, 8, 4, 5, 1, 2, +, -, enter) and convert to text, currently no special characters are supported</p>
-				<p id="Braille_TB"></p>
+				<p>Enter braille pattern with either checkboxes or numpad (7, 8, 4, 5, 1, 2, +, enter) and convert to text</p><br/>
+				<textarea id="Braille_TB"></textarea><br/>
 				<p id="Converted_Text"></p>
 			</fieldset>
 			
 		</div>
-		
-		<script>
-			let charArray = [];
-			let letterLookUp = ['01','03','09','19','11','0b','1b','13','0a','1a','05','07','0d','1d','15','0f','1f','17','0e','1e','25','27','3a','2d','3d','35']; //a-z
-			let numberLookUp = ['1a','01','03','09','19','11','0b','1b','13','0a'];
-			function AddCharacter(){
-				let charVal = 0;
-				for(let i = 0;i<6;i++){
-					charVal |= document.getElementById("checkbox_"+i).checked << i
-					document.getElementById("checkbox_"+i).checked = false;
-				}
-				charVal = charVal.toString(16).padStart(2, '0')
-				console.log(charVal)
-				charArray.push(charVal);
-				//console.log(String.fromCodePoint('0x28'+charVal))
-				document.getElementById('Braille_TB').innerHTML+= '&#x28'+charVal+';'
-			}
-			function RemoveCharacter(){
-				charArray.pop();
-				document.getElementById('Braille_TB').innerHTML='';
-				for(let i = 0;i<charArray.length;i++){
-					document.getElementById('Braille_TB').innerHTML+= '&#x28'+charArray[i]+';';
-				}
-			}
-			function Convert(){
-				let isNumber = false; // following input is a number - 3456
-				let isCapSingle = false; // Capitalizes next letter - 6
-				let isCapDouble = false; // Capitalizes next word - 6 6
-				let isItalicSingle = false; // Italicizes  next word - 46
-				let isItalicDouble = false; // Italicizes  next phrase - 46 46
-				
-				document.getElementById('Converted_Text').innerHTML='';
-				for(let i = 0;i<charArray.length;i++){
-					if(charArray[i] === '3c'){ //check number escape
-						isNumber = true;
-					}
-					
-					else if(charArray[i] === '20'){ // capital composition sign
-						isCapSingle = true;
-						if(charArray[i+1]!= null){
-							i++
-						}
-						if(charArray[i] === '20'){
-							isCapSingle = false;
-							isCapDouble = true;
-							if(charArray[i+1]!= null){
-								i++
-							}
-						}
-					}
-					
-					if(charArray[i] === '28'){ //italic composition sign
-						isItalicSingle = true;
-						if(charArray[i+1]!= null){
-							i++
-						}
-						if(charArray[i] === '28'){
-							isItalicSingle = false;
-							isItalicDouble = true;
-							if(charArray[i+1]!= null){
-								i++
-							}
-						}
-					}
-					
-					if(isNumber){
-						let index = numberLookUp.indexOf(charArray[i])
-						if(index!==-1){
-							document.getElementById('Converted_Text').innerHTML+= index;
-						}
-						else if(charArray[i] === '30'){ // letter sign
-							isNumber = false;
-						}
-					}
-					
-					else{
-						let index = letterLookUp.indexOf(charArray[i])
-						if(index!==-1){
-							let offset = 97
-							if (isCapSingle) offset-=32
-							document.getElementById('Converted_Text').innerHTML+= String.fromCharCode(index+offset); //65 for upper
-							isCapSingle = false;
-						}
-					}
-					if(charArray[i] === '00'){
-						document.getElementById('Converted_Text').innerHTML+= ' '
-						isNumber = false;
-						isCapSingle = false;
-						isCapDouble = false;
-						isItalicSingle = false;
-						isItalicDouble = false;
-					}
-					
-				}
-			}
-			
-			document.addEventListener('keypress', function (event) {
-				if (event.code === "Numpad7") {			// 7
-					document.getElementById("checkbox_0").checked = !document.getElementById("checkbox_0").checked;
-				}
-				else if (event.code === "Numpad8") {	// 8
-					document.getElementById("checkbox_3").checked = !document.getElementById("checkbox_3").checked
-				}
-				else if (event.code === "Numpad4") {	// 4
-					document.getElementById("checkbox_1").checked = !document.getElementById("checkbox_1").checked
-				}
-				else if (event.code === "Numpad5") {	// 5
-					document.getElementById("checkbox_4").checked = !document.getElementById("checkbox_4").checked
-				}
-				else if (event.code === "Numpad1") {	// 1
-					document.getElementById("checkbox_2").checked = !document.getElementById("checkbox_2").checked
-				}
-				else if (event.code === "Numpad2") {	// 2
-					document.getElementById("checkbox_5").checked = !document.getElementById("checkbox_5").checked
-				}
-				else if (event.code === "NumpadSubtract") {
-					RemoveCharacter();
-				}
-				else if (event.code === "NumpadAdd") {
-					AddCharacter();
-				}
-				else if (event.code === "NumpadEnter") {
-					Convert();
-				}
-			}, true);
-			// http://www.brl.org/intro/index.html
-		</script>
-
+		<script src="../assets/js/braille.js"></script>
 	</body>
 </html>

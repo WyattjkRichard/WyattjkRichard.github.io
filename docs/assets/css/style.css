@@ -40,9 +40,9 @@ h2 {
 }
 
 input, textarea, legend, select{
-    background-color:#ABABAB;
+    background-color: white;
     border-radius: 5px;
-    border: 1px solid #838383;
+    border: 1px solid black;
 }
 
 label{
@@ -57,8 +57,6 @@ p {
 textarea{
     height: 150px;
     width: 300px;
-    background-color: white;
-    border: 1px solid black;
     vertical-align: text-top; /*aligns labels to top of text box*/
 }
 
