@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Substitution Cipher</title>
+        <link rel="icon" href="../assets/images/icon.png">
+        <link href="../assets/css/header.css" rel="stylesheet">
+        <link href="../assets/css/style.css" rel="stylesheet">
+        <link href="../assets/css/substitution_cipher.css" rel="stylesheet">
+        <meta name="robots" content="noindex">
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <script src="../assets/js/header.js"></script>
+            <div style="float: left">
+                <a href="../index.html" class="headerLink"><strong>Home</strong></a>
+                <a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
+                <a href="./randIndex.html" class="headerLink"><strong>Random Things</strong></a>
+                <a href="" class="headerLink" style="color: #ffffff;"><strong>Substitution Cipher</strong></a>
+            </div>
+            <div style="margin: 0 auto; width: 135px;">
+                <a href="../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+            </div>
+        </div>
+        <div class = "content">
+            <fieldset>
+                <legend>Substitution Cipher</legend>
+                <textarea id="text" placeholder = "input text here" class="textBox cipher_text"></textarea><br><br>
+                <select id="ciphers">
+                    <option value="" disabled selected>Select an option</option>
+                    <hr />
+                    <optgroup label="Gravity Falls">
+                        <option value="authors_cipher">Author's Symbol</option>
+                        <option value="bill_cipher">Bill's Symbol</option>
+                        <option value="combined_cipher">Combined Symbols</option>
+                        <option value="alchemic_cipher">Alchemic</option>
+                    </optgroup>
+                    <hr />
+                    <optgroup label="Zelda">
+                        <option value="hylian_botw">Hylian (botw)</option>
+                        <option value="hylian_tp">Hylian (tp)</option>
+                        <option value="gerudo">Gerudo</option>
+                    </optgroup>
+                </select>
+            </fieldset>
+        </div>
+
+        <script src="../assets/js/substitution_cipher.js"></script>
+
+    </body>
+</html>
