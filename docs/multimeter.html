@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My Projects</title>
-		<link href='assets/css/style.css' rel='stylesheet'>
-		<link rel="icon" href="assets/images/icon.png">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="robots" content="noindex">
-		<style>
-			body {
-				margin: 0;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-			.header {
-				padding: 26px 40px;
-				background: #191919;
-				color: #f1f1f1;
-				width: 100%;
-			}
+    <head>
+        <title>My Projects</title>
+        <link href='assets/css/style.css' rel='stylesheet'>
+        <link rel="icon" href="assets/images/icon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex">
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .header {
+                padding: 26px 40px;
+                background: #191919;
+                color: #f1f1f1;
+                width: 100%;
+            }
 
-			.content {
-				padding: 16px;
-			}
+            .content {
+                padding: 16px;
+            }
 
-			.sticky {
-				position: fixed;
-				top: 0;
-				width: 100%;
-			}
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
 
-			.sticky + .content {
-				padding-top: 102px;
-			}
-			
-			.headerLink{
-				color: #a9a9a9;
-				font-size: 15px;
-				text-decoration:none;   /*Removes underline from the link*/
-			}
-			.headerLink:hover {
-				color: #ffffff;
-			}
-		</style>
+            .sticky + .content {
+                padding-top: 102px;
+            }
+            
+            .headerLink{
+                color: #a9a9a9;
+                font-size: 15px;
+                text-decoration:none;   /*Removes underline from the link*/
+            }
+            .headerLink:hover {
+                color: #ffffff;
+            }
+        </style>
 </head>
 <body>
 <div class="header" id="myHeader">
-	<div style="float: left">
-		<a href="index.html" class="headerLink"><strong>Home</strong></a>
-		<a href="projects.html" class="headerLink" style="color: #ffffff;"><strong>Projects</strong></a>
-	</div>
-	<div style="margin: 0 auto; width: 210px;">
-		<a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
-	</div>
+    <div style="float: left">
+        <a href="index.html" class="headerLink"><strong>Home</strong></a>
+        <a href="projects.html" class="headerLink" style="color: #ffffff;"><strong>Projects</strong></a>
+    </div>
+    <div style="margin: 0 auto; width: 210px;">
+        <a href="index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
+    </div>
 </div>
 
 <div class="content">
@@ -80,18 +80,18 @@ The Enclose was designed in SOLIDWORKS and later 3D Printed
 </div>
 
 <script>
-	window.onscroll = function() {myFunction()};
+    window.onscroll = function() {myFunction()};
 
-	var header = document.getElementById("myHeader");
-	var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
 
-	function myFunction() {
-		if (window.pageYOffset > sticky) {
-			header.classList.add("sticky");
-		} else {
-			header.classList.remove("sticky");
-		}
-	}
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
 </script>
 </body>
 </html>

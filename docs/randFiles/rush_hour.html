@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
     <head>
-        <title>Cookies</title>
+        <title>Rush Hour</title>
         <link rel="icon" href="../assets/images/icon.png">
         <link href='../assets/css/header.css' rel='stylesheet'>
         <link href='../assets/css/style.css' rel='stylesheet'>
@@ -14,32 +14,23 @@
                 <a href="../index.html" class="headerLink"><strong>Home</strong></a>
                 <a href="../projects.html" class="headerLink"><strong>Projects</strong></a>
                 <a href="./randIndex.html" class="headerLink"><strong>Random Things</strong></a>
-                <a href="./cookies.html" class="headerLink" style="color: #ffffff;"><strong>Cookies</strong></a>
+                <a href="./rush_hour.html" class="headerLink" style="color: #ffffff;"><strong>Rush Hour</strong></a>
             </div>
             <div style="margin: 0 auto; width: 135px;">
                 <a href="../index.html" class="headerLink" style="font-size: 20px; color: #ffffff;"><strong>Wyatt Richard</strong></a>
             </div>
         </div>
         
-        <div class = "content">
+        <div class="content">
             <fieldset>
-                <label for="cName">Cookie Name:</label>    <br/>
-                <textarea type="text" id="cName" placeholder = "input name here" class="textbox"></textarea><br><br>
-                
-                <label for="cContents">Cookie Text:</label>    <br/>
-                <textarea type="text" id="cContents" placeholder = "input contents here" class="textbox"></textarea><br><br>
-                
-                <button onclick="AddCookie()">Add Cookie</button>
-                <button onclick="RemoveCookie()">Remove Cookie</button>
-                
-                <select id="addedCookies" name="addedCookies">
-                    <option value="" disabled selected>Select an option</option>
-                </select>
+                <canvas id="canvas" height="300" width="300"></canvas>
+                <br>
+                <select id="levelSelect" name="Level Select"></select>
+                <button onclick="resetCookies()">Reset Progress</button>
             </fieldset>
             
         </div>
-        
-        <script src="../assets/js/cookies.js"></script>
-
     </body>
+
+    <script src="../assets/js/rush_hour.js"></script>
 </html>
