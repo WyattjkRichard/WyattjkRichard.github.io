@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang = "en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Wyatt Richard's personal website">
+        <meta name="keywords" content="Wyatt Richard, Conestoga College, Electronics, Engineering, Student, Projects">
+        <meta name="author" content="Wyatt Richard">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
         <title>Home</title>
+
         <link href='assets/css/style.css' rel='stylesheet'>
         <link rel="icon" href="assets/images/icon.png">
-        <meta name="robots" content="noindex">
         <style>
             .mediaButton {
                 display: inline-block;
@@ -16,7 +26,7 @@
                 text-align: center;
                 border-radius: 40px;
                 font-size: 15px;
-                text-decoration: none; <!-- Removes underline from the link -->
+                text-decoration: none; /* Removes underline from the link */
             }
             .mediaButton:hover {
                 background-color: #ABABAB;
@@ -24,23 +34,6 @@
             .socialMedia {
                 height: 20px;
                 width: 20px
-            }
-
-            #leftHalf {
-                width: 50%;
-                position: absolute;
-                left: 0px;
-                height: 100%;
-                text-align: center;
-            }
-
-            #rightHalf {
-                background: url(assets/images/dock.jpg);
-                background-repeat: no-repeat;
-                width: 50%;
-                position: absolute;
-                right: 0px;
-                height: 100%;
             }
             .hidden {
                 display: none;
@@ -50,112 +43,67 @@
             }
         </style>
     </head>
-    <body>
-        <div class="container">
-            <div id="leftHalf">
-                <br><br><br><br><br><br><br>
-                <h1>Wyatt Richard</h1>
-                <p>Bachelor of Electronic Systems Engineering student at Conestoga College</p>
-                <br>
-                <a href="projects.html" class='button'> My Projects </a>
-                <br><br>
-                <div>
-                    <a href="https://www.linkedin.com/in/wyatt-richard-a8080914a/" class='mediaButton' target='_blank'>
-                        <img class="socialMedia" src="assets/images/linkedin.png">
-                    </a>
-                    <a href="https://www.instagram.com/_wyattrichard_/" class='mediaButton' target='_blank'>
-                        <img class="socialMedia" src="assets/images/Instagram.png">
-                    </a>
-                    <a href="https://github.com/WyattjkRichard" class='mediaButton' target='_blank'>
-                        <img class="socialMedia" src="assets/images/github.png">
-                    </a>
-                    <a href="mailto:wyatt@rhouse.me" class='mediaButton' target='_blank'>
-                        <img class="socialMedia" src="assets/images/email.png">
-                    </a>
+    <body class="bg-primary">
+        <nav class="navbar navbar-expand-sm bg-secondary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="javascript:void(0)">WJKR</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:void(0)">Home</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Projects</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="./projects_school/projects_school.html">School Projects</a></li>
+                                <li><a class="dropdown-item" href="./projects_web/projects_web.html">HTML, CSS, & JS Projects</a></li>
+                                <li><a class="dropdown-item" href="./projects_pico8/projects_pico8.html">Pico8 Projects</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
                 </div>
-                <br>
-                <a href="randFiles/randIndex.html" class='button hidden' id="hideable-button"> Random Things </a>
             </div>
-            <div id="rightHalf"></div>
+        </nav>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <br><br><br><br><br><br><br>
+                    <h1>Wyatt Richard</h1>
+                    <p>Bachelor of Electronic Systems Engineering student at Conestoga College</p>
+
+                    <div>
+                        <a href="https://www.linkedin.com/in/wyatt-richard-a8080914a/" class='mediaButton' target='_blank'>
+                            <img class="socialMedia" src="assets/images/linkedin.png">
+                        </a>
+                        <a href="https://www.instagram.com/_wyattrichard_/" class='mediaButton' target='_blank'>
+                            <img class="socialMedia" src="assets/images/Instagram.png">
+                        </a>
+                        <a href="https://github.com/WyattjkRichard" class='mediaButton' target='_blank'>
+                            <img class="socialMedia" src="assets/images/github.png">
+                        </a>
+                        <a href="mailto:wyatt@rhouse.me" class='mediaButton' target='_blank'>
+                            <img class="socialMedia" src="assets/images/email.png">
+                        </a>
+                    </div>
+                    <br>
+                </div>
+                <div class="col">
+                    <img src="assets/images/dock.jpg" alt="Background image" style="width: 100%">
+                </div>
+            </div>
+
         </div>
-        <script>
-            let codeStatus = 0;
-            
-            splitCookie = document.cookie.split('; ')
-            for(let i = 0; i<splitCookie.length;i++){
-                if (splitCookie[i] == "button=revealed"){
-                    toggleButton()
-                }
-            }
-            
-            
-            function toggleButton() {
-                document.getElementById("hideable-button").className = 'button show';
-                document.cookie = "button=revealed; path=/";
-            }
         
-            document.addEventListener('keydown', function (event) {
-                if (event.keyCode == 37) {
-                    console.log("left")
-                    if(codeStatus == 4 || codeStatus == 6){
-                        codeStatus++;
-                    }
-                    else{
-                        codeStatus=0;
-                    }
-                }
-                else if (event.keyCode == 39) {
-                    console.log("right")
-                    if(codeStatus == 5 || codeStatus == 7){
-                        codeStatus++;
-                    }
-                    else{
-                        codeStatus=0;
-                    }
-                }
-                else if (event.keyCode == 38) {
-                    console.log("up")
-                    if(codeStatus < 2){
-                        codeStatus++;
-                    }
-                    else{
-                        codeStatus=0;
-                    }
-                }
-                else if (event.keyCode == 40) {
-                    console.log("down")
-                    if(codeStatus > 1 && codeStatus < 4){
-                        codeStatus++;
-                    }
-                    else{
-                        codeStatus=0;
-                    }
-                }
-                else if (event.keyCode == 65) {
-                    console.log("a")
-                    if(codeStatus == 9){
-                        console.log("konami")
-                        toggleButton();
-                    }
-                    else{
-                        codeStatus=0;
-                    }
-                }
-                else if (event.keyCode == 66) {
-                    console.log("b")
-                    if(codeStatus == 8){
-                        codeStatus++;
-                    }
-                    else{
-                        codeStatus=0;
-                    }
-                }
-                else{
-                    codeStatus=0;
-                    console.log("reset")
-                    console.log(event.keyCode)
-                }
-            }, true);
-        </script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

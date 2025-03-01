@@ -1,16 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-}
-
-body {
-    background-color: #212121;
-}
+body { padding-top: 55px; }
 
 button {
     background-color:#ABABAB;
@@ -88,7 +76,56 @@ textarea{
 
 .smalltextbox{
     width: 300px;
-    height: 20px;
+    height: 30px;
     text-align: left;
     vertical-align: text-top; /*aligns labels to top of text box*/
+}
+
+
+
+/* Bootstrap Elements*/
+
+.bg-primary{
+    background-color: #212121 !important;
+}
+
+.bg-secondary{
+    background-color: #191919 !important;
+}
+
+a.nav-link {
+    color: #838383;
+}
+a.nav-link:hover {
+    color: #d9d9d9;
+}
+a.nav-link.active{
+    font-weight: bold;
+    color: #838383 !important;
+}
+a.nav-link.active:hover {
+    color: #d9d9d9 !important;
+}
+
+.navbar-brand{
+    font-weight: bold;
+    color: #838383;
+}
+
+.navbar-brand:focus{
+    color: #838383 !important;
+}
+.navbar-brand:hover{
+    color: #d9d9d9 !important;
+}
+.navbar-brand:active{
+    color: #838383 !important;
+}
+
+/*When navbar dropdown is selected*/
+.dropdown-toggle.show{
+    color: #d9d9d9 !important;
+}
+.dropdown-toggle:focus{
+    color: #d9d9d9 !important;
 }
