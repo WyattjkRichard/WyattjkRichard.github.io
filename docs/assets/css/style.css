@@ -9,8 +9,8 @@ fieldset{
     background-color:#d9d9d9;
     border: 1px ridge black;
     border-radius: 10px;
-    padding: 10px 0px 10px 20px;
-    width: 400px;
+    padding: 20px 20px 20px 20px;
+    display: inline-block;
 }
 
 fieldset label, fieldset p, fieldset H2{
@@ -119,7 +119,7 @@ a.nav-link.active:hover {
     color: #d9d9d9 !important;
 }
 .navbar-brand:active{
-    color: #838383 !important;
+    color: #d9d9d9 !important;
 }
 
 /*When navbar dropdown is selected*/
