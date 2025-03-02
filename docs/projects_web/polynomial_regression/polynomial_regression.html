@@ -54,26 +54,28 @@
             </div>
         </nav>
         <div class="container mt-5 pt-5">
-            <div style = "float: left;">
-                <fieldset>
-                    <label for="degree">Degree:</label>
-                    <input type="number" id="degree" name="degree" value = "2"><br><br>
-                    
-                    <label for="xvalues">X - Values:</label>    
-                    <textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
-                    
-                    <label for="yvalues">Y - Values:</label>
-                    <textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
-                    
-                    <button onclick="getData()">Calculate</button>
-                    
-                    <p id="results"></p>
-                </fieldset>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <fieldset>
+                        <label for="degree">Degree:</label>
+                        <input type="number" id="degree" name="degree" value = "2"><br><br>
+                        
+                        <label for="xvalues">X - Values:</label>    
+                        <textarea type="text" id="xvalues" name="xvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
+                        
+                        <label for="yvalues">Y - Values:</label>
+                        <textarea type="text" id="yvalues" name="yvalues" placeholder = "separate data with commas or newline"></textarea><br><br>
+                        
+                        <button onclick="getData()">Calculate</button>
+                        
+                        <p id="results"></p>
+                    </fieldset>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <canvas id="chartJSContainer" class="w-100"></canvas>
+                </div>
             </div>
-            <div style = "float: left; padding: 20px;">
-                <br><br>
-                <canvas id="chartJSContainer" style="width:200%;max-width:600px"></canvas>
-            </div>
+            
         </div>
         <!-- JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.js"></script>
