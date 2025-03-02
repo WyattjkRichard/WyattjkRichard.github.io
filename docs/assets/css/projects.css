@@ -1,0 +1,13 @@
+img{
+    margin-top: 2%;
+    width:100%;
+    height:84%;
+    object-fit: cover;
+}
+
+.col-6:hover,
+.col-md-6:hover,
+.col-12:hover,
+.col-md-3:hover{
+    background-color:black !important;
+}

@@ -1,0 +1,15 @@
+#variable{
+    width:350px;
+}
+.inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+input {
+    width:156px;
+    display: block;
+}
+select{
+    width:164px;
+    display: block;
+}
