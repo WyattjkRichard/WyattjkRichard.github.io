@@ -24,7 +24,7 @@ function loadImages() {
                 if (i % 4 == 0) {
                     inner_html += '<div class="row">';
                 }
-                inner_html += '<div class="col-12 col-md-3 mb-3"><img src="' + image_url + '" class="img-fluid"></div>';
+                inner_html += '<div class="col-12 col-md-3 mb-3 text-center"><img src="' + image_url + '" class="img-fluid rounded"></div>';
                 if (i % 4 == 3) {
                     inner_html += '</div>';
                 }
