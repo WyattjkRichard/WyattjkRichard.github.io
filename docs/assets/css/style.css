@@ -33,6 +33,10 @@ h2 {
     font-size: 23px;
 }
 
+h5 {
+    color: #FFFFFF;
+}
+
 input, textarea, legend, select{
     background-color: white;
     border-radius: 5px;
