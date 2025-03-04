@@ -1,0 +1,38 @@
+.cipher_text{
+  font-size: 24px;
+}
+
+@font-face {
+  font-family: authors_cipher;
+  src: url("../fonts/authors-cipher.otf");
+}
+
+@font-face {
+  font-family: alchemic_cipher;
+  src: url("../fonts/alchemic-cipher.otf");
+}
+
+@font-face {
+  font-family: bill_cipher;
+  src: url("../fonts/bill-cipher.otf");
+}
+
+@font-face {
+  font-family: combined_cipher;
+  src: url("../fonts/combined-cipher.otf");
+}
+
+@font-face {
+  font-family: hylian_botw;
+  src: url("../fonts/hylian-botw.otf");
+}
+
+@font-face {
+  font-family: hylian_tp;
+  src: url("../fonts/hylian-tp.otf");
+}
+
+@font-face {
+  font-family: gerudo;
+  src: url("../fonts/gerudo.otf");
+}
