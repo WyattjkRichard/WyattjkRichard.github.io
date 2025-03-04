@@ -5,9 +5,6 @@ img{
     object-fit: cover;
 }
 
-.col-6:hover,
-.col-md-6:hover,
-.col-12:hover,
-.col-md-3:hover{
+.project-card:hover{
     background-color:black !important;
 }
