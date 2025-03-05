@@ -36,3 +36,8 @@
   font-family: gerudo;
   src: url("../fonts/gerudo.otf");
 }
+
+@font-face {
+  font-family: unown;
+  src: url("../fonts/unown.ttf");
+}
