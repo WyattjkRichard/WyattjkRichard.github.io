@@ -33,6 +33,11 @@ h2 {
     font-size: 23px;
 }
 
+h3 {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
 h5 {
     color: #FFFFFF;
 }
@@ -45,6 +50,18 @@ input, textarea, legend, select{
 
 label{
     color: #838383;
+}
+
+li{
+    color: #838383;
+}
+
+li a, h3 a{
+    color: #616161;
+}
+
+li a:hover, h3 a:hover{
+    color: #424242;
 }
 
 p {
