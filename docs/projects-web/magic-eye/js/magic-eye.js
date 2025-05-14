@@ -52,7 +52,7 @@ function Generate(){
             line_words_alt = line_words_alt.slice(0, repeatedLength);
 
             counter = 0;
-            while (line_words_string.length < 80) {            // Loop until the string is 80 characters long
+            while (line_words_string.length < 90) {             // Loop until the string is 90 characters long (to allow for room to shift the line)
                 if (counter < 1){
                     line_words_string+= " " + line_words_string;   
                 }
@@ -67,15 +67,16 @@ function Generate(){
             line_words_string = line_words.join(" ");               // Combine the four words into a string
             line_words_string = line_words_string.slice(0, repeatedLength);
 
-            while (line_words_string.length < 80) {                 // Loop until the string is 80 characters long
+            while (line_words_string.length < 90) {                 // Loop until the string is 90 characters long (to allow for room to shift the line)
                 line_words_string+= " " + line_words_string;
             }
         }
         
-        line_words_string = line_words_string.substring(0, 80);     // Truncate to 80 characters
 
-        const shiftAmount = Math.floor(Math.random() * -8);          // random number from 0 to 7
-        line_words_string = line_words_string.slice(shiftAmount) + line_words_string.slice(0, shiftAmount);
+        const shiftAmount = Math.floor(Math.random() * 8);          // random number from 0 to 7
+
+        line_words_string = line_words_string.substring(shiftAmount, 80 + shiftAmount);     // Truncate to 80 characters
+
         
         output.push(line_words_string);                             // Add the line to the output array
     }
