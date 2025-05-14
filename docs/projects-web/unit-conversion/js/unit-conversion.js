@@ -1,70 +1,77 @@
-// Map your choices to your option value
+// https://en.wikipedia.org/wiki/System_of_units_of_measurement
+// https://en.wikipedia.org/wiki/Imperial_units
+
 var lookup = {
+    // https://en.wikipedia.org/wiki/Orders_of_magnitude_(length)
     'length': { //in metres
-        'planck length':{ // https://en.wikipedia.org/wiki/Orders_of_magnitude_(length)
+        'planck length':{
             name: 'planck length',
             value: (1.616255 * 10**(-35)),
             description: "<b>planck length (ℓP):</b><br>an extremely small unit of length. It is calculated from three physical constants: the speed of light, the Planck constant, and the gravitational constant."
         },
+        "Metric":{
+            label: true,
+            name: "Metric",
+        },
         'quectometre':{
             name: 'quectometre',
             value: 10**(-30),
-            description: "<b>quectometre (qm):</b><br>a unit of length in the metric system equal to 10<sup>−30</sup> metres"
+            description: "<b>quectometre (qm):</b><br>a unit of length in the metric system equal to 10<sup>-30</sup> metres"
         },
         'rontometre':{
             name: 'rontometre',
             value: 10**(-27),
-            description: "<b>rontometre (rm):</b><br>a unit of length in the metric system equal to 10<sup>−27</sup> metres"
+            description: "<b>rontometre (rm):</b><br>a unit of length in the metric system equal to 10<sup>-27</sup> metres"
         },
         'yoctometre':{
             name: 'yoctometre',
             value: 10**(-24),
-            description: "<b>yoctometre (ym):</b><br>a unit of length in the metric system equal to 10<sup>−24</sup> metres"
+            description: "<b>yoctometre (ym):</b><br>a unit of length in the metric system equal to 10<sup>-24</sup> metres"
         },
         'zeptometre':{
             name: 'zeptometre',
             value: 10**(-21),
-            description: "<b>zeptometre (zm):</b><br>a unit of length in the metric system equal to 10<sup>−21</sup> metres"
+            description: "<b>zeptometre (zm):</b><br>a unit of length in the metric system equal to 10<sup>-21</sup> metres"
         },
         'attometre':{
             name: 'attometre',
             value: 10**(-18),
-            description: "<b>attometre (am):</b><br>a unit of length in the metric system equal to 10<sup>−18</sup> metres"
+            description: "<b>attometre (am):</b><br>a unit of length in the metric system equal to 10<sup>-18</sup> metres"
         },
         'femtometre':{
             name: 'femtometre',
             value: 10**(-15),
-            description: "<b>femtometre (fm):</b><br>a unit of length in the metric system equal to 10<sup>−15</sup> metres"
+            description: "<b>femtometre (fm):</b><br>a unit of length in the metric system equal to 10<sup>-15</sup> metres"
         },
         'picometre':{
             name: 'picometre',
             value: 10**(-12),
-            description: "<b>picometre (pm):</b><br>a unit of length in the metric system equal to 10<sup>−12</sup> metres"
+            description: "<b>picometre (pm):</b><br>a unit of length in the metric system equal to 10<sup>-12</sup> metres"
         },
         'nanometre':{
             name: 'nanometre',
             value: 10**(-9),
-            description: "<b>nanometre (nm):</b><br>a unit of length in the metric system equal to 10<sup>−9</sup> metres"
+            description: "<b>nanometre (nm):</b><br>a unit of length in the metric system equal to 10<sup>-9</sup> metres"
         },
         'micrometre':{
             name: 'micrometre',
             value: 0.000001,
-            description: "<b>micrometre (μm):</b><br>is a unit of length in the metric system equal to 10<sup>−6</sup> metres"
+            description: "<b>micrometre (μm):</b><br>is a unit of length in the metric system equal to 10<sup>-6</sup> metres"
         },
         'milimetre':{
             name: 'milimetre',
             value: 0.001,
-            description: "<b>milimetre (mm):</b><br>a unit of length in the metric system equal to 10<sup>−3</sup> metres"
+            description: "<b>milimetre (mm):</b><br>a unit of length in the metric system equal to 10<sup>-3</sup> metres"
         },
         'centimetre':{
             name: 'centimetre',
             value: 0.01,
-            description: "<b>centimetre (cm):</b><br>a unit of length in the metric system equal to 10<sup>−2</sup> metres"
+            description: "<b>centimetre (cm):</b><br>a unit of length in the metric system equal to 10<sup>-2</sup> metres"
         },
         'decimetre':{
             name: 'decimetre',
             value: 0.1,
-            description: "<b>decimetre (dm):</b><br>a unit of length in the metric system equal to 10<sup>−1</sup> metres"
+            description: "<b>decimetre (dm):</b><br>a unit of length in the metric system equal to 10<sup>-1</sup> metres"
         },
         'metre':{
             name: 'metre',
@@ -126,6 +133,10 @@ var lookup = {
             value: 10**27,    
             description: "<b>ronnametre (Rm):</b><br>a unit of length in the metric system equal to 10<sup>27</sup> metres"
         },
+        "Imperial":{
+            label: true,
+            name: "Imperial",
+        },
         'twip':{ // https://en.wikipedia.org/wiki/Imperial_units
             name: 'twip',
             value: 0.0000176389,
@@ -141,7 +152,7 @@ var lookup = {
             value: 0.0084667,
             description: "<b>barleycorn ():</b><br>an English unit of length equal to 1⁄3 of an inch"
         },
-        'inch':{
+        "inch":{
             name: 'inch',
             value: 0.0254,
             description: "<b>inch (in, \"):</b><br>a unit of length in the British imperial and the United States customary systems of measurement. It is equal to 1/36 yard or 1/12 of a foot."
@@ -154,7 +165,7 @@ var lookup = {
         'foot':{
             name: 'foot',
             value: 0.3048,
-            description: "<b>foot (ft, ′):</b><br>a unit of length in the British imperial and United States customary systems of measurement. In both customary and imperial units, one foot comprises 12 inches."
+            description: "<b>foot (ft, '):</b><br>a unit of length in the British imperial and United States customary systems of measurement. In both customary and imperial units, one foot comprises 12 inches."
         },
         'yard':{
             name: 'yard',
@@ -219,7 +230,7 @@ var lookup = {
         'lightyear':{
             name: 'lightyear',
             value: 9460730472580800,
-            description: "<b>lightyear:</b><br>a unit of length used to express astronomical distances and is equivalent to about 9.46 trillion kilometers (9.46×10<sup>12</sup> km). As defined by the International Astronomical Union (IAU), a light-year is the distance that light travels in a vacuum in one Julian year (365.25 days)."
+            description: "<b>lightyear:</b><br>a unit of length used to express astronomical distances and is equivalent to about 9.46 trillion kilometers (9.46x10<sup>12</sup> km). As defined by the International Astronomical Union (IAU), a light-year is the distance that light travels in a vacuum in one Julian year (365.25 days)."
         },
         'sheppey':{
             name: 'sheppey',
@@ -250,28 +261,123 @@ var lookup = {
             name: 'lunar distance',
             value: 384399000,
             description: "<b>lunar distance (LD):</b><br>the average distance from the center of Earth to the center of the Moon"
+        },
+        "klick": {
+            name: 'klick',
+            value: 1000,
+            description: "<b>klick:</b><br>a unit of distance equal to one kilometer, used in military contexts"
+        },
+    },
+    "area": { //in metres squared
+        "acre":{
+            name: "acre",
+            value: 1,
+            description: "<b>Acre:</b><br>"
         }
     },
-    'time': { // https://en.wikipedia.org/wiki/Second#SI_multiples //https://en.wikipedia.org/wiki/Lunar_month#
+    // https://en.wikipedia.org/wiki/Unit_of_volume
+    "volume": { //in cubic metres
+        "cubic metre":{
+            name: "cubic metre",
+            value: 1,
+            description: "<b>cubic metre:</b><br>"
+        },
+        "cubic decimetre":{
+            name: "cubic decimetre",
+            value: 0.001,
+            description: "<b>cubic decimetre:</b><br>"
+        },
+        "litre":{
+            name: "litre",
+            value: 0.001,
+            description: "<b>litre:</b><br>"
+        },
+        "cubic centimetre":{
+            name: "cubic centimetre",
+            value: 0.000001,
+            description: "<b>cubic centimetre:</b><br>"
+        },
+        "cubic foot":{
+            name: "cubic foot",
+            value: 0.028316846592,
+            description: "<b>cubic foot:</b><br>"
+        },
+        "cubic inch":{
+            name: "cubic inch",
+            value: 0.000016387064,
+            description: "<b>cubic inch:</b><br>"
+        },
+        "Fluid Ounce":{
+            name: "Fluid Ounce",
+            value: (2.9574 * 10**(-5)),
+            description: "<b>Fluid Ounce (fl oz):</b><br>"
+        },
+        "Gallon":{
+            name: "Gallon (US)",
+            value: 0.003785411784,
+            description: "<b>Gallon (gal):</b><br>"
+        },
+        "Quart":{
+            name: "Quart",
+            value: 0.00094635294599999,
+            description: "<b>Quart (qt):</b><br>"
+        },
+        "Pint":{
+            name: "Pint (US)",
+            value: 0.000473176473,
+            description: "<b>Pint (pt):</b><br>"
+        },
+        "Barrel":{
+            name: "Barrel",
+            value: 0.158987294928,
+            description: "<b>Barrel:</b><br>42 US gallons"
+        }
+    },
+    "energy": { //in joules
+        "joule":{
+            name: "joule",
+            value: 1,
+            description: "<b>joule:</b><br>"
+        }
+        // 1 British thermal unit (Btu)  1054.35 joules
+        // 1 calorie (cal)  4.1840 joules
+        // 1 kilowatt-hour (kWh)  3414.4 Btu  3.6 • 10^6 joules
+
+        //power
+        // 1 horsepower (hp)  2542.48 Btu/h  178.298 cal/sec  0.74570 kW
+        // 1 kilowatt (kW)  1000 watts  3414.43 Btu/h  238.662 cal/s
+    },
+    "power": { //in watts
+        "watt":{
+            name: "watt",
+            value: 1,
+            description: "<b>watt:</b><br>"
+        }
+        // 1 horsepower (hp)  2542.48 Btu/h  178.298 cal/sec  0.74570 kW
+        // 1 kilowatt (kW)  1000 watts  3414.43 Btu/h  238.662 cal/s
+    },
+    // https://en.wikipedia.org/wiki/Second#SI_multiples
+    // https://en.wikipedia.org/wiki/Lunar_month#
+    'time': { 
         'picosecond':{
             name: 'picosecond',
             value: 1/60000000000000,
-            description: "<b>picosecond (ps):</b><br>a unit of time in the International System of Units (SI) equal to one trillionth of a second or 10<sup>−12</sup> seconds"
+            description: "<b>picosecond (ps):</b><br>a unit of time in the International System of Units (SI) equal to one trillionth of a second or 10<sup>-12</sup> seconds"
         },
         'nanosecond':{
             name: 'nanosecond',
             value: 1/60000000000,
-            description: "<b>nanosecond (ns):</b><br>a unit of time in the International System of Units (SI) equal to one billionth of a second or 10<sup>−9</sup> seconds"
+            description: "<b>nanosecond (ns):</b><br>a unit of time in the International System of Units (SI) equal to one billionth of a second or 10<sup>-9</sup> seconds"
         },
         'microsecond': {
             name: 'microsecond',
             value: 1/60000000,
-            description: "<b>microsecond (μs):</b><br>a unit of time in the International System of Units (SI) equal to one millionth of a second or 10<sup>−6</sup> seconds"
+            description: "<b>microsecond (μs):</b><br>a unit of time in the International System of Units (SI) equal to one millionth of a second or 10<sup>-6</sup> seconds"
         },
         'millisecond': {
             name: 'millisecond',
             value:  1/60000,
-            description: "<b>millisecond (ms):</b><br>a unit of time in the International System of Units (SI) equal to one thousandth of a second or 10<sup>−3</sup> seconds"
+            description: "<b>millisecond (ms):</b><br>a unit of time in the International System of Units (SI) equal to one thousandth of a second or 10<sup>-3</sup> seconds"
         },
         'second': {
             name: 'second',
@@ -326,7 +432,7 @@ var lookup = {
         'shake': {
             name: 'shake',
             value: 1/6000000000,
-            description: "<b>shake ():</b><br>an informal metric unit of time equal to 10 nanoseconds, or 10<sup>−8</sup> seconds. It was originally coined for use in nuclear physics, helping to conveniently express the timing of various events in a nuclear reaction, especially neutron reactions. The word "+'"shake"'+" was taken from the idiomatic expression "+'"in two shakes of a lamb'+"'"+'s tail"'+", which indicates a very short time interval."
+            description: "<b>shake ():</b><br>an informal metric unit of time equal to 10 nanoseconds, or 10<sup>-8</sup> seconds. It was originally coined for use in nuclear physics, helping to conveniently express the timing of various events in a nuclear reaction, especially neutron reactions. The word "+'"shake"'+" was taken from the idiomatic expression "+'"in two shakes of a lamb'+"'"+'s tail"'+", which indicates a very short time interval."
         },
         'sol': {
             name: 'sol',
@@ -334,7 +440,8 @@ var lookup = {
             description: "<b>sol:</b><br>a solar day on Mars"
         },
     },
-    'digital storage': { // https://en.wikipedia.org/wiki/Units_of_information
+    // https://en.wikipedia.org/wiki/Units_of_information
+    'digital storage': { 
         'bit': {
             name: 'bit',
             value: 1,
@@ -356,7 +463,9 @@ var lookup = {
             description: "<b>byte:</b><br>historically, a byte was the number of bits used to encode a character of text in the computer, which depended on computer hardware architecture; but today it almost always means eight bits"
         }
     },
-    'mass': { // https://en.wikipedia.org/wiki/Units_of_information
+    // https://en.wikipedia.org/wiki/Units_of_information
+    'mass': { 
+        // 1 slug = 14.59390 kg
         'Jupiter Mass': {
             name: 'Jupiter Mass',
             value: 0,
@@ -368,14 +477,26 @@ var lookup = {
             description: "<b>Earth Mass:</b><br>"
         }
     },
-    'speed': { // https://en.wikipedia.org/wiki/Units_of_information
-        'knot': {
+    // https://en.wikipedia.org/wiki/Units_of_information
+    "speed": { 
+        "knot": {
             name: 'knot',
+            value: 1,
+            description: "<b>knot ():</b><br>"
+        },
+        'Air-speed velocity of an unladen swallow (African)': {
+            name: '',
+            value: 1,
+            description: "<b>knot ():</b><br>"
+        },
+        'Air-speed velocity of an unladen swallow (European)': {
+            name: '',
             value: 1,
             description: "<b>knot ():</b><br>"
         }
     },
-    'temperature': { // https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Comparison_of_temperature_scales
+    // https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Comparison_of_temperature_scales
+    'temperature': { 
         'celsius': {
             name: 'celsius',
             toCelsius: 'x',
@@ -431,7 +552,8 @@ var lookup = {
             description: "<b>wedgwood (°W):</b><br>an obsolete temperature scale, which was used to measure temperatures above the boiling point of mercury of 356 °C (673 °F)"
         }
     },
-    'quantity': { // https://en.wikipedia.org/wiki/Non-numerical_words_for_quantities
+    // https://en.wikipedia.org/wiki/Non-numerical_words_for_quantities
+    'quantity': { 
         'brace': {
             name: 'brace',
             value: 2,
@@ -455,7 +577,12 @@ var lookup = {
         'gross': {
             name: 'gross',
             value: 144,
-            description: "<b>gross:</b><br>"
+            description: "<b>gross:</b> refers to a group of 144 items<br>"
+        },
+        'great gross': {
+            name: 'great gross',
+            value: 1728,
+            description: "<b>great gross:</b> refers to a group of 1,728 items<br>"
         }
     },
 };
@@ -475,7 +602,14 @@ function updateInput() {
     // For each choice in the selected option
     for (const key in lookup[selectValue]) {
         //console.log(lookup[selectValue][key].name);
-        document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue][key].name + "'>" + lookup[selectValue][key].name + "</option>");
+        if(lookup[selectValue][key].label){
+            document.getElementById("input1").innerHTML += ("<option disabled style='font-weight: bold;'>" + lookup[selectValue][key].name + "</option>");lookup[selectValue][key].name
+            
+        }
+        else{
+            document.getElementById("input1").innerHTML += ("<option value='" + lookup[selectValue][key].name + "'>" + lookup[selectValue][key].name + "</option>");
+        }
+        
     }
 
     document.getElementById("input0").innerHTML = document.getElementById("input1").innerHTML;
