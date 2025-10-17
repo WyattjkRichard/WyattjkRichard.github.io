@@ -21,31 +21,50 @@
         <!-- Navbar -->
         <div id="navbar-placeholder" data-root="../../"></div>
 
-        <div class="container mt-5 pt-5">
-            <br><br>
-            <h2 class = "centered_text">Multimeter</h2>
-            <br><br>
-            <p class = "centered_text">
-                In this project I designed and created a multimeter capable of measuring voltage and current up to 10V and 10mA.
-                <br>
-                This project allowed for the introduction of hands-on learning in my program at Conestoga College, allowing us to
-                <br>
-                familiarize ourselves with a variety of different skills while also bringing some of the theory that we had been
-                <br>
-                learning in our classes to a practical setting.
-                <br><br>
-                <strong>PCB Design</strong>
-                <br>
-                The PCB was designed using Altium PCB design software, with the shape and pinout designed to interface with an 
-                <br>
-                arduino UNO enabling the multimeter to be connected as a shield.
-            </p>
-            <p class = "centered_text">
-                <strong>Enclosure Design</strong>
-                <br>
-                The Enclose was designed in SOLIDWORKS and later 3D Printed
-            </p>
-        </div>
+        <main class="container mt-5 pt-5">
+            <section class="text-center mb-5">
+                <h2 class="fw-bold">Semester One Project: Multimeter Design and Fabrication</h2>
+                <p class="mt-3 lead">
+                    As part of my first year in the Electronic Systems Engineering program at Conestoga College, I designed and built a compact multimeter capable of measuring voltages up to 10V and currents up to 10mA. This project was an introduction to hands-on circuit design, bridging theoretical knowledge from class with practical applications in electronics. It provided an opportunity to develop foundational skills in schematic design, PCB layout, and 3D CAD modeling.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Schematic Design</h3>
+                <p class="text-center">
+                    The schematic was created in Altium Designer. The design consisted of a rotary switch to select between the different voltage and current measurement modes, a voltage divider for scaling input voltages, and a shunt resistor for current measurement.
+                </p>
+                <div class="text-center">
+                    <img src="./images/schematic.png" alt="Altium schematic for multimeter shield" class="img-fluid rounded shadow mt-3">
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">PCB Design & Fabrication</h3>
+                <p class="text-center">
+                    After finalizing the schematic, I designed the PCB using Altium Designer, which was milled in-house using a PCB milling machine.
+                </p>
+
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="./images/pcb.png" alt="PCB layout in Altium" class="img-fluid rounded shadow mt-3 mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/pcb-milling.gif" alt="GIF of PCB milling process" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Enclosure Design</h3>
+                <p class="text-center">
+                    To complete the project, a custom enclosure was designed in SOLIDWORKS and 3D printed to securely house both the PCB and Arduino.
+                </p>
+                <div class="text-center">
+                    <img src="./images/enclosure.jpg" alt="3D printed multimeter enclosure" class="img-fluid rounded shadow mt-3">
+                </div>
+            </section>
+        </main>
 
         <footer class="py-3 mt-auto">
             <div class="text-center border-top pt-3">
