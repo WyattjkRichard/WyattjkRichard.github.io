@@ -1,0 +1,10 @@
+#cat {
+    position: fixed; /* stays relative to viewport, not the page */
+    left: 0;
+    transform: scaleX(-1);
+    width: auto;
+}
+
+body {
+    overflow-x: hidden; /* disables horizontal scrollbar */
+}

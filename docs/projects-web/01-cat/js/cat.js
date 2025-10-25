@@ -1,5 +1,14 @@
+// Cat Animation JavaScript
+
+const direction = {
+  idle: 'idle',
+  left: 'left',
+  right: 'right',
+};
+
+
 let currentFrame = 21;
-let dir = 0;
+let dir = direction.idle;
 let pos = 0;
 let id = null;
 function animation() {
@@ -15,18 +24,18 @@ function animation() {
     
 setInterval(animation, 100);
 document.addEventListener('keydown', function (event) {
-    if (event.keyCode === 37) {
-        if(dir!==1){
+    if (event.key === "ArrowLeft") {
+        if(dir!==direction.left){
             document.getElementById("cat").style.transform = "scaleX(1)";
-            dir = 1;
+            dir = direction.left;
             currentFrame = 0;
             myMove();
         }
     }
-    else if (event.keyCode === 39) {
-        if(dir!==2){
+    else if (event.key === "ArrowRight") {
+        if(dir!==direction.right){
             document.getElementById("cat").style.transform = "scaleX(-1)";
-            dir = 2;
+            dir = direction.right;
             currentFrame = 0;
             myMove();
         }
@@ -39,14 +48,14 @@ function myMove() {
     clearInterval(id);
     id = setInterval(frame, 3);
     function frame() {
-        if ((pos >= window.innerWidth - elem.width && dir === 2) || (pos <= 0 && dir === 1)) {
+        if ((pos >= window.innerWidth - elem.width && dir === direction.right) || (pos <= 0 && dir === direction.left)) {
             clearInterval(id);
-            dir = 0;
+            dir = direction.idle;
             currentFrame = 1;
-        } else if(dir === 1){
+        } else if(dir === direction.left) {
             pos--;
             elem.style.left = pos + "px";
-        } else if (dir === 2) {
+        } else if (dir === direction.right) {
             pos++;
             elem.style.left = pos + "px";
         }
