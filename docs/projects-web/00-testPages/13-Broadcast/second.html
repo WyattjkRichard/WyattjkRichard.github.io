@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Second Page</title>
+</head>
+<body>
+  <h1>Second Page</h1>
+
+  <script>
+    const channel = new BroadcastChannel('my_channel');
+
+    // on page load, send a message to inform main page that second page is loaded
+    window.onload = () => {
+      channel.postMessage({"type":"page_loaded", "data":{"width":window.innerWidth, "height":window.innerHeight}});
+    };
+
+    // on window resize, send new dimensions to main page
+    window.onresize = () => {
+      channel.postMessage({"type":"resize", "data":{"width":window.innerWidth, "height":window.innerHeight}});
+    };
+
+    // on window unload, notify main page
+    window.onunload = () => {
+      channel.postMessage({"type":"page_closed"});
+    };
+
+
+    channel.onmessage = (e) => {
+      console.log('Received: ' + e.data);
+    };
+
+  </script>
+</body>
+</html>

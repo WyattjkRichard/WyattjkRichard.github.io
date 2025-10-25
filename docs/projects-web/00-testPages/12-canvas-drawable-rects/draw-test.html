@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Canvas Rectangle Drawer</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: #202020;
+                color: #fff;
+                margin: 0;
+                flex-direction: column;
+                font-family: sans-serif;
+            }
+            canvas {
+                border: 1px solid #555;
+                background: #2b2b2b;
+                cursor: crosshair;
+            }
+            p {
+                color: #aaa;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Click + drag to draw a rectangle. Click to select. Drag to move. Drag corners to resize. Esc to cancel. Del to delete.</p>
+        <canvas id="canvas" width="800" height="500"></canvas>
+
+        <script src="js/draw-test.js"></script>
+    </body>
+</html>
