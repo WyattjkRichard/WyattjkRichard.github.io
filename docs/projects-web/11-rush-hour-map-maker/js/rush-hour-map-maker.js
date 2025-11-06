@@ -3,136 +3,48 @@ var drag = false;
 var dragOffset;
 var gridSize = 50;
 var movingShape;
-let allShapes = {
-    A: {
-        x: gridSize*0,
-        y: gridSize*0,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'LightGreen',
-    },		
-    B: {
-        x: gridSize*2,
-        y: gridSize*0,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'DarkOrange',
-    },
-    C: {
-        x: gridSize*4,
-        y: gridSize*0,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'Aqua',
-    },
-    D: {
-        x: gridSize*0,
-        y: gridSize*1,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'Pink',
-    },
-    E: {
-        x: gridSize*2,
-        y: gridSize*1,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'BlueViolet',
-    },
-    F: {
-        x: gridSize*4,
-        y: gridSize*1,
-        height: gridSize,
-        width: gridSize*2,
-        colour: 'ForestGreen',
-    },
-    G: {
-        x: gridSize*0,
-        y: gridSize*2,
-        height: gridSize,
-        width: gridSize*2,
-        colour: 'Black',
-    },
-    H: {
-        x: gridSize*2,
-        y: gridSize*2,
-        height: gridSize,
-        width: gridSize*2,
-        colour: 'grey',
-    },
-    I: {
-        x: gridSize*4,
-        y: gridSize*2,
-        height: gridSize,
-        width: gridSize*2,
-        colour: 'yellow',
-    },
-    J: {
-        x: gridSize*4,
-        y: gridSize*5,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'DarkMagenta',
-    },
-    K: {
-        x: gridSize*4,
-        y: gridSize*3,
-        height: gridSize*1,
-        width: gridSize*2,
-        colour: 'DimGrey',
-    },
-    O: {
-        x: gridSize*0,
-        y: gridSize*3,
-        height: gridSize*3,
-        width: gridSize,
-        colour: 'Gold',
-    },
-    P: {
-        x: gridSize*1,
-        y: gridSize*3,
-        height: gridSize*3,
-        width: gridSize,
-        colour: 'MediumPurple',
-    },
-    Q: {
-        x: gridSize*2,
-        y: gridSize*3,
-        height: gridSize*3,
-        width: gridSize,
-        colour: 'RoyalBlue',
-    },
-    R: {
-        x: gridSize*3,
-        y: gridSize*3,
-        height: gridSize*3,
-        width: gridSize,
-        colour: 'MediumSeaGreen',
-    },
-    X: {
-        x: gridSize*4,
-        y: gridSize*4,
-        height: gridSize,
-        width: gridSize*2,
-        colour: 'red',
-    },
-}
-let shapes = allShapes
-// setup
+
+const shapesFetch = fetch('../10-rush-hour/data/shapes.json')
+    .then(response => response.json())
+    .then(data => {
+        for (const shape in data) {
+            data[shape].length *= gridSize;
+        }
+        shapes = data;
+
+    })
+    .catch(err => console.error('Error loading shapes JSON:', err));
+
+const levelLayoutsFetch = fetch('../10-rush-hour/data/levelLayouts.json')
+    .then(response => response.json())
+    .then(data => {
+        // adjust coordinates to be multiples of gridSize
+        for (const shape in data[0].shapes) {
+            data[0].shapes[shape].x *= gridSize;
+            data[0].shapes[shape].y *= gridSize;
+        }
+        allShapes = data[0].shapes;
+        currentShapes = allShapes;
+    })
+    .catch(err => console.error('Error loading levelLayouts JSON:', err));
+
+Promise.all([shapesFetch, levelLayoutsFetch]).then(() => {
+    for (const rect in allShapes){
+        movingShape = rect;
+        snap();
+        document.getElementById('shapeSelect').innerHTML+="<input type='checkbox' id='"+rect+"' name='"+rect+"' checked><label for='"+rect+"'>"+rect+"</label><br>"
+    }
+    draw();
+});
     
-for (const rect in allShapes){
-    movingShape = rect;
-    snap();
-    document.getElementById('shapeSelect').innerHTML+="<input type='checkbox' id='"+rect+"' name='"+rect+"' checked><label for='"+rect+"'>"+rect+"</label><br>"
-}
-draw()
+
 
 // functions
 function updateShapes(){
-    shapes = {};
+    currentShapes = {};
     for (const rect in allShapes){
         if(document.getElementById(rect).checked){
-            shapes[rect] = Object.assign({}, allShapes[rect]);
+            currentShapes[rect] = Object.assign({}, allShapes[rect]);
         }
     }
     draw();
@@ -140,10 +52,34 @@ function updateShapes(){
 
 function copyMap(){
     let copiedText = ""
-    for (const rect in shapes){
-        copiedText+="\t\t\t\t"+rect+": {\n\t\t\t\t\tx: gridSize*"+shapes[rect].x / gridSize+",\n\t\t\t\t\ty: gridSize*"+shapes[rect].y / gridSize+",\n\t\t\t\t\theight: gridSize*"+shapes[rect].height / gridSize+",\n\t\t\t\t\twidth: gridSize*"+shapes[rect].width / gridSize+",\n\t\t\t\t\tcolour: '"+shapes[rect].colour+"',\n\t\t\t\t},\n"
+    for (const rect in currentShapes){
+        copiedText+=""+rect+': {\n\t"x": '+currentShapes[rect].x+',\n\t"y": '+currentShapes[rect].y+',\n\t"orientation": "'+currentShapes[rect].orientation+'",\n},\n'
     }
     navigator.clipboard.writeText(copiedText.slice(0, -1));
+}
+
+
+function downloadMap(){
+    let mapName = document.getElementById('mapName').value;
+    if (mapName==""){
+        mapName = "My Rush Hour Map"
+    }
+
+    const exportData = {
+        name: mapName,
+        shapes: currentShapes
+    };
+
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = mapName + ".rhm";
+    a.click();
+
+    URL.revokeObjectURL(url);
+
 }
 
 function deselectAll(){
@@ -151,6 +87,15 @@ function deselectAll(){
         document.getElementById(rect).checked = 0;
     }
 }
+
+function getShapeWidth(rect){
+    return (currentShapes[rect].orientation == "horizontal") ? shapes[rect].length : gridSize
+}
+
+function getShapeHeight(rect){
+    return (currentShapes[rect].orientation == "horizontal") ? gridSize : shapes[rect].length
+}
+
 
 function draw() {
     const canvas = document.getElementById("canvas");
@@ -165,62 +110,82 @@ function draw() {
                 ctx.strokeRect((gridSize*.1)+i*gridSize, (gridSize*.1)+j*gridSize, (gridSize*.8), (gridSize*.8));
             }
         }
-        for (const rect in shapes){
+        for (const rect in currentShapes){
             ctx.fillStyle = shapes[rect].colour;
-            ctx.fillRect(shapes[rect].x+2, shapes[rect].y+2, shapes[rect].width-4, shapes[rect].height-4);
+            ctx.fillRect(
+                currentShapes[rect].x+2,
+                currentShapes[rect].y+2,
+                getShapeWidth(rect)-4,
+                getShapeHeight(rect)-4
+            );
+            // Draw the letter of the shape on its centre
+            ctx.fillStyle = "white";
+            ctx.font = "48px serif";
+            ctx.fillText(rect, currentShapes[rect].x + getShapeWidth(rect)/2 - 15, currentShapes[rect].y + getShapeHeight(rect)/2 + 18);
         }
     }
 }
 
 function snap(){
-    if(shapes[movingShape].x<0){
-        shapes[movingShape].x = 0;
-    }else if(shapes[movingShape].x>(6-shapes[movingShape].width/gridSize)*gridSize){
-        shapes[movingShape].x = (6-shapes[movingShape].width/gridSize)*gridSize;
+    // need to make sure the movingShape isnt deselected
+    
+    // if shape is moved left of the canvas
+    if(currentShapes[movingShape].x < 0){
+        currentShapes[movingShape].x = 0;
     }
-    if(shapes[movingShape].y<0){
-        shapes[movingShape].y = 0;
-    }else if(shapes[movingShape].y>(6-shapes[movingShape].height/gridSize)*gridSize){
-        shapes[movingShape].y = (6-shapes[movingShape].height/gridSize)*gridSize;
+    
+    else if(currentShapes[movingShape].x > (6-getShapeWidth(movingShape)/gridSize) * gridSize){
+        currentShapes[movingShape].x = (6-getShapeWidth(movingShape)/gridSize)*gridSize;
     }
 
-    if(shapes[movingShape].x%gridSize<gridSize/2){
-        shapes[movingShape].x = Math.floor(shapes[movingShape].x/gridSize)*gridSize
+    // if shape is moved above the canvas
+    if(currentShapes[movingShape].y<0){
+        currentShapes[movingShape].y = 0;
+    }else if(currentShapes[movingShape].y>(6-getShapeHeight(movingShape)/gridSize)*gridSize){
+        currentShapes[movingShape].y = (6-getShapeHeight(movingShape)/gridSize)*gridSize;
+    }
+
+    if(currentShapes[movingShape].x%gridSize<gridSize/2){
+        currentShapes[movingShape].x = Math.floor(currentShapes[movingShape].x/gridSize)*gridSize
     }
     else{
-        shapes[movingShape].x = (Math.floor(shapes[movingShape].x/gridSize)+1)*gridSize
+        currentShapes[movingShape].x = (Math.floor(currentShapes[movingShape].x/gridSize)+1)*gridSize
     }
-    if(shapes[movingShape].y%gridSize<gridSize/2){
-        shapes[movingShape].y = Math.floor(shapes[movingShape].y/gridSize)*gridSize
+    if(currentShapes[movingShape].y%gridSize<gridSize/2){
+        currentShapes[movingShape].y = Math.floor(currentShapes[movingShape].y/gridSize)*gridSize
     }
     else{
-        shapes[movingShape].y = (Math.floor(shapes[movingShape].y/gridSize)+1)*gridSize
+        currentShapes[movingShape].y = (Math.floor(currentShapes[movingShape].y/gridSize)+1)*gridSize
     }
 }
 
-function updateDragOffset(){
+function updateDragOffset(event){
     dragOffset = {
-        x: event.pageX - canvas.offsetLeft - shapes[movingShape].x,
-        y: event.pageY - canvas.offsetTop - shapes[movingShape].y
+        x: event.pageX - canvas.offsetLeft - currentShapes[movingShape].x,
+        y: event.pageY - canvas.offsetTop - currentShapes[movingShape].y
     }
 }
 
 canvas.addEventListener('mousedown', function(event) {
     //console.log('mousedown');
-    for (const rect in shapes){
-        if(event.pageX - canvas.offsetLeft > shapes[rect].x && event.pageX - canvas.offsetLeft < shapes[rect].x+shapes[rect].width && event.pageY - canvas.offsetTop > shapes[rect].y && event.pageY - canvas.offsetTop < shapes[rect].y+shapes[rect].height){
+    for (const rect in currentShapes){
+        if(event.pageX - canvas.offsetLeft > currentShapes[rect].x
+            && event.pageX - canvas.offsetLeft < currentShapes[rect].x+getShapeWidth(rect)
+            && event.pageY - canvas.offsetTop > currentShapes[rect].y
+            && event.pageY - canvas.offsetTop < currentShapes[rect].y+getShapeHeight(rect)
+        ){
             //console.log('hovering')
             drag = true;
             movingShape = rect;
-            updateDragOffset()
+            updateDragOffset(event)
         }
     }
 })
 
 addEventListener('mousemove', function(event) {
     if (drag) {
-        shapes[movingShape].y = event.pageY - canvas.offsetTop - dragOffset.y
-        shapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
+        currentShapes[movingShape].y = event.pageY - canvas.offsetTop - dragOffset.y
+        currentShapes[movingShape].x = event.pageX - canvas.offsetLeft - dragOffset.x
         draw();
     }
 })
@@ -232,11 +197,13 @@ addEventListener('mouseup', function(event) {
 })
 
 canvas.addEventListener("dblclick", function(event){
-    for (const rect in shapes){
-        if(event.pageX - canvas.offsetLeft > shapes[rect].x && event.pageX - canvas.offsetLeft < shapes[rect].x+shapes[rect].width && event.pageY - canvas.offsetTop > shapes[rect].y && event.pageY - canvas.offsetTop < shapes[rect].y+shapes[rect].height){
-            let temp = shapes[rect].height;
-            shapes[rect].height = shapes[rect].width
-            shapes[rect].width = temp
+    for (const rect in currentShapes){
+        if(event.pageX - canvas.offsetLeft > currentShapes[rect].x
+            && event.pageX - canvas.offsetLeft < currentShapes[rect].x+getShapeWidth(rect)
+            && event.pageY - canvas.offsetTop > currentShapes[rect].y
+            && event.pageY - canvas.offsetTop < currentShapes[rect].y+getShapeHeight(rect)
+        ){
+            currentShapes[rect].orientation = (currentShapes[rect].orientation=="horizontal") ? "vertical" : "horizontal";
         }
     }
     draw()

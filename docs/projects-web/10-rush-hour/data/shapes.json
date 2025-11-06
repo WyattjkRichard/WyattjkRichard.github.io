@@ -1,0 +1,66 @@
+{
+    "A": {
+        "length": 2,
+        "colour": "LightGreen"
+    },
+    "B": {
+        "length": 2,
+        "colour": "DarkOrange"
+    },
+    "C": {
+        "length": 2,
+        "colour": "Aqua"
+    },
+    "D": {
+        "length": 2,
+        "colour": "Pink"
+    },
+    "E": {
+        "length": 2,
+        "colour": "BlueViolet"
+    },
+    "F": {
+        "length": 2,
+        "colour": "ForestGreen"
+    },
+    "G": {
+        "length": 2,
+        "colour": "Black"
+    },
+    "H": {
+        "length": 2,
+        "colour": "grey"
+    },
+    "I": {
+        "length": 2,
+        "colour": "yellow"
+    },
+    "J": {
+        "length": 2,
+        "colour": "DarkMagenta"
+    },
+    "K": {
+        "length": 2,
+        "colour": "DimGrey"
+    },
+    "O": {
+        "length": 3,
+        "colour": "Gold"
+    },
+    "P": {
+        "length": 3,
+        "colour": "MediumPurple"
+    },
+    "Q": {
+        "length": 3,
+        "colour": "RoyalBlue"
+    },
+    "R": {
+        "length": 3,
+        "colour": "MediumSeaGreen"
+    },
+    "X": {
+        "length": 2,
+        "colour": "red"
+    }
+}

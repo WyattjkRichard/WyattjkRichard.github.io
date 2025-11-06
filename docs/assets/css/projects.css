@@ -8,3 +8,11 @@ img{
 .project-card:hover{
     background-color:black !important;
 }
+
+.project-card:hover .project-card-description{
+    background-color:black !important;
+}
+
+.project-card-description{
+    background-color: #1D1D1D;
+}

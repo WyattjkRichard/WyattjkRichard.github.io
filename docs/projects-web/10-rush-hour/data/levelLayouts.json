@@ -1,0 +1,2447 @@
+[
+    {
+        "name": "default",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 2,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 2,
+                "y": 2,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 4,
+                "y": 2,
+                "orientation": "horizontal"
+            },
+            "J": {
+                "x": 4,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "K": {
+                "x": 4,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 1,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 1",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 0,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 2",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+                },
+            "C": {
+                "x": 4,
+                "y": 2,
+                "orientation": "vertical"
+                },
+            "D": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+                },
+            "E": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+                },
+            "F": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+                },
+            "G": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+                },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+                },
+            "P": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+                },
+            "Q": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+                },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 3",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 1,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 4",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 5",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 0,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 4,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 6",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 0,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 7",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "I": {
+                "x": 2,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 8",
+        "shapes": {
+            "A": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 4,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 0,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "K": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 3,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "Q": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 9",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 4,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 10",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 4,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 11",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 12",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 2,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 13",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 2,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 1,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 1,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "K": {
+                "x": 4,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 3,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 14",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 1,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 4,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 2,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "J": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "K": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 2,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 15",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 2,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 1,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 1,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 2,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 16",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 0,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 2,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 1,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 3,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 17",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 2,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 0,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 18",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 1,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 19",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 1,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 2,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 4,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "J": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 1,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 2,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 20",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 1,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 3,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 21",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 22",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 0,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 1,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 4,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 0,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 2,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 23",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 4,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 2,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 3,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 24",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 1,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 4,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 4,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 0,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 2,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 25",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 4,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 1,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 4,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 26",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 0,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 27",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 1,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 28",
+        "shapes": {
+            "A": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 1,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 2,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 5,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 2,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 29",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 1,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 5,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 4,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 30",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 2,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "Q": {
+                "x": 5,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 31",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 0,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 2,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 32",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 3,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "K": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 33",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 1,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 4,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "I": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 34",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "P": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 35",
+        "shapes": {
+            "A": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 1,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "K": {
+                "x": 0,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "O": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 36",
+        "shapes": {
+            "A": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 1,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 2,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "Q": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 2,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 37",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 4,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "D": {
+                "x": 0,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 3,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "G": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 4,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 4,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 0,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "R": {
+                "x": 1,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 1,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 38",
+        "shapes": {
+            "A": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 1,
+                "y": 1,
+                "orientation": "horizontal"
+            },
+            "C": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 3,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "Q": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 39",
+        "shapes": {
+            "A": {
+                "x": 2,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "B": {
+                "x": 3,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 2,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "F": {
+                "x": 0,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 1,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "H": {
+                "x": 2,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 2,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 3,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "R": {
+                "x": 5,
+                "y": 2,
+                "orientation": "vertical"
+            },
+            "X": {
+                "x": 0,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    },
+    {
+        "name": "level 40",
+        "shapes": {
+            "A": {
+                "x": 1,
+                "y": 0,
+                "orientation": "horizontal"
+            },
+            "B": {
+                "x": 4,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "C": {
+                "x": 1,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "D": {
+                "x": 2,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "E": {
+                "x": 3,
+                "y": 3,
+                "orientation": "vertical"
+            },
+            "F": {
+                "x": 2,
+                "y": 4,
+                "orientation": "vertical"
+            },
+            "G": {
+                "x": 4,
+                "y": 4,
+                "orientation": "horizontal"
+            },
+            "H": {
+                "x": 0,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "I": {
+                "x": 3,
+                "y": 5,
+                "orientation": "horizontal"
+            },
+            "O": {
+                "x": 0,
+                "y": 0,
+                "orientation": "vertical"
+            },
+            "P": {
+                "x": 5,
+                "y": 1,
+                "orientation": "vertical"
+            },
+            "Q": {
+                "x": 0,
+                "y": 3,
+                "orientation": "horizontal"
+            },
+            "X": {
+                "x": 3,
+                "y": 2,
+                "orientation": "horizontal"
+            }
+        }
+    }
+]
