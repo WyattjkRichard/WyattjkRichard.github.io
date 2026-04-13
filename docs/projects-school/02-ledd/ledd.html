@@ -24,7 +24,108 @@
         <main class="container mt-5 pt-5">
             <section class="text-center mb-5">
                 <h2 class="fw-bold">Semester Two Project: LED Display</h2>
+                <p class="lead mt-3">
+                    The second project of my first year in the Electronic Systems Engineering program at Conestoga College was focused on designing and building a 6x24 LED matrix display driven by an Arduino Uno.
+                    The project involved creating a system capable of displaying scrolling text, reading environmental data, and dynamically controlling the output using integrated circuits and custom software.
+                    This project provided an opportunity to apply concepts of multiplexing, memory optimization, and sensor integration in a practical electronics application.
+                </p>
+            </section>
 
+            <!-- OVERVIEW -->
+            <section class="mb-5 text-center">
+                <h3 class="mb-3">Project Overview</h3>
+                <p>
+                    The primary goal of this project was to interface with a 6x24 LED matrix display using an Arduino Uno.
+                    writing software to render text and symbols, and integrating sensors to display real-time environmental data.
+                    the led display was designed to be controlled using a combination of shift registers and multiplexing techniques, allowing for efficient use of the Arduino's limited I/O pins.
+                    The system also integrated temperature and luminosity sensors, allowing temperature data to be displayed and the brightness to be adjusted based on ambient light conditions.
+                </p>
+
+                <img src="./images/20220408_141442.jpg" alt="Working on LED display" class="img-fluid rounded shadow mt-3">
+            </section>
+            
+            <!-- HARDWARE -->
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Hardware Design</h3>
+                <p class="text-center">
+                    The display uses a combination of shift registers, a demultiplexer, and an inverter to control 
+                    rows and columns efficiently. This reduced the required Arduino pins from 30 to just 7. 
+                    The display operates by scanning rows rapidly, creating the illusion of a fully lit matrix.
+                </p>
+
+                <!-- Main setup image -->
+                <div class="text-center mb-4">
+                    <img src="./images/ledDisplay.png" alt="LED display hardware setup" class="img-fluid rounded shadow">
+                </div>
+
+                <!-- Circuits side-by-side -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="./images/column_multiplex.png" alt="Column multiplexing circuit" class="img-fluid rounded shadow">
+                        <p class="text-center text-light small mt-2">
+                            Column multiplexing circuit used for LED control
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/row_multiplex.png" alt="Row multiplexing circuit" class="img-fluid rounded shadow">
+                        <p class="text-center text-light small mt-2">
+                            Row multiplexing circuit used for LED control
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Output example -->
+                <div class="text-center">
+                    <img src="./images/abc!.png" alt="Display output example" class="img-fluid rounded shadow mt-3">
+                    <p class="text-center text-light small mt-2">
+                        Example of display output showing characters and punctuation "ABC!"
+                    </p>
+                </div>
+            </section>
+
+            <!-- Software Design -->
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Software Design</h3>
+                <p class="text-center">
+                    The software converts text into LED patterns using predefined character arrays and optimized storage structures.
+                    The matrix could be set to either display a static message or display the current temperature, which was read from a connected sensor.
+                    The software also included a brightness control feature that adjusted the display's brightness based on ambient light levels, read from a luminosity sensor.
+                    If the length of the text exceeded the display's width, the software implemented a scrolling mechanism to ensure all content was visible.
+                </p>
+
+                
+            </section>
+
+            <!-- ENGINEERING CHALLENGES -->
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Engineering Challenges</h3>
+                <p>
+                    <strong>Memory Limitations:</strong> The Arduino ran out of storage due to many character arrays. 
+                    This was solved by compressing data into shared row patterns.
+                </p>
+                <!-- Before vs After -->
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <img src="./images/characters.png" alt="Original character arrays" class="img-fluid rounded shadow">
+                        <p class="text-center text-light small mt-2">
+                            Original character arrays for each letter, which caused memory issues
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6 text-center">
+                        <img src="./images/reworked_characters.png" alt="Optimized character arrays" class="img-fluid rounded shadow">
+                        <p class="text-center text-light small mt-2">
+                            Optimized character arrays using shared row patterns, which solved memory issues
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="./images/reworked_key.png" alt="Reference key system" class="img-fluid rounded shadow">
+                        <p class="text-center text-light small mt-2">
+                            Reference key system for mapping characters to display positions
+                        </p>
+                    </div>
+                </div>
             </section>
         </main>
         
