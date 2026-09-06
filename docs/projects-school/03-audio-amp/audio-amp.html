@@ -25,6 +25,99 @@
             <section class="text-center mb-5">
                 <h2 class="fw-bold">Semester Three Project 1: Audio Amplifier</h2>
 
+                <p class="lead mt-3">
+                    This project was a collaborative build of an audio amplifier with a focus on implementing and understanding the use of transistors in the active region as amplifiers.
+                    The finished amplifier accepts a small AC input signal, increases its voltage and current, and drives an approximately 8-ohm load.
+                    It combines a split-rail power supply with three amplifier stages: a differential input stage, a common-emitter voltage stage, and a Class B push-pull output stage.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Project Overview</h3>
+                <p>
+                    The amplifier was designed to deliver about 5 W to an 8-ohm load. Its transformer steps down the 120 V AC input,
+                    then a bridge rectifier and filter capacitors create the positive and negative DC rails used by the amplifier.
+                    The circuit also includes fuses, chassis grounding, current limiting, and short-circuit protection for safe operation.
+                </p>
+                <div class="text-center mt-4">
+                    <img src="./images/20220929_183350.jpg" class="img-fluid rounded shadow" alt="Completed audio amplifier assembly">
+                    <p class="text-light small mt-2">The completed amplifier with its components mounted to the metal chassis.</p>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Circuit Design</h3>
+                <p>
+                    The input stage is a differential amplifier. One input receives the signal and the other receives the negative-feedback signal,
+                    allowing the circuit to amplify their difference. A common-emitter stage then provides most of the voltage gain.
+                    Finally, complementary transistors in the push-pull stage provide the large current gain needed by the load while keeping the voltage gain close to unity.
+                </p>
+                <p>
+                    The output stage uses a potentiometer to balance the transistor bias voltages and reduce crossover distortion.
+                    Additional components provide compensation, high-frequency filtering, damping, and protection against inductive transients and short circuits.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Power Supply</h3>
+                <p>
+                    The power supply uses a transformer, four-diode bridge rectifier, and large 6800 uF capacitors to produce smooth split rails.
+                    Smaller capacitors suppress high-frequency noise, while resistors discharge the large capacitors after power is removed.
+                    The practical measurements were approximately +15.1 V and -15.0 V DC at the supply rails.
+                </p>
+                <div class="row g-4 text-center">
+                    <div class="col-md-6">
+                        <img src="./images/20220916_104635.jpg" class="img-fluid rounded shadow" alt="Audio amplifier power supply">
+                        <p class="text-light small mt-2">The assembled power supply.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/20220916_134519.jpg" class="img-fluid rounded shadow" alt="Power supply with connectors">
+                        <p class="text-light small mt-2">Power supply with its connectors installed.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Construction Process</h3>
+                <p>
+                    The amplifier was prototyped and then mounted to a bent sheet-metal base. The build required careful polarity checks,
+                    continuity testing, secure solder joints, and mechanical alignment of the heat sinks and connectors.
+                </p>
+
+                <div class="row g-4 text-center">
+                    <div class="col-md-6">
+                        <img src="./images/20220908_193603.jpg" class="img-fluid rounded shadow" alt="Initial amplifier board with passive components">
+                        <p class="text-light small mt-2">Initial board with passive components.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/20220914_131207.jpg" class="img-fluid rounded shadow" alt="Testing the audio amplifier power supply">
+                        <p class="text-light small mt-2">Testing the output of the power supply.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/20220916_104632.jpg" class="img-fluid rounded shadow" alt="Amplifier board with a hand-wound inductor">
+                        <p class="text-light small mt-2">Board populated with the self-wound inductor.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/20220920_101639.jpg" class="img-fluid rounded shadow" alt="Audio amplifier component layout on the metal base">
+                        <p class="text-light small mt-2">Planning the component layout on the metal base.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/20220926_105730.jpg" class="img-fluid rounded shadow" alt="Audio amplifier components mounted to the metal base">
+                        <p class="text-light small mt-2">Components mounted to the bent metal base.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Measured Performance</h3>
+                <p>
+                    With a sinusoidal input and an approximately 8-ohm load, the practical test produced an output of 8.9 V peak and 1.11 A peak.
+                    The measured overall voltage gain was 32.36, the current gain was approximately 40,000, and the power gain was 61.16 dB.
+                    These measurements agreed closely with the simulated output of 8.9 V peak and a predicted voltage gain of 31.23.
+                </p>
+                <div class="text-center mt-4">
+                    <img src="./images/20220929_183350.jpg" class="img-fluid rounded shadow" alt="Final audio amplifier assembly">
+                </div>
             </section>
         </main>
         

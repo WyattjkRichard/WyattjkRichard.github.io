@@ -25,6 +25,128 @@
             <section class="text-center mb-5">
                 <h2 class="fw-bold">Semester Three Project 2: Coded Messaging System</h2>
 
+                <p class="lead mt-3">
+                    The Coded Messaging System was another collaborative Engineering Project and my second project completed with Noah Grant.
+                    We developed a console-based C application that could send and receive text, audio, and file messages over a serial connection,
+                    while applying selectable compression and encryption methods to the message payload.
+                </p>
+
+                <img src="./images/cms.png" class="img-fluid rounded shadow mt-3" alt="Coded Messaging System title graphic">
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Project Overview</h3>
+                <p>
+                    The application is organized around a numbered command-line menu. Users can configure a COM port, choose a compression method,
+                    select an encryption method, set a key, manage contacts, and choose whether they want to send, receive, or inspect messages.
+                    The same interface also exposes audio recording and playback, file transmission, diagnostic tests, and a queue for received messages.
+                </p>
+                <div class="text-center mt-4">
+                    <img src="./images/image4.png" class="img-fluid rounded shadow" alt="Coded Messaging System main menu">
+                    <p class="text-light small mt-2">The main menu exposes the application's messaging and testing functions.</p>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Message Configuration</h3>
+                <p>
+                    Before sending a message, the user configures the serial connection and the transformations applied to the payload.
+                    The system supports no compression, RLE, Huffman, and a combined Huffman and RLE option. Encryption can be disabled or handled with XOR or Vigenere.
+                    A configurable recording length controls audio messages, while sender and recipient IDs identify the endpoints.
+                </p>
+                <div class="row g-4 text-center">
+                    <div class="col-md-6">
+                        <img src="./images/image6.png" class="img-fluid rounded shadow" alt="COM port selection prompt">
+                        <p class="text-light small mt-2">Selecting the serial COM port.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image7.png" class="img-fluid rounded shadow" alt="Compression selection prompt">
+                        <p class="text-light small mt-2">Choosing a compression method.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image8.png" class="img-fluid rounded shadow" alt="Encryption selection prompt">
+                        <p class="text-light small mt-2">Choosing an encryption method.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image11.png" class="img-fluid rounded shadow" alt="Contact management options">
+                        <p class="text-light small mt-2">Creating a new contact or selecting an existing contact.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Sending and Receiving</h3>
+                <p>
+                    The system supports three payload types: text messages, recorded audio, and text files. Text messages are entered directly in the console,
+                    audio can be recorded to a buffer and played back, and files are selected by filename before transmission.
+                    Incoming messages are decoded and placed in a queue with their sender, recipient, priority, payload type, and payload size preserved.
+                </p>
+                <div class="row g-4 text-center">
+                    <div class="col-md-6">
+                        <img src="./images/image15.png" class="img-fluid rounded shadow" alt="Text message transmission prompt">
+                        <p class="text-light small mt-2">Sending a text message through the console.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image16.png" class="img-fluid rounded shadow" alt="Audio message recording prompt">
+                        <p class="text-light small mt-2">Recording an audio message for transmission.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image17.png" class="img-fluid rounded shadow" alt="Text file transmission prompt">
+                        <p class="text-light small mt-2">Transmitting a text file by filename.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image19.png" class="img-fluid rounded shadow" alt="Received message queue display">
+                        <p class="text-light small mt-2">The message queue showing text and audio payload details.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Compression and Encryption</h3>
+                <p>
+                    Compression and encryption are applied as separate processing stages. The diagnostic workflow sends known test messages through each supported combination,
+                    then checks that the receiver reports successful reception and reconstructs the original message.
+                    This made it possible to compare plain text with Huffman and RLE compressed payloads while also testing XOR and Vigenere encryption.
+                </p>
+                <div class="row g-4 text-center">
+                    <div class="col-md-6">
+                        <img src="./images/image25.png" class="img-fluid rounded shadow" alt="CMS diagnostic receiving tests">
+                        <p class="text-light small mt-2">Receiving-side diagnostic tests for plain text, Huffman, and RLE.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image26.png" class="img-fluid rounded shadow" alt="CMS diagnostic transmission tests">
+                        <p class="text-light small mt-2">Transmission-side diagnostic results and byte counts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Implementation and Testing</h3>
+                <p>
+                    The project used structured message headers to carry sender and recipient IDs, encryption and compression selections,
+                    the active COM connection, and recording settings along with each payload. Testing covered the individual menu functions,
+                    message transmission and reception, audio recording and playback, file sending, queue management, and diagnostic combinations.
+                </p>
+                <div class="row g-4 text-center">
+                    <div class="col-md-6">
+                        <img src="./images/image27.png" class="img-fluid rounded shadow" alt="Coded Messaging System source code for settings validation">
+                        <p class="text-light small mt-2">Loading and validating saved user settings.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/image30.jpeg" class="img-fluid rounded shadow" alt="Coded Messaging System diagnostic test source code">
+                        <p class="text-light small mt-2">Defining the diagnostic test cases and message combinations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Outcome</h3>
+                <p>
+                    The completed system brought together serial communication, data structures, file I/O, audio buffering, compression, encryption,
+                    and a multi-function command-line interface in one application. The project also created a repeatable diagnostic process,
+                    making it easier to verify both ends of the communication path and confirm that encoded messages could be restored correctly.
+                </p>
+
             </section>
         </main>
         
