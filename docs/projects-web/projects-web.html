@@ -17,14 +17,21 @@
         <link href='../assets/css/style.css' rel='stylesheet'>
         <link href="../assets/css/projects.css" rel="stylesheet">
     </head>
-    <body class="bg-primary d-flex flex-column min-vh-100">
+    <body class="bg-primary d-flex flex-column min-vh-100 web-projects-page">
         <!-- Navbar -->
         <div id="navbar-placeholder" data-root="../"></div>
 
-        <div class="container mt-5 pt-5">
-            <div class="row">
+        <main class="container web-projects-content">
+            <header class="projects-intro">
+                <p class="projects-eyebrow">Web experiments and tools</p>
+                <h1>Web Projects</h1>
+                <p class="projects-lede">A collection of small applications, games, and experiments built with HTML, CSS, and JavaScript.</p>
+                <div class="projects-rule" aria-hidden="true"></div>
+            </header>
+
+            <div class="row g-4 project-grid">
                 <div class="col-6 col-md-3">
-                    <div class= "bg-secondary text-center rounded project-card">
+                    <div class="bg-secondary text-center rounded project-card">
                         <a href="01-cat/cat.html">
                             <div>
                                 <h5>JS Animation</h5>
@@ -79,7 +86,7 @@
                     <div class= "bg-secondary text-center rounded project-card">
                         <a href="05-vigenere-cipher/vigenere-cipher.html">
                             <div>
-                                <h5>Viggenere Cipher</h5>
+                                <h5>Vigenere Cipher</h5>
                                 <p>July 2023</p>
                             </div>
                             <div class="project-card-description">
@@ -248,17 +255,30 @@
                     <div class= "bg-secondary text-center rounded project-card">
                         <a href="18-lego-cmf/lego-cmf.html">
                             <div>
-                                <h5>Lego CMF Decoder</h5>
+                                <h5>Lego CMF Scanner</h5>
                                 <p>October 2025</p>
                             </div>
                             <div class="project-card-description">
-                                <p>A Lego Collectible Minifigure decoder.</p>
+                                <p>A Lego Collectible Minifigure scanner.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class= "bg-secondary text-center rounded project-card">
+                        <a href="19-swiss-reglette/swiss-reglette.html">
+                            <div>
+                                <h5>Swiss Reglette</h5>
+                                <p>August 2026</p>
+                            </div>
+                            <div class="project-card-description">
+                                <p>A Swiss reglette decoder.</p>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         
         <footer class="py-3 mt-auto">
             <div class="text-center border-top pt-3">

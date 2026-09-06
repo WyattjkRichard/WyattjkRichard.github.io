@@ -99,6 +99,10 @@ textarea{
 	text-align:center;
 }
 
+.error_message{
+    color:crimson;
+}
+
 .textbox{
     width: 300px;
     height: 150px;

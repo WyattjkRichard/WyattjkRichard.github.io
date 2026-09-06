@@ -18,12 +18,19 @@
         <link href="../assets/css/style.css" rel="stylesheet">
         <link href="../assets/css/projects.css" rel="stylesheet">
     </head>
-    <body class="bg-primary d-flex flex-column min-vh-100">
+    <body class="bg-primary d-flex flex-column min-vh-100 school-projects-page">
         <!-- Navbar -->
         <div id="navbar-placeholder" data-root="../"></div>
         
-        <div class="container mt-5 pt-5">
-            <div class="row">
+        <main class="container school-projects-content">
+            <header class="projects-intro">
+                <p class="projects-eyebrow">Engineering and design coursework</p>
+                <h1>School Projects</h1>
+                <p class="projects-lede">Hardware, embedded systems, and software projects developed throughout my studies.</p>
+                <div class="projects-rule" aria-hidden="true"></div>
+            </header>
+
+            <div class="row g-4 project-grid">
                 <div class="col-12 col-md-6 bg-secondary text-center rounded project-card">
                     <a href="08-OBD2FA/OBD2FA.html">
                         <img src="./08-OBD2FA/images/obd2fa.jpg">
@@ -81,7 +88,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </main>
 
         <footer class="py-3 mt-auto" >
             <div class="text-center border-top pt-3">

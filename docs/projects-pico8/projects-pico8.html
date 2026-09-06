@@ -17,12 +17,19 @@
         <link href="../assets/css/style.css" rel="stylesheet">
         <link href="../assets/css/projects.css" rel="stylesheet">
     </head>
-    <body class="bg-primary d-flex flex-column min-vh-100">
+    <body class="bg-primary d-flex flex-column min-vh-100 pico8-projects-page">
         <!-- Navbar -->
         <div id="navbar-placeholder" data-root="../"></div>
         
-        <div class="container mt-5 pt-5">
-            <div class="row">
+        <main class="container pico8-projects-content">
+            <header class="projects-intro">
+                <p class="projects-eyebrow">Small games, big ideas</p>
+                <h1>Pico-8 Projects</h1>
+                <p class="projects-lede">Playable experiments created with Pico-8, from classic arcade recreations to original game ideas.</p>
+                <div class="projects-rule" aria-hidden="true"></div>
+            </header>
+
+            <div class="row g-4 project-grid pico8-project-grid">
                 <div class="col-6 col-md-3">
                     <div class= "bg-secondary text-center rounded project-card">
                         <a href="./01-pong/pong.html">
@@ -39,7 +46,7 @@
                         <a href="./02-pumpkin-carving/pumpkin-carving.html">
                             <div>
                                 <img src="./images/pumpkin-carving-v1.1.0.p8.png">
-                                <h5>Pumpking Carving Game</h5>
+                                <h5>Pumpkin Carving Game</h5>
                                 <p>October 2024</p>
                             </div>
                         </a>
@@ -79,7 +86,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         
         <footer class="py-3 mt-auto">
             <div class="text-center border-top pt-3">

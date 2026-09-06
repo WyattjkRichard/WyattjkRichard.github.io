@@ -5,14 +5,189 @@ img{
     object-fit: cover;
 }
 
+.web-projects-content {
+    width: min(100% - 2rem, 1320px);
+    margin: 0 auto;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+}
+
+.school-projects-content {
+    width: min(100% - 2rem, 1160px);
+    margin: 0 auto;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+}
+
+.pico8-projects-content {
+    width: min(100% - 2rem, 1240px);
+    margin: 0 auto;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+}
+
+.pico8-project-grid > [class*="col-"] {
+    display: flex;
+}
+
+.pico8-projects-page .project-card {
+    width: 100%;
+}
+
+.pico8-projects-page .project-card > a {
+    min-height: 100%;
+}
+
+.school-projects-page .project-card img {
+    display: block;
+    width: calc(100% + 3rem);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: -1.5rem -1.5rem 1.5rem;
+    object-fit: cover;
+}
+
+.school-projects-page .project-card {
+    display: block;
+}
+
+.school-projects-page .project-card > a {
+    width: 100%;
+}
+
+.projects-intro {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.projects-eyebrow {
+    margin-bottom: 0.75rem;
+    color: #b6c7a5;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.projects-intro h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    line-height: 1;
+}
+
+.projects-lede {
+    max-width: 570px;
+    margin: 0 auto;
+    color: #b0b0b0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.projects-rule {
+    width: 4rem;
+    height: 0.2rem;
+    margin: 1.75rem auto 0;
+    background-color: #b6c7a5;
+}
+
+.project-grid > [class*="col-"] {
+    display: flex;
+}
+
+.project-card {
+    border: 1px solid #303030;
+    overflow: hidden;
+    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.web-projects-page .project-card {
+    width: 100%;
+}
+
+.project-card > a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.project-card > a > div:first-child {
+    flex: 1;
+}
+
+.project-card h5 {
+    min-height: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.25;
+}
+
+.project-card p {
+    line-height: 1.5;
+}
+
+.project-card-description {
+    margin: 1.25rem -1.5rem -1.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #303030;
+}
+
+.project-card-description p {
+    margin: 0;
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+
 .project-card:hover{
-    background-color:black !important;
+    background-color: #202020 !important;
+    border-color: #b6c7a5;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.22);
+    transform: translateY(-0.25rem);
 }
 
 .project-card:hover .project-card-description{
-    background-color:black !important;
+    background-color: #202020 !important;
 }
 
-.project-card-description{
-    background-color: #1D1D1D;
+.project-card:focus-within {
+    border-color: #b6c7a5;
+    outline: 2px solid #b6c7a5;
+    outline-offset: 3px;
+}
+
+.project-card a:focus-visible {
+    outline: none;
+}
+
+footer .border-top {
+    border-color: #b6c7a5 !important;
+}
+
+@media (max-width: 575.98px) {
+    .web-projects-content,
+    .school-projects-content,
+    .pico8-projects-content {
+        width: min(100% - 1.5rem, 1320px);
+        padding-top: 6.5rem;
+    }
+
+    .projects-intro {
+        margin-bottom: 2rem;
+    }
+
+    .project-card > a {
+        padding: 1.25rem;
+    }
+
+    .project-card-description {
+        margin: 1.25rem -1.25rem -1.25rem;
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;
+    }
+
+    .school-projects-page .project-card img {
+        width: calc(100% + 2.5rem);
+        margin: -1.25rem -1.25rem 1.25rem;
+    }
 }
