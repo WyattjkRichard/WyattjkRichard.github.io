@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Embedded Systems Robot project by Wyatt Richard">
-        <meta name="keywords" content="Wyatt Richard, Projects, Embedded Systems, Robot">
+        <meta name="description" content="Mobile Platform Robot project by Wyatt Richard">
+        <meta name="keywords" content="Wyatt Richard, Projects, Embedded Systems, Mobile Platform Robot">
         <meta name="author" content="Wyatt Richard">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>ESR</title>
+        <title>Mobile Platform Robot</title>
 
         <link rel="icon" href="../../assets/images/icon.png">
 
@@ -24,6 +24,133 @@
         <main class="container mt-5 pt-5">
             <section class="text-center mb-5">
                 <h2 class="fw-bold">Semester Four/Five Project: Mobile Platform Robot</h2>
+
+                <p class="lead mt-3">
+                    This project spanned two semesters, in the first semester it was an independent hardware design project and in the second semester it became a collaborative robot integration project which I once again worked with Noah Grant.
+                    In Semester 4, I designed, assembled, and tested the Microcontroller Unit (MCU) peripheral board and Power Supply Unit (PSU) boards that would control the Mobile Platform Robot (MPR).
+                    In Semester 5, we used those boards to build and test a remotely controlled mobile robot with a camera mount and several onboard peripherals.
+                </p>
+
+                <img src="./images/MPR.jpg" class="img-fluid rounded shadow mt-3" alt="Completed mobile platform robot">
+                <p class="text-light small mt-2">The completed MPR with its camera, control boards, and drive base.</p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Project Architecture</h3>
+                <p>
+                    The MPR is built around an STM32F303RE Nucleo MCU and two custom PC/104-style boards: an onboard controller board and a power supply board.
+                    The power board accepts a rechargeable battery input between 12.8 V and 30 V and provides regulated 3.3 V, 5 V, and 12 V rails.
+                    Those rails supply the MCU, logic and peripherals, and the motor systems respectively.
+                </p>
+                <p>
+                    The controller interfaces with left and right DC motors and encoders, a stepper motor and servo for the camera mount,
+                    limit switches, a 16x2 LCD, keypad, and an ultrasonic sensor.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Semester 4: Board Design</h3>
+                <p>
+                    The first half of the project was independent work focused on the electronic foundation of the robot.
+                    I compared regulator designs based on bill of materials cost, efficiency, and footprint, then selected power circuits for the 3.3 V, 5 V, and 12 V outputs.
+                    I also designed the motor-driver interfaces, encoder inputs, camera stepper and servo interfaces, LCD, keypad, ultrasonic sensor, DAC, and communication connections.
+                </p>
+                <div class="row g-4 justify-content-center text-center">
+                    <div class="col-md-6">
+                        <img src="./images/570A8CAD-43AE-4338-972B-D859FA5D1EDB.jpeg" class="img-fluid rounded shadow" alt="Mobile platform robot electronics during testing">
+                        <p class="text-light small mt-2">Preparing the PCB for assembly.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/0BE7E5F3-F2BE-439F-B986-4775C01A9E82.jpeg" class="img-fluid rounded shadow" alt="Reflowing the power supply board.">
+                        <p class="text-light small mt-2">Reflowing the power supply board.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Assembly and Validation</h3>
+                <p>
+                    After the PCBs were manufactured, I applied solder paste, placed the surface-mount components, reflowed the boards, and installed the through-hole parts.
+                    The boards were tested for their regulated outputs and inspected by X-ray to check IC connections and identify shorts.
+                    The measured power-board outputs were 3.366 V, 5.026 V, and 12.22 V, with a measured battery input of 16.45 V.
+                </p>
+                <p>
+                    Testing uncovered several practical issues, including a bulk capacitor arrangement that needed to be corrected,
+                    a motor-header pitch mismatch, and a battery connector that did not fit the board height. These were resolved through board modifications and replacement connections.
+                </p>
+                <p>
+                    Thermal imaging was used to verify that the boards were operating within their thermal limits and to identify any potential hot spots.
+                </p>
+                <div class="row g-4 justify-content-center text-center">
+                    <div class="col-md-6">
+                        <img src="./images/X-Ray_PS_U1.png" class="img-fluid rounded shadow" alt="X-ray inspection of the power supply board">
+                        <p class="text-light small mt-2">X-ray inspection of ics on power-supply board.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/X-Ray_OBC_U1.png" class="img-fluid rounded shadow" alt="X-ray inspection of the onboard controller board">
+                        <p class="text-light small mt-2">X-ray inspection of ics on the micro controller peripheral board.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <img src="./images/IR_00001.png" class="img-fluid rounded shadow d-block mx-auto" alt="Infrared thermal image of a mobile platform board">
+                    <p class="text-light small mt-2">Infrared inspection used during board validation.</p>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Testing</h3>
+
+                <div class="row g-4 mt-4 justify-content-center text-center">
+                    <div class="col-md-6">
+                        <video class="w-100 rounded shadow" controls preload="metadata">
+                            <source src="./images/TestingBoard.mp4" type="video/mp4">
+                            Your browser does not support embedded video.
+                        </video>
+                        <p class="text-light small mt-2">Board testing and validation at end of semester 4.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Semester 5: Robot Integration</h3>
+                <p>
+                    The second half of the project was completed with Noah Grant. We reused the MCU and power supply boards from the previous semester as the control and power foundation for a wireless remote-controlled robot.
+                    We integrated the boards with the wheel motors, encoders, camera pan and tilt mechanisms, LCD, and wiring harnesses, then tested the combined system as a complete platform.
+                </p>
+                <div class="text-center mt-4">
+                    <img src="./images/20230915_094949.jpg" class="img-fluid rounded shadow" alt="Mobile platform robot with integrated controller boards and camera">
+                    <p class="text-light small mt-2">The integrated robot with its camera mount, controller boards, LCD, and wiring.</p>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Remote-Controlled Platform</h3>
+                <p>
+                    The finished platform uses the MCU to translate control commands into wheel-motor signals and camera-mount motion.
+                    Wheel encoders provide feedback for PID-controlled repeatable movement, while limit switches establish the camera position.
+                    The LCD and other peripherals provide status and user feedback during operation.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Testing</h3>
+
+                <div class="row g-4 mt-4 justify-content-center text-center">
+                    <div class="col-md-6">
+                        <video class="w-100 rounded shadow" controls preload="metadata">
+                            <source src="./images/20230929_121207.mp4" type="video/mp4">
+                            Your browser does not support embedded video.
+                        </video>
+                        <p class="text-light small mt-2">Integrated robot testing at beginning of semester 5.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <video class="w-100 rounded shadow" controls preload="metadata">
+                            <source src="./images/20231103_121146.mp4" type="video/mp4">
+                            Your browser does not support embedded video.
+                        </video>
+                        <p class="text-light small mt-2">Assembled MPR validation at end of semester 5.</p>
+                    </div>
+                </div>
             </section>
         </main>
         

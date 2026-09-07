@@ -23,7 +23,81 @@
         
         <main class="container mt-5 pt-5">
             <section class="text-center mb-5">
-                <h2 class="fw-bold">Semester Five Project: Satellite</h2>
+                <h2 class="fw-bold">Semester Five Project Two: Satellite</h2>
+
+                <p class="lead mt-3">
+                    This project involved building a satellite-tracking system around a provided motorized dish.
+                    The system accepts two-line element (TLE) data for a satellite, calculates where that satellite should appear in the sky,
+                    and controls the dish so it can follow the target.
+                </p>
+
+                <img src="./images/satellite.png" class="img-fluid rounded shadow mt-3" alt="Satellite tracker dish and electronics">
+                <p class="text-light small mt-2">The completed satellite-tracking system with its dish, Raspberry Pi, and control electronics.</p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Project Overview</h3>
+                <p>
+                    The tracker combines software-based orbital prediction with physical sensor and actuator control.
+                    Given a satellite identifier and TLE data, the software obtains the observer location, predicts the satellite position,
+                    and produces azimuth and elevation angles for the dish.
+                </p>
+                <div class="row g-4 justify-content-center text-center">
+                    <div class="col-md-6">
+                        <img src="./images/IMG_4087.JPG" class="img-fluid rounded shadow" alt="Satellite tracker Raspberry Pi and dish wiring">
+                        <p class="text-light small mt-2">Raspberry Pi wiring and the dish's sensor and actuator connections.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/IMG_4088.JPG" class="img-fluid rounded shadow" alt="Satellite tracker dish actuator assembly">
+                        <p class="text-light small mt-2">The dish actuator assembly used to position the tracker.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Satellite Tracking</h3>
+                <p>
+                    TLE data describes the satellite's orbit in an Earth-Centered Inertial (ECI) reference frame.
+                    The tracking algorithm uses the satellite state vector and simplified general perturbation models to predict its position.
+                    That position is transformed through Earth-Centered, Earth-Fixed (ECEF) coordinates and finally into a topocentric coordinate system centered on the observer.
+                </p>
+                <p>
+                    The topocentric result gives the two values needed to aim the dish: azimuth, the horizontal angle measured clockwise from true north,
+                    and elevation, the vertical angle above the observer's horizon. The observer's location and the current time are essential because both the Earth and the satellite are moving.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Software and Data Sources</h3>
+                <p>
+                    The system uses a TLE API to retrieve current orbital data and a geocoder to identify the observer's location.
+                    Ephem and related packages provide the orbital calculations, while the application combines the resulting satellite ID,
+                    observer position, azimuth, and elevation into the commands needed by the dish controller.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Sensor and Actuator Interface</h3>
+                <p>
+                    The Raspberry Pi interfaced with the sensors via I2C.
+                    The magnetic potentiometers report position information used to determine the dish orientation, while the actuators move the dish toward the calculated azimuth and elevation.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="text-center mb-3">Validation and Results</h3>
+                <p>
+                    The tracking results were compared against Ansys STK as a reference. The project presentation reported overall ground-tracking accuracy above 99.9%,
+                    azimuth accuracy of approximately 99%, and elevation accuracy of approximately 90% or better.
+                    These results showed that the coordinate transformations and pointing calculations were producing useful dish-control values.
+                </p>
+                <div class="text-center mt-4">
+                    <video class="w-100 rounded shadow" controls preload="metadata">
+                        <source src="./images/IMG_4115.mp4" type="video/mp4">
+                        Your browser does not support embedded video.
+                    </video>
+                    <p class="text-light small mt-2">Satellite tracker test video.</p>
+                </div>
             </section>
         </main>
         
